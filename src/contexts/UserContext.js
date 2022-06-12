@@ -4,6 +4,7 @@ export const UserContext = createContext();
 
 const UserContextProvider = (props) => {
   const [userList, setUserList] = useState([]);
+  const [role, setRole] = useState("");
 
   useEffect(() => {
     getUserList();
@@ -15,11 +16,20 @@ const UserContextProvider = (props) => {
     setUserList(userList);
   };
 
+  const getUserByEmail = async () => {
+    const response = await fetch('http://localhost:3001/api/v1/users');
+    const userInDatabase = await response.json();
+    setUserList(userInDatabase);
+  };
+
+
   const addUser = async (pUser) => {
-      if (pUser?.email !==undefined) {
+      // if (pUser.email !==undefined) {
           const newUser = {
-              name:pUser?.name,
-              email:pUser?.email,
+              id: pUser.sub,
+              name:pUser.name,
+              email:pUser.email,
+            
           };
     try {
       await fetch('http://localhost:3001/api/v1/users', {
@@ -32,16 +42,17 @@ const UserContextProvider = (props) => {
     } catch (error) {
       console.log(error);
     }
-  }
+  
 };
 
   console.log("1", userList);
 
   return (
-    <UserContext.Provider value={{ addUser }}>
+    <UserContext.Provider value={{ addUser, getUserList ,getUserByEmail }}>
       {props.children}
     </UserContext.Provider>
   );
+  
 };
 
 export default UserContextProvider;
