@@ -9,14 +9,14 @@ import { BrowserRouter } from 'react-router-dom';
 import { Router, Routes, Route, Switch, Link } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+// const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+// const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
 root.render(
   <BrowserRouter>
    <Auth0Provider
-    domain="dev-ht9bl9i7.eu.auth0.com"
-    clientId="jgglKp2Xs92LYsxF0re3b7LNTEXklXjY"
+    domain="dev-enmb7hr3.eu.auth0.com"
+    clientId="mrhHFE5yRac3TLcFmRtTH5sIs7pWjLym"
     redirectUri={window.location.origin}
   >
    <UserContextProvider>

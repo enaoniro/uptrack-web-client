@@ -11,7 +11,7 @@ async function checkAuthenticatedUser(pUser){
     })
     
     return  response;
-    
+     
 }
 
 export {checkAuthenticatedUser}
