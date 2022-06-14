@@ -23,7 +23,7 @@ const checkAuthenticatedUser=async(pUser) => {
       headers: { "Content-Type": "application/json" }
   })
   
-  return  response;
+  return await response.json();
    
 }
 
