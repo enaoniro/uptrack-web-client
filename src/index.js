@@ -5,8 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from "@auth0/auth0-react";
 import UserContextProvider from './contexts/UserContext';
+import StudentContextProvider from './contexts/StudentContext';
 import { BrowserRouter } from 'react-router-dom';
 import { Router, Routes, Route, Switch, Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // const domain = process.env.REACT_APP_AUTH0_DOMAIN;
@@ -20,11 +22,12 @@ root.render(
     redirectUri={window.location.origin}
   >
    <UserContextProvider>
+   <StudentContextProvider>
     <Routes> 
         <Route path="/*" element={<App/>} />
     </Routes>
+  </StudentContextProvider>
   </UserContextProvider>
-  
 </Auth0Provider>
 </BrowserRouter>
 
