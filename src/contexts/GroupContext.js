@@ -1,25 +1,25 @@
 import { createContext, useEffect, useState } from 'react';
 
-export const UserContext = createContext();
+export const GroupContext = createContext();
 
-const UserContextProvider = (props) => {
-  const [userList, setUserList] = useState([]);
+const GroupContextProvider = (props) => {
+  const [groupList, setGroupList] = useState([]);
   const [role, setRole] = useState("");
-  const [userInDatabase, setUserInDatabase] = useState({});
+  const [groupInDatabase, setGroupInDatabase] = useState({});
 
   useEffect(() => {
-    getUserList();
+    getGroupList();
   }, []);
 
   
-//puser auth0 dan gelen user bilgileri
-//bu bilgi buradan backende userroutera gonderiliyor.
-const checkAuthenticatedUser=async(pUser) => {
-  console.log(pUser)
+//pGroup auth0 dan gelen Group bilgileri
+//bu bilgi buradan backende Grouproutera gonderiliyor.
+const checkAuthenticatedGroup=async(pGroup) => {
+  console.log(pGroup)
   
-  const response = await fetch('http://localhost:3001/api/v1/users/check', {
+  const response = await fetch('http://localhost:3001/api/v1/groups/check', {
       method: 'post',
-      body: JSON.stringify(pUser),
+      body: JSON.stringify(pGroup),
       headers: { "Content-Type": "application/json" }
   })
   
@@ -28,50 +28,44 @@ const checkAuthenticatedUser=async(pUser) => {
 }
 
 
-  const getUserList = async () => {
-    const response = await fetch('http://localhost:3001/api/v1/users');
-    const userList = await response.json();
-    setUserList(userList);
+  const getGroupList = async () => {
+    const response = await fetch('http://localhost:3001/api/v1/groups');
+    const groupList = await response.json();
+    setGroupList(groupList);
   };
 
-  const getUserByEmail = async (pUser) => {
-    const response = await fetch('http://localhost:3001/api/v1/users');
-    const userList= await response.json();
-    const data = userList.filter(user=>user.email==pUser.email);
-    setUserInDatabase(data);
-  };
- console.log(userInDatabase)
 
-  const addUser = async (pUser) => {
-      // if (pUser.email !==undefined) {
-          const newUser = {
-              id: pUser.sub,
-              name:pUser.name,
-              email:pUser.email,
+
+  const addGroup = async (pGroup) => {
+      // if (pGroup.name !==undefined) {
+          const newGroup = {
+              id: pGroup.id,
+              name:pGroup.name,
+            
             
           };
     try {
-      await fetch('http://localhost:3001/api/v1/users', {
+      await fetch('http://localhost:3001/api/v1/groups', {
         method: 'POST',
-        body: JSON.stringify(pUser),
+        body: JSON.stringify(pGroup),
         headers: { 'Content-Type': 'application/json' },
       });
 
-      setUserList([...userList, newUser]);
+      setGroupList([...groupList, newGroup]);
     } catch (error) {
       console.log(error);
     }
   
 };
 
-  console.log("1", userList);
+  console.log("1", groupList);
 
   return (
-    <UserContext.Provider value={{ addUser, getUserList ,getUserByEmail, userList, checkAuthenticatedUser, userInDatabase }}>
+    <GroupContext.Provider value={{ addGroup, getGroupList , groupList, checkAuthenticatedGroup, groupInDatabase }}>
       {props.children}
-    </UserContext.Provider>
+    </GroupContext.Provider>
   );
   
 };
 
-export default UserContextProvider;
+export default GroupContextProvider;

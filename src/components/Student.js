@@ -10,10 +10,12 @@ const Student = ({ student }) => {
       <tr key={student.id}>
         <td>{student.first_name}</td>
         <td>{student.last_name}</td>
+        <td>{student.email}</td>
+       
      </tr>
         {/* <td>
           <button
-            onClick={() => deleteCompany(company.id)}
+            onClick={() => deleteStudent(student.id)}
             className='btn btn-danger'
           >
             Delete
@@ -22,7 +24,7 @@ const Student = ({ student }) => {
             type='button'
             class='btn btn-warning'
             data-bs-toggle='modal'
-            data-bs-target={'#updateCompanyModal' + company.id}
+            data-bs-target={'#updateStudentModal' + student.id}
           >
             Update
           </button>
@@ -36,10 +38,10 @@ const Student = ({ student }) => {
         aria-labelledby='exampleModalLabel'
         aria-hidden='true'
       >
-        <UpdateCompany company={company} /> */}
+        <UpdateStudent student={student} /> */}
       
     </React.Fragment>
   );
 };
 
-export default Company;
+export default Student;

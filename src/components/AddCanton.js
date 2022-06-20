@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StudentContext } from '../contexts/StudentContext.js';
+import { CantonContext } from '../contexts/CantonContext.js';
 
-const AddStudent = () => {
-  const [student, setStudent] = useState({});
+const AddCanton = () => {
+  const [canton, setCanton] = useState({});
 
-  const { addStudent, getStudentList } = useContext(StudentContext);
+  const { addCanton, getCantonList } = useContext(CantonContext);
 
-  const [studentList, setStudentList] = useState([]);
+  const [cantonList, setCantonList] = useState([]);
   //   const [role, setRole] = useState("");
   //   const [userInDatabase, setUserInDatabase] = useState({});
   
     // useEffect(() => {
-    //   getStudentList();
+    //   getCantonList();
     // }, []);
   
     
@@ -31,10 +31,10 @@ const AddStudent = () => {
   // }
   
   
-    // const getStudentList = async () => {
-    //   const response = await fetch('http://localhost:3001/api/v1/students');
-    //   const studentList = await response.json();
-    //   setStudentList(studentList);
+    // const getCantonList = async () => {
+    //   const response = await fetch('http://localhost:3001/api/v1/Cantons');
+    //   const CantonList = await response.json();
+    //   setCantonList(CantonList);
     // };
   
   //   const getUserByEmail = async (pUser) => {
@@ -45,23 +45,23 @@ const AddStudent = () => {
   //   };
   //  console.log(userInDatabase)
   
-  //   const addStudent = async (pStudent) => {
+  //   const addCanton = async (pCanton) => {
   //       // if (pUser.email !==undefined) {
-  //           const newStudent = {
-  //               id: pStudent.id,
-  //               first_name:pStudent.first_name,
-  //               last_name:pStudent.last_name,
-  //               email:pStudent.email,
+  //           const newCanton = {
+  //               id: pCanton.id,
+  //               first_name:pCanton.first_name,
+  //               last_name:pCanton.last_name,
+  //               email:pCanton.email,
               
   //           };
   //     try {
-  //       await fetch('http://localhost:3001/api/v1/students', {
+  //       await fetch('http://localhost:3001/api/v1/Cantons', {
   //         method: 'POST',
-  //         body: JSON.stringify(pStudent),
+  //         body: JSON.stringify(pCanton),
   //         headers: { 'Content-Type': 'application/json' },
   //       });
   
-  //       setStudentList([...studentList, newStudent]);
+  //       setCantonList([...CantonList, newCanton]);
   //     } catch (error) {
   //       console.log(error);
   //     }
@@ -70,12 +70,12 @@ const AddStudent = () => {
   
 
   const handleOnChange = (e) => {
-    setStudent({ ...student, [e.target.name]: e.target.value });
+    setCanton({ ...canton, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addStudent(student);
+    addCanton(canton);
     // setIsOpen(false);
   };
 
@@ -91,15 +91,15 @@ const AddStudent = () => {
           type='text'
           className='form-control'
           name='first_name'
-          value={student.first_name}
-          placeholder="first name"
+          value={canton.name}
+          placeholder="name"
           onChange={handleOnChange}
         />
-         <input
+         {/* <input
           type='text'
           className='form-control'
           name='last_name'
-          value={student.last_name}
+          value={Canton.last_name}
           placeholder="last name"
           onChange={handleOnChange}
         />
@@ -107,11 +107,11 @@ const AddStudent = () => {
           type='text'
           className='form-control'
           name='email'
-          value={student.email}
+          value={Canton.email}
           placeholder="email"
           onChange={handleOnChange}
-        />
-        <button type='submit' className='btn bg-success text-white btn-outline-success'>
+        /> */}
+        <button type='submit' className='btn btn-primary mt-1'>
           save
         </button>
       </form>
@@ -119,4 +119,4 @@ const AddStudent = () => {
   );
 };
 
-export default AddStudent;
+export default AddCanton;

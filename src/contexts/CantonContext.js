@@ -1,25 +1,25 @@
 import { createContext, useEffect, useState } from 'react';
 
-export const UserContext = createContext();
+export const CantonContext = createContext();
 
-const UserContextProvider = (props) => {
-  const [userList, setUserList] = useState([]);
+const CantonContextProvider = (props) => {
+  const [cantonList, setCantonList] = useState([]);
   const [role, setRole] = useState("");
-  const [userInDatabase, setUserInDatabase] = useState({});
+  const [CantonInDatabase, setCantonInDatabase] = useState({});
 
   useEffect(() => {
-    getUserList();
+    getCantonList();
   }, []);
 
   
-//puser auth0 dan gelen user bilgileri
-//bu bilgi buradan backende userroutera gonderiliyor.
-const checkAuthenticatedUser=async(pUser) => {
-  console.log(pUser)
+//pCanton auth0 dan gelen Canton bilgileri
+//bu bilgi buradan backende Cantonroutera gonderiliyor.
+const checkAuthenticatedCanton=async(pCanton) => {
+  console.log(pCanton)
   
-  const response = await fetch('http://localhost:3001/api/v1/users/check', {
+  const response = await fetch('http://localhost:3001/api/v1/cantons/check', {
       method: 'post',
-      body: JSON.stringify(pUser),
+      body: JSON.stringify(pCanton),
       headers: { "Content-Type": "application/json" }
   })
   
@@ -28,50 +28,43 @@ const checkAuthenticatedUser=async(pUser) => {
 }
 
 
-  const getUserList = async () => {
-    const response = await fetch('http://localhost:3001/api/v1/users');
-    const userList = await response.json();
-    setUserList(userList);
+  const getCantonList = async () => {
+    const response = await fetch('http://localhost:3001/api/v1/cantons');
+    const cantonList = await response.json();
+    setCantonList(cantonList);
   };
 
-  const getUserByEmail = async (pUser) => {
-    const response = await fetch('http://localhost:3001/api/v1/users');
-    const userList= await response.json();
-    const data = userList.filter(user=>user.email==pUser.email);
-    setUserInDatabase(data);
-  };
- console.log(userInDatabase)
-
-  const addUser = async (pUser) => {
-      // if (pUser.email !==undefined) {
-          const newUser = {
-              id: pUser.sub,
-              name:pUser.name,
-              email:pUser.email,
+  
+  const addCanton = async (pCanton) => {
+      // if (pCanton.email !==undefined) {
+          const newCanton = {
+              id: pCanton.id,
+              name:pCanton.name,
+             
             
           };
     try {
-      await fetch('http://localhost:3001/api/v1/users', {
+      await fetch('http://localhost:3001/api/v1/cantons', {
         method: 'POST',
-        body: JSON.stringify(pUser),
+        body: JSON.stringify(pCanton),
         headers: { 'Content-Type': 'application/json' },
       });
 
-      setUserList([...userList, newUser]);
+      setCantonList([...cantonList, newCanton]);
     } catch (error) {
       console.log(error);
     }
   
 };
 
-  console.log("1", userList);
+  console.log("1", cantonList);
 
   return (
-    <UserContext.Provider value={{ addUser, getUserList ,getUserByEmail, userList, checkAuthenticatedUser, userInDatabase }}>
+    <CantonContext.Provider value={{ addCanton, getCantonList , cantonList, checkAuthenticatedCanton }}>
       {props.children}
-    </UserContext.Provider>
+    </CantonContext.Provider>
   );
   
 };
 
-export default UserContextProvider;
+export default CantonContextProvider;

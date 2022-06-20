@@ -1,64 +1,95 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import Table from 'react-bootstrap/Table';
+import AddGroup from "./AddGroup.js";
+import { useEffect, useState } from "react";
+import { GroupContext} from "../contexts/GroupContext.js";
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
+import ListGroupItem from "react-bootstrap/esm/ListGroupItem.js";
+
+
+
+  
 
 
 function CantonManager () {
-
+   
+  const [isOpen, setIsOpen] = useState(
+    false ? true : false
+  );
     const {
         user,
         isAuthenticated,
         loginWithRedirect,
         logout,
       } = useAuth0();
+
+      // const { groupList, addGroup } = useContext(GroupContext);
+      const {groupList } = useContext(GroupContext);
     
       const logoutWithRedirect = () =>
       logout({
         returnTo: window.location.origin,
       });
 
-    return (
+      const group = groupList.map((group) => 
+      <ListGroupItem  
+        action
+        variant="light"
+        className="text-primary shadow-sm bg-light mb-1"
+        href="http://localhost:3000/group">
 
-        
-    <div>
+      {group.name}
+
+      </ListGroupItem>);
+
+return (
+  <div id="main">
     <main>
-      <div className="container py-4">
-        <header className="pb-3 mb-4 border-bottom navbar navbar-expand-lg">
-          <a href="/" className="d-flex align-items-center text-primary text-decoration-none">
-          <span className="fs-4">uptrack</span>
+      <div className="container-fluid">
+        <header
+          className=" m-3 navbar navbar-expand-lg"
+          id="header"
+        >
+          <a
+            href="/"
+            className="d-flex align-items-center text-primary text-decoration-none"
+          >
+            <span className="fs-5">uptrack</span>
           </a>
           <div className="navbar-collapse offcanvas-collapse">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <a className="nav-link" href="#"> | </a>
-                </li>
+            <ul className="d-flex align-items-center navbar-nav me-auto mb-5 mb-lg-0">
+              <li className="nav-item">
+                <span className="fs-5 p-1 text-primary"> | </span>
+              </li>
 
-                
-                  
-                  <li className="nav-item">
-                    <a className="nav-link" href="http://localhost:3000/group">zurich</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#"></a>
-                  </li>
-                
-              
-                
-                  <>
-                    {/* <li className="nav-item">
+              <li className="nav-item">
+                <a className="nav-link" href="#"></a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#"></a>
+              </li>
+
+              <>
+                {/* <li className="nav-item">
                       <a className="nav-link active" aria-current="page" href="#">Dashboard</a>
                     </li> */}
-                   <li className="nav-item">
-                        <a className="nav-link" href="http://localhost:3000/group">groups</a>
-                      </li>
-                    {/* <li className="nav-item">
+                <li className="nav-item">
+                  <a
+                    className="nav-link text-primary"
+                    href="http://localhost:3000/canton"
+                  >
+                    Canton Page
+                  </a>
+                </li>
+                {/* <li className="nav-item">
                       <a className="nav-link" href="#">tasks</a>
                     </li> */}
-                  </>
-                
+              </>
             </ul>
             <div className="d-flex">
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              
+              <ul className="navbar-nav me-auto mb-1 mb-lg-0">
                 <li>
                   {/* <span className="user-info">
                     <img
@@ -69,76 +100,63 @@ function CantonManager () {
                     />
                     <h6 className="d-inline-block p-1">{user.name} </h6>
                   </span> */}
+                  {/* <h6 className="d-inline-block p-1 text-primary mx-3">
+                    {user.name}
+                  </h6> */}
 
-                  <button className="btn btn-outline-success"
-                          onClick={() => logoutWithRedirect()}>
+                  <button
+                    className="btn bg-success btn-outline-light"
+                    onClick={() => logoutWithRedirect()}
+                  >
                     Logout
                   </button>
                 </li>
-              
               </ul>
             </div>
           </div>
         </header>
 
-        
-        <div className=" bg-light ">
-          <div className="container ">
-            <p className="col-md-12"> welcome! </p>
-          </div>
-        </div>
-        
-        
-        <div className="p-1 mb-4 bg-primary border rounded-3 h-100">
-          <div className="container-fluid">
-            <p className="display text-white fw-bold">groups</p>
-           
-            
-            {/* <button className="btn btn-outline-success btn-lg" type="button">Cu</button> */}
-          </div>
-        
-
-        <div className="row align-items-md-stretch">
-          <div className="col-md-2">
-            <div className="h-100 px-4 text-white bg-primary rounded-3">
-              <h2>Groups</h2>
-              <div>
-                <button className="btn bg-white my-1 px-5">
-                      <li className="list-unstyled">
-                        <a className="nav-link" href="http://localhost:3000/group">group1</a>
-                      </li>
-                </button>
-                <button className="btn bg-white my-1 px-5">group2</button>
-                <button className="btn bg-white my-1 px-5">group3</button>
-                <button className="btn bg-white my-1 px-5">group4</button>
+       
+        <div className="container-fluid">
+          <div className="row align-items py-3" id="innerdiv">
+            <div className="col-md-2">
+              <div
+                className=" text-primary p-1 border-outline-primary"
+                id="listebox"
+              >
+                <div className="w-100 bg-primary d-flex align-content-center justify-content-center"><h5 className="text-white bg-primary">groups</h5></div>
+                <div>
+                  <ListGroup>
+                   
+                    {group}
+                  
+                  </ListGroup>
+                </div>
+                      <button className="btn bg-success text-white btn-outline-success" type="button" onClick={()=> setIsOpen(true)}>ADD group</button>
               </div>
-            
-              <button className="btn bg-success text-white btn-outline-success" type="button">ADD GROUP</button>
+            </div>
+            <div className="col-md-10" id="details-div">
+
+              <div id="schweiz" className= "bg-primary d-flex align-content-center justify-content-center">
+                <p className="text-white fw-bold">Zurich</p>
+              </div>
+              <div className="h-100 bg-light" id="form-div">
+                 {isOpen && <AddGroup/>}
+              </div>
             </div>
           </div>
-          <div className="col-md-10">
-            <div className="h-100 p-5 bg-light border rounded-3">
-              <h2>Tasks</h2>
-              <p>The projects has many tasks and they assigned to our engineers.</p>
-              <button className="btn btn-outline-success" type="button">DETAILS</button>
-            </div>
-          </div>
-        </div>
-         
-        <footer className="pt-3 mt-4 text-white border-top">
-          can &copy; 2022
+
+          <footer className="pt-3 mt-4 text-primary border-top border-gray fixed-bottom">
+          <p id="copyright">can &copy; 2022</p>
         </footer>
+        </div>
       </div>
-       
-       </div>
-      
-
-       
     </main>
-    </div>   
-    )
-    }
-
+  </div>
+);
+ }
+    
+    
 
 
      
@@ -146,3 +164,4 @@ function CantonManager () {
 
 
 export default CantonManager
+                                    

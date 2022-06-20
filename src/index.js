@@ -9,6 +9,8 @@ import StudentContextProvider from './contexts/StudentContext';
 import { BrowserRouter } from 'react-router-dom';
 import { Router, Routes, Route, Switch, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CantonContextProvider from './contexts/CantonContext';
+import GroupContextProvider from './contexts/GroupContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // const domain = process.env.REACT_APP_AUTH0_DOMAIN;
@@ -22,11 +24,15 @@ root.render(
     redirectUri={window.location.origin}
   >
    <UserContextProvider>
+    <CantonContextProvider>
+    <GroupContextProvider>
    <StudentContextProvider>
     <Routes> 
         <Route path="/*" element={<App/>} />
     </Routes>
   </StudentContextProvider>
+  </GroupContextProvider>
+  </CantonContextProvider>
   </UserContextProvider>
 </Auth0Provider>
 </BrowserRouter>
