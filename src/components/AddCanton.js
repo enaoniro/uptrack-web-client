@@ -3,16 +3,18 @@ import { CantonContext } from '../contexts/CantonContext.js';
 
 const AddCanton = () => {
   const [canton, setCanton] = useState({});
-
-  const { addCanton, getCantonList } = useContext(CantonContext);
-
   const [cantonList, setCantonList] = useState([]);
+  
+  
+  const { addCanton, getCantonList, isOpen, setIsOpen } = useContext(CantonContext);
+
+  
   //   const [role, setRole] = useState("");
   //   const [userInDatabase, setUserInDatabase] = useState({});
   
-    // useEffect(() => {
-    //   getCantonList();
-    // }, []);
+    useEffect(() => {
+      getCantonList();
+    }, []);
   
     
   //puser auth0 dan gelen user bilgileri
@@ -74,23 +76,30 @@ const AddCanton = () => {
   };
 
   const handleSubmit = (e) => {
+  
     e.preventDefault();
     addCanton(canton);
+    
+    
     // setIsOpen(false);
   };
+
+  const hideForm = ()=> {
+    setIsOpen(false)
+  }
 
   return (
 
     
     <div id='form-container'>
 
-      <p color='blue'>ogrenci bilgilerini giriniz</p>
+      <p color='blue'>canton bilgilerini giriniz</p>
 
       <form onSubmit={handleSubmit}>
         <input
           type='text'
           className='form-control'
-          name='first_name'
+          name='name'
           value={canton.name}
           placeholder="name"
           onChange={handleOnChange}
@@ -111,8 +120,11 @@ const AddCanton = () => {
           placeholder="email"
           onChange={handleOnChange}
         /> */}
-        <button type='submit' className='btn btn-primary mt-1'>
+        <button type='submit' className='btn btn-primary'>
           save
+        </button>
+        <button type='button' className='btn btn-danger' onClick={hideForm}>
+          close
         </button>
       </form>
     </div>

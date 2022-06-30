@@ -4,8 +4,7 @@ export const CantonContext = createContext();
 
 const CantonContextProvider = (props) => {
   const [cantonList, setCantonList] = useState([]);
-  const [role, setRole] = useState("");
-  const [CantonInDatabase, setCantonInDatabase] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     getCantonList();
@@ -14,18 +13,18 @@ const CantonContextProvider = (props) => {
   
 //pCanton auth0 dan gelen Canton bilgileri
 //bu bilgi buradan backende Cantonroutera gonderiliyor.
-const checkAuthenticatedCanton=async(pCanton) => {
-  console.log(pCanton)
+// const checkAuthenticatedCanton=async(pCanton) => {
+//   console.log(pCanton)
   
-  const response = await fetch('http://localhost:3001/api/v1/cantons/check', {
-      method: 'post',
-      body: JSON.stringify(pCanton),
-      headers: { "Content-Type": "application/json" }
-  })
+//   const response = await fetch('http://localhost:3001/api/v1/cantons/check', {
+//       method: 'post',
+//       body: JSON.stringify(pCanton),
+//       headers: { "Content-Type": "application/json" }
+//   })
   
-  return await response.json();
+//   return await response.json();
    
-}
+// }
 
 
   const getCantonList = async () => {
@@ -60,7 +59,7 @@ const checkAuthenticatedCanton=async(pCanton) => {
   console.log("1", cantonList);
 
   return (
-    <CantonContext.Provider value={{ addCanton, getCantonList , cantonList, checkAuthenticatedCanton }}>
+    <CantonContext.Provider value={{ addCanton, getCantonList , setCantonList, cantonList, isOpen, setIsOpen }}>
       {props.children}
     </CantonContext.Provider>
   );

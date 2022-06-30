@@ -20,6 +20,7 @@ import Home from "./components/home";
 import Admin from "./components/admin";
 import CantonManager from "./components/cantonmanager";
 import GroupLeader from "./components/groupleader";
+import Student from "./components/Student";
 import Layout from "./components/layout";
 
 
@@ -184,6 +185,7 @@ function App () {
                     <Route path="admin" element={<Admin/>}/>
                     <Route path="canton" element={<CantonManager/>}/>
                     <Route path="group" element={<GroupLeader/>}/>
+                    {/* <Route path="student" element={<Student/>}/> */}
 
                 </Route>
              

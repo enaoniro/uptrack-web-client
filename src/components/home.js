@@ -33,6 +33,7 @@ function Home() {
       // Rolü elde ettikten sonra state'i güncelliyoruz.
       // Gelen user bilgisi aynı postman'de gördüğümüz şekilde olacak
       setRole(user.Role.name);
+      console.log(user)
     };
 
     // user değerinin dolu olduğundan emin olalım
@@ -40,6 +41,7 @@ function Home() {
     if (user) {
       // Eğer doluysa fonksiyonu çağıralım
       checkUser(user);
+      
       // setRole(user.Role.name);
     }
   }, [isAuthenticated]);

@@ -6,9 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from "@auth0/auth0-react";
 import UserContextProvider from './contexts/UserContext';
 import StudentContextProvider from './contexts/StudentContext';
+import TaskContextProvider from './contexts/TaskContext';
+import TargetContextProvider from './contexts/TargetContext';
+// import RecordContextProvider from './contexts/RecordContext';
 import { BrowserRouter } from 'react-router-dom';
 import { Router, Routes, Route, Switch, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 import CantonContextProvider from './contexts/CantonContext';
 import GroupContextProvider from './contexts/GroupContext';
 
@@ -27,9 +31,15 @@ root.render(
     <CantonContextProvider>
     <GroupContextProvider>
    <StudentContextProvider>
+   <TaskContextProvider>
+   <TargetContextProvider>
+   {/* <RecordContextProvider> */}
     <Routes> 
         <Route path="/*" element={<App/>} />
     </Routes>
+  {/* </RecordContextProvider> */}
+  </TargetContextProvider>
+  </TaskContextProvider>
   </StudentContextProvider>
   </GroupContextProvider>
   </CantonContextProvider>

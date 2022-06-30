@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { StudentContext } from '../contexts/StudentContext';
 import Student from './Student';
+import Table from "react-bootstrap/Table";
 
 const StudentList = () => {
   const { studentList } = useContext(StudentContext);
@@ -9,20 +10,30 @@ const StudentList = () => {
 
   return (
     <div>
-      <table className='table table-bordered'>
+      <Table responsive="sm" bordered hover>
         <thead>
-          <tr>
-            <th>firstname</th>
-            <th>lastname</th>
-            <th>email</th>
+         <tr>
+            <th>student name</th>
+            
+            <th rowSpan={2}>risale</th>
+          
+            <th rowSpan={2}>pirlanta</th>
+            
+            <th rowSpan={2}>namaz</th>
+         
+            <th rowSpan={2}>cevsen</th>
+            
+            <th rowSpan={2}>devam</th>
+           
+            
           </tr>
         </thead>
         <tbody>
-            <td>{student.first_name}</td>
-            <td>{student.last_name}</td>
-            <td>{student.email}</td>
+        
+          {student}
+        
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 };

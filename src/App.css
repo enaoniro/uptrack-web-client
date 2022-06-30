@@ -16,21 +16,22 @@ body {
 #main {
   margin: 0;
   padding: 0;
-  height:100vh;
+  height:100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: whitesmoke;
+  
+  box-sizing: border-box;
  
   
   
 }
 
 #schweiz {
-  position:absolute;
-  margin-top: 108px;
+  position:relative;
   top:0;
-  width:80%;
- text-align: center;
+  width:100%;
+  text-align: center;
 
 }
 
@@ -44,12 +45,8 @@ p {
   /* box-shadow-right: 1px 1px 10px 5px gainsboro;  */
   /* border-right: 1px solid gainsboro;
   border-bottom: 1px solid gainsboro; */
-  box-sizing: border-box;
-  padding-right: 10px;
-  padding-left: 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  
+ 
   background-color:white;
 
 }
@@ -58,8 +55,12 @@ p {
 #details-div {
  /* width: 100%;
  height: 100%; */
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
  
-  /* box-shadow: 1px 1px 10px 5px gainsboro; */
+ box-shadow: 1px 1px 10px 5px gainsboro;
 
 }
 
@@ -76,8 +77,12 @@ p {
 #header {
   /* box-shadow: 1px 1px 10px 5px gainsboro; */
   border-bottom: 1px solid gainsboro;
-  margin-top: 0;
+  box-sizing: border-box;
   background-color: white;
+  padding: 10px;
+  width: 100%;
+
+
 }
 
 
@@ -91,9 +96,7 @@ p {
   align-items: center;
   justify-content: center;
   margin-bottom: 5px;
-  
-
-
+ 
 }
 
 
@@ -104,10 +107,11 @@ p {
 }
 
 #form-div {
-  margin-top: 80px;
+ 
   width: 100%;
   height: 85%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   
@@ -115,41 +119,6 @@ p {
 
 list:hover {
   background-color:yellow;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 footer {

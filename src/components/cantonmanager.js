@@ -15,9 +15,9 @@ import ListGroupItem from "react-bootstrap/esm/ListGroupItem.js";
 
 function CantonManager () {
    
-  const [isOpen, setIsOpen] = useState(
-    false ? true : false
-  );
+  // const [isOpen, setIsOpen] = useState(false
+   
+  // );
     const {
         user,
         isAuthenticated,
@@ -26,7 +26,7 @@ function CantonManager () {
       } = useAuth0();
 
       // const { groupList, addGroup } = useContext(GroupContext);
-      const {groupList } = useContext(GroupContext);
+      const {groupList, isOpen, setIsOpen } = useContext(GroupContext);
     
       const logoutWithRedirect = () =>
       logout({
@@ -34,8 +34,10 @@ function CantonManager () {
       });
 
       const group = groupList.map((group) => 
+      
       <ListGroupItem  
         action
+        key={group.id}
         variant="light"
         className="text-primary shadow-sm bg-light mb-1"
         href="http://localhost:3000/group">
@@ -127,12 +129,13 @@ return (
                 <div className="w-100 bg-primary d-flex align-content-center justify-content-center"><h5 className="text-white bg-primary">groups</h5></div>
                 <div>
                   <ListGroup>
+                  
                    
                     {group}
                   
                   </ListGroup>
                 </div>
-                      <button className="btn bg-success text-white btn-outline-success" type="button" onClick={()=> setIsOpen(true)}>ADD group</button>
+                      <button className="btn bg-success text-white btn-outline-success" type="button" onClick={()=> setIsOpen(isOpen ? false :true)}>ADD group</button>
               </div>
             </div>
             <div className="col-md-10" id="details-div">
@@ -141,7 +144,9 @@ return (
                 <p className="text-white fw-bold">Zurich</p>
               </div>
               <div className="h-100 bg-light" id="form-div">
-                 {isOpen && <AddGroup/>}
+                 {isOpen &&    
+     
+                    <AddGroup/>}
               </div>
             </div>
           </div>

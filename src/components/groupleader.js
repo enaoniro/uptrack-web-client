@@ -2,11 +2,13 @@ import React, { useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Table from 'react-bootstrap/Table';
 import AddStudent from "./AddStudent.js";
+import Student from "./Student.js";
 import { useEffect, useState } from "react";
 import { StudentContext} from "../contexts/StudentContext.js";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import ListGroupItem from "react-bootstrap/esm/ListGroupItem.js";
+import StudentList from "./StudentList.js";
 
 
 
@@ -14,30 +16,50 @@ import ListGroupItem from "react-bootstrap/esm/ListGroupItem.js";
 
 
 function GroupLeader () {
+
+  const [showDetails, setShowDetails] = useState(false)
+  
    
-  const [isOpen, setIsOpen] = useState(
-    false ? true : false
-  );
-    const {
+      const {
         user,
         isAuthenticated,
         loginWithRedirect,
         logout,
       } = useAuth0();
 
-      const { studentList } = useContext(StudentContext);
+      const { studentList, isOpen, setIsOpen } = useContext(StudentContext);
     
       const logoutWithRedirect = () =>
       logout({
         returnTo: window.location.origin,
       });
 
-      const student = studentList.map((student) => 
+      const handleClick=(student) => {
+        
+
+      
+         setShowDetails(true)
+      
+      
+        console.log(student);
+       
+       
+        }
+
+        
+    
+      const groupOneStudent = studentList.find(student=>student.GroupId == 1);
+      console.log(groupOneStudent)
+      // console.log(task);
+      const student = studentList.map((student) =>
       <ListGroupItem  
         action
         variant="light"
+        key={student.id}
         className="text-primary shadow-sm bg-light mb-1"
-        href="http://localhost:3000/student">
+        onClick={()=>handleClick(student)}
+        >
+        
 
       {student.first_name} {student.last_name}
 
@@ -131,20 +153,26 @@ return (
                   
                   </ListGroup>
                 </div>
-                      <button className="btn bg-success text-white btn-outline-success" type="button" onClick={()=> setIsOpen(true)}>ADD Student</button>
+                      <button className="btn bg-success text-white btn-outline-success" type="button" onClick={()=> setIsOpen(isOpen ? false :true)}>ADD Student</button>
               </div>
             </div>
-            <div className="col-md-10" id="details-div">
-              <div>
+            <div className="col-sm-10" id="details-div">
+              
               <div id="schweiz" className= "bg-primary d-flex align-content-center justify-content-center">
-                <p className="text-white fw-bold">Group Leader Ahmet Bey</p>
+                <p className="text-white fw-bold"></p>
               </div>
               <div className="h-100 bg-light" id="form-div">
+               
+                
                  {isOpen && <AddStudent/>}
+                 {showDetails && <StudentList/>}
+                 
+                 
               </div>
               </div>
+              
             </div>
-          </div>
+          
 
           <footer className="pt-3 mt-4 text-primary border-top border-gray fixed-bottom">
           <p id="copyright">can &copy; 2022</p>

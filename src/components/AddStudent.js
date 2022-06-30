@@ -1,72 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { StudentContext } from '../contexts/StudentContext.js';
+import { GroupContext } from '../contexts/GroupContext.js';
+import Form from "react-bootstrap/Form";
 
 const AddStudent = () => {
   const [student, setStudent] = useState({});
+  
+  
 
-  const { addStudent, getStudentList } = useContext(StudentContext);
+  const { addStudent, getStudentList ,isOpen, setIsOpen} = useContext(StudentContext);
+  
+ 
 
   const [studentList, setStudentList] = useState([]);
-  //   const [role, setRole] = useState("");
-  //   const [userInDatabase, setUserInDatabase] = useState({});
   
-    // useEffect(() => {
-    //   getStudentList();
-    // }, []);
+  
+    useEffect(() => {
+      getStudentList();
+    }, []);
   
     
-  //puser auth0 dan gelen user bilgileri
-  //bu bilgi buradan backende userroutera gonderiliyor.
-  // const checkAuthenticatedUser=async(pUser) => {
-  //   console.log(pUser)
-    
-  //   const response = await fetch('http://localhost:3001/api/v1/users/check', {
-  //       method: 'post',
-  //       body: JSON.stringify(pUser),
-  //       headers: { "Content-Type": "application/json" }
-  //   })
-    
-  //   return await response.json();
-     
-  // }
-  
-  
-    // const getStudentList = async () => {
-    //   const response = await fetch('http://localhost:3001/api/v1/students');
-    //   const studentList = await response.json();
-    //   setStudentList(studentList);
-    // };
-  
-  //   const getUserByEmail = async (pUser) => {
-  //     const response = await fetch('http://localhost:3001/api/v1/users');
-  //     const userList= await response.json();
-  //     const data = userList.filter(user=>user.email==pUser.email);
-  //     setUserInDatabase(data);
-  //   };
-  //  console.log(userInDatabase)
-  
-  //   const addStudent = async (pStudent) => {
-  //       // if (pUser.email !==undefined) {
-  //           const newStudent = {
-  //               id: pStudent.id,
-  //               first_name:pStudent.first_name,
-  //               last_name:pStudent.last_name,
-  //               email:pStudent.email,
-              
-  //           };
-  //     try {
-  //       await fetch('http://localhost:3001/api/v1/students', {
-  //         method: 'POST',
-  //         body: JSON.stringify(pStudent),
-  //         headers: { 'Content-Type': 'application/json' },
-  //       });
-  
-  //       setStudentList([...studentList, newStudent]);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-    
-  // };
   
 
   const handleOnChange = (e) => {
@@ -79,6 +32,10 @@ const AddStudent = () => {
     // setIsOpen(false);
   };
 
+  const hideForm = ()=> {
+    setIsOpen(false)
+  }
+
   return (
 
     
@@ -86,7 +43,7 @@ const AddStudent = () => {
 
       <p color='blue'>ogrenci bilgilerini giriniz</p>
 
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <input
           type='text'
           className='form-control'
@@ -111,10 +68,22 @@ const AddStudent = () => {
           placeholder="email"
           onChange={handleOnChange}
         />
+            <input
+          type='number'
+          className='form-control'
+          name='taskId'
+          value={student.TaskId}
+          placeholder="task no giriniz"
+          onChange={handleOnChange}
+        />
+        
         <button type='submit' className='btn bg-success text-white btn-outline-success'>
           save
         </button>
-      </form>
+        <button type='button' className='btn btn-danger' onClick={hideForm}>
+          close
+        </button>
+      </Form>
     </div>
   );
 };
