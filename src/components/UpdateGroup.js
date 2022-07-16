@@ -1,17 +1,17 @@
 import React, { useContext, useState } from "react";
-import { TaskContext } from "../contexts/TaskContext.js";
+import { GroupContext } from "../contexts/GroupContext";
 
-const UpdateTask = ({ task }) => {
-  const [updatedTask, setUpdatedTask] = useState(task);
-  const { updateTask } = useContext(TaskContext);
+const UpdateGroup = ({ group }) => {
+  const [updatedGroup, setUpdatedGroup] = useState(group);
+  const { updateGroup } = useContext(GroupContext);
 
   const handleChange = (e) => {
-    setUpdatedTask({ ...updatedTask, [e.target.name]: e.target.value });
+    setUpdatedGroup({ ...updatedGroup, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateTask(updatedTask);
+    updateGroup(updatedGroup);
   };
 
   return (
@@ -19,7 +19,7 @@ const UpdateTask = ({ task }) => {
       <div className="modal-content">
         <div className="modal-header">
           <h5 className="modal-title" id="exampleModalLabel">
-            Update Task
+            Update Group
           </h5>
           <button
             type="button"
@@ -31,52 +31,35 @@ const UpdateTask = ({ task }) => {
         <div className="modal-body">
           <form className="mb-4" onSubmit={handleSubmit}>
             <div>
-            <h6>risale adi</h6>
+              <h6>Group name</h6>
               <input
                 type="text"
                 className="form-control bg-info"
-                placeholder="risale name"
-                name="risale"
-                value={updatedTask.risale}
+                placeholder="Group Name"
+                name="name"
+                value={updatedGroup.name}
                 onChange={handleChange}
               />
-              <h6>pirlanta adi</h6>
+              <h6>Group Leader</h6>
               <input
                 type="text"
                 className="form-control bg-info"
-                placeholder="pirlanta adi"
-                name="pirlanta"
-                value={updatedTask.pirlanta}
+                placeholder="group leader"
+                name="leader"
+                value={updatedGroup.leader}
                 onChange={handleChange}
               />
-              <h6>namaz</h6>
-              <input
-                type="text"
-                className="form-control bg-info"
-                placeholder="namaz"
-                name="namaz"
-                value={updatedTask.namaz}
-                onChange={handleChange}
-              />
-              <h6>cevsen</h6>
-              <input
+              <h6>canton</h6>
+               <input
                 type="number"
                 className="form-control bg-info"
-                placeholder="cevsen"
-                name="cevsen"
-                value={updatedTask.cevsen}
+                placeholder="canton id"
+                name="CantonId"
+                value={updatedGroup.CantonId}
                 onChange={handleChange}
               />
-              <h6>devam</h6>
-              <input
-                type="number"
-                className="form-control bg-info"
-                placeholder="devam"
-                name="devamlilik"
-                value={updatedTask.devamlilik}
-                onChange={handleChange}
-              />
-            </div>
+              
+             
 
             <button
               type="button"
@@ -90,8 +73,9 @@ const UpdateTask = ({ task }) => {
               className="btn btn-primary"
               data-bs-dismiss="modal"
             >
-              update
+              Edit
             </button>
+            </div>
           </form>
         </div>
       </div>
@@ -99,4 +83,4 @@ const UpdateTask = ({ task }) => {
   );
 };
 
-export default UpdateTask;
+export default UpdateGroup;

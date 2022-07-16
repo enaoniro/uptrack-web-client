@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { TargetContext } from '../contexts/TargetContext';
+import React, { useContext, useState } from "react";
+import { TargetContext } from "../contexts/TargetContext";
 
 const UpdateTarget = ({ target }) => {
   const [updatedTarget, setUpdatedTarget] = useState(target);
@@ -15,76 +15,80 @@ const UpdateTarget = ({ target }) => {
   };
 
   return (
-    <div className='modal-dialog'>
-      <div className='modal-content'>
-        <div className ='modal-header'>
-          <h5 className ='modal-title' id='exampleModalLabel'>
+    <div className="modal-dialog">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h5 className="modal-title" id="exampleModalLabel">
             Update Target
           </h5>
           <button
-            type='button'
-            className ='btn-close'
-            data-bs-dismiss='modal'
-            aria-label='Close'
+            type="button"
+            className="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
           ></button>
         </div>
-        <div className ='modal-body'>
-          <form className='mb-4' onSubmit={handleSubmit}>
+        <div className="modal-body">
+          <form className="mb-4" onSubmit={handleSubmit}>
             <div>
+            <h6>risale sayfa adedi</h6>
               <input
-                type='text'
-                className='form-control'
-                placeholder='risale adi'
-                name='risale'
+                type="text"
+                className="form-control bg-info"
+                placeholder="risale name"
+                name="risale"
                 value={updatedTarget.risale}
                 onChange={handleChange}
               />
+              <h6>pirlanta sayfa adedi</h6>
               <input
-                type='text'
-                className='form-control'
-                placeholder='pirlanta adi'
-                name='pirlanta'
+                type="text"
+                className="form-control bg-info"
+                placeholder="pirlanta adi"
+                name="pirlanta"
                 value={updatedTarget.pirlanta}
                 onChange={handleChange}
               />
+              <h6>namaz</h6>
               <input
-                type='text'
-                className='form-control'
-                placeholder='namaz'
-                name='namaz'
+                type="text"
+                className="form-control bg-info"
+                placeholder="namaz"
+                name="namaz"
                 value={updatedTarget.namaz}
                 onChange={handleChange}
               />
+              <h6>cevsen bab sayisi</h6>
               <input
-                type='number'
-                className='form-control'
-                placeholder='cevsen'
-                name='cevsen'
+                type="number"
+                className="form-control bg-info"
+                placeholder="cevsen"
+                name="cevsen"
                 value={updatedTarget.cevsen}
                 onChange={handleChange}
               />
-               <input
-                type='number'
-                className='form-control'
-                placeholder='devam'
-                name='devamlilik'
+              <h6>devam</h6>
+              <input
+                type="number"
+                className="form-control bg-info"
+                placeholder="devam"
+                name="devamlilik"
                 value={updatedTarget.devamlilik}
                 onChange={handleChange}
               />
-            
             </div>
 
             <button
-              type='button'
-              className ='btn btn-secondary'
-              data-bs-dismiss='modal'
+              type="button"
+              className="btn btn-secondary"
+              data-bs-dismiss="modal"
             >
               Close
             </button>
             <button
-              type='submit'
-              className ='btn btn-primary'
-              data-bs-dismiss='modal'
+              type="submit"
+              className="btn btn-primary"
+              data-bs-dismiss="modal"
             >
               Edit
             </button>

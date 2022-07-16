@@ -5,13 +5,15 @@ export const TaskContext = createContext();
 const TaskContextProvider = (props) => {
   const [taskList, setTaskList] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [task, setTask] = useState({})
+  const [task, setTask] = useState([])
   const [selectedTask, setSelectedTask] = useState({})
 
   // setSelectedTask(TaskList.find((stu =>stu.id===Task.id)))
 
   useEffect(() => {
     getTaskList();
+    // getStudentTaskById();
+    // getTaskById();
   }, []);
   
   const getTaskList = async () => {
@@ -20,13 +22,37 @@ const TaskContextProvider = (props) => {
     setTaskList(taskList);
   };
 
-//   const getUserByEmail = async (pUser) => {
-//     const response = await fetch('http://localhost:3001/api/v1/users');
-//     const userList= await response.json();
-//     const data = userList.filter(user=>user.email==pUser.email);
-//     setUserInDatabase(data);
-//   };
-//  console.log(userInDatabase)
+//   const getTaskById = async (pTask) => {
+//     const response = await fetch('http://localhost:3001/api/v1/tasks', {
+//       method: 'post',
+//       body: JSON.stringify(pTask),
+//       headers: { "Content-Type": "application/json" }
+//   })
+  
+//   return await response.json();
+// }
+
+//   const getStudentTaskById = async (pTask) => {
+    
+//       const response = await fetch('http://localhost:3001/api/v1/tasks/suttask', {
+//         method: 'POST',
+//         body: JSON.stringify(pTask),
+//         headers: { 'Content-Type': 'application/json'},
+//       });
+
+//       return await response.json();
+// };
+  //     setTaskList(
+  //       taskList.map((task) =>
+  //         task.Studentd === pId 
+  //       )
+  //     );
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+ 
+ 
 
   const addTask = async (pTask) => {
       // if (pUser.email !==undefined) {

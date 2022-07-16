@@ -7,6 +7,7 @@ const StudentContextProvider = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [student, setStudent] = useState({})
   const [selectedStudent, setSelectedStudent] = useState({})
+  const [studentsInGroup, setStudentsInGroup] = useState([])
 
   // setSelectedStudent(studentList.find((stu =>stu.id===student.id)))
 
@@ -20,13 +21,13 @@ const StudentContextProvider = (props) => {
     setStudentList(studentList);
   };
 
-//   const getUserByEmail = async (pUser) => {
-//     const response = await fetch('http://localhost:3001/api/v1/users');
-//     const userList= await response.json();
-//     const data = userList.filter(user=>user.email==pUser.email);
-//     setUserInDatabase(data);
-//   };
-//  console.log(userInDatabase)
+  const getStudentsInGroup = async (pId) => {
+    const response = await fetch('http://localhost:3001/api/v1/students'+pId);
+    const studentList = await response.json();
+    const group = studentList.filter(student=>student.GroupId==pId);
+    setStudentsInGroup(group);
+  };
+
 
   const addStudent = async (pStudent) => {
       // if (pUser.email !==undefined) {
@@ -35,6 +36,10 @@ const StudentContextProvider = (props) => {
               first_name:pStudent.first_name,
               last_name:pStudent.last_name,
               email:pStudent.email,
+              GroupId:pStudent.GroupId,
+              TaskId:pStudent.TaskId,
+              TargetId:pStudent.TargetId,
+              RecordId:pStudent.RecordId,
             
           };
     try {
@@ -48,6 +53,7 @@ const StudentContextProvider = (props) => {
     } catch (error) {
       console.log(error);
     }
+    
   
 };
 
@@ -69,15 +75,31 @@ const updateStudent = async (pStudent) => {
   }
 };
 
+const deleteStudent = async (pStudentId) => {
+  try {
+    await fetch('http://localhost:3001/api/v1/students/' + pStudentId, {
+      method: 'DELETE'
+    });
+    const updateDStudentList = studentList.filter(
+      (student) => student.id !== pStudentId
+    );
+
+    setStudentList(updateDStudentList);
+    
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // const selectStudent = (id) => {
 //   setSelectedStudent(studentList.find(student=>student.id==id));
 //   return selectedStudent;
 // }
 
-  console.log("1", studentList);
+  // console.log("1", studentList);
 
   return (
-    <StudentContext.Provider value={{ addStudent, updateStudent, getStudentList, studentList, setStudentList, isOpen, setIsOpen}}>
+    <StudentContext.Provider value={{ addStudent, updateStudent, setStudentsInGroup, studentsInGroup, getStudentList, getStudentsInGroup, deleteStudent, studentList, setStudentList, isOpen, setIsOpen}}>
       {props.children}
     </StudentContext.Provider>
   );

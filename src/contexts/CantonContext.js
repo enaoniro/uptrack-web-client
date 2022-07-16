@@ -1,10 +1,10 @@
 import { createContext, useEffect, useState } from 'react';
-
 export const CantonContext = createContext();
 
 const CantonContextProvider = (props) => {
   const [cantonList, setCantonList] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [newCanton, setNewCanton] = useState(false);
 
   useEffect(() => {
     getCantonList();
@@ -39,6 +39,7 @@ const CantonContextProvider = (props) => {
           const newCanton = {
               id: pCanton.id,
               name:pCanton.name,
+              manager:pCanton.manager,
              
             
           };
@@ -56,10 +57,43 @@ const CantonContextProvider = (props) => {
   
 };
 
+const updateCanton = async (pCanton) => {
+  try {
+    await fetch('http://localhost:3001/api/v1/cantons/' + pCanton.id, {
+      method: 'PUT',
+      body: JSON.stringify(pCanton),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    setCantonList(cantonList.map((canton) =>
+        canton.id === pCanton.id ? pCanton : canton
+      
+    ));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const deleteCanton = async (pCantonId) => {
+  try {
+    await fetch('http://localhost:3001/api/v1/cantons/' + pCantonId, {
+      method: 'DELETE'
+    });
+    const updatedCantonList = cantonList.filter(
+      (canton) => canton.id !== pCantonId
+    );
+
+    setCantonList(updatedCantonList);
+    
+  } catch (error) {
+    console.log(error);
+  }
+};
+
   console.log("1", cantonList);
 
   return (
-    <CantonContext.Provider value={{ addCanton, getCantonList , setCantonList, cantonList, isOpen, setIsOpen }}>
+    <CantonContext.Provider value={{ addCanton, deleteCanton, updateCanton, getCantonList , setCantonList, newCanton, setNewCanton, cantonList, isOpen, setIsOpen }}>
       {props.children}
     </CantonContext.Provider>
   );

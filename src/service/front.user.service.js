@@ -10,7 +10,7 @@ async function checkAuthenticatedUser(pUser){
         headers: { "Content-Type": "application/json" }
     })
     
-    return  response;
+    return  response.json();
      
 }
 

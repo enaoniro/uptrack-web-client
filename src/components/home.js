@@ -33,20 +33,21 @@ function Home() {
       // Rolü elde ettikten sonra state'i güncelliyoruz.
       // Gelen user bilgisi aynı postman'de gördüğümüz şekilde olacak
       setRole(user.Role.name);
-      console.log(user)
+      console.log(user);
     };
-
+  
     // user değerinin dolu olduğundan emin olalım
     // bunu yapmazsak useEffect ilk yüklenirken çalıştığında hata verir
     if (user) {
       // Eğer doluysa fonksiyonu çağıralım
       checkUser(user);
-      
+      console.log(user)
+
       // setRole(user.Role.name);
     }
   }, [isAuthenticated]);
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div>
@@ -90,6 +91,6 @@ function Home() {
       {role === "group leader" && <GroupLeader />}
     </div>
   );
-}
+};
 
 export default Home;

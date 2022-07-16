@@ -3,14 +3,10 @@ import { GroupContext } from '../contexts/GroupContext.js';
 
 const AddGroup = () => {
 
-  const [group, setGroup] = useState({
-    id:"",
-    name: ""
-  
-    })
+  const [group, setGroup] = useState({})
   const [groupList, setGroupList] = useState([]);
   
-  const { addGroup, getGroupList, isOpen, setIsOpen } = useContext(GroupContext);
+  const { addGroup, getGroupList, updateGroup, isOpen, setIsOpen } = useContext(GroupContext);
   
   useEffect(() => {
       getGroupList();
@@ -18,7 +14,7 @@ const AddGroup = () => {
     }, []);
   
     
-  const handleOnChange = (e) => {
+  const handleChange = (e) => {
     setGroup({ ...group, [e.target.name]: e.target.value });
   };
 
@@ -33,25 +29,59 @@ const AddGroup = () => {
   }
 
   return (
-    
-    <div id='form-container'>
-      <p color='blue'>grup bilgilerini giriniz</p>
-      <form onSubmit={handleSubmit}>
-        <input
-          type='text'
-          className='form-control'
-          name='name'
-          value={group.name}
-          placeholder="group name"
-          onChange={handleOnChange}
-        />
+    <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">
+          Add Group
+        </h5>
+        <button
+          type="button"
+          className="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+        </div>
+        <div className="modal-body">
+        <form className="mb-4" onSubmit={handleSubmit}>
+          <div>
+             <h6 color="blue">group bilgilerini giriniz</h6>
+             <input
+                type="text"
+                className="form-control bg-info"
+                placeholder="grup adi"
+                name="name"
+                value={group.name}
+                onChange={handleChange}
+              />
+
+              <input
+                type="text"
+                className="form-control bg-info"
+                placeholder="leader"
+                name="leader"
+                value={group.leader}
+                onChange={handleChange}
+              />
+             
+              <input
+                type="number"
+                className="form-control bg-info"
+                placeholder="canton id"
+                name="CantonId"
+                value={group.CantonId}
+                onChange={handleChange}
+              />
         <button type='submit' className='btn btn-primary mt-1'>
           save
         </button>
         <button type='button' className='btn btn-danger mt-1' onClick={hideForm}>
           close
         </button>
+        </div>
       </form>
+    </div>
+    </div>
     </div>
   );
 };
