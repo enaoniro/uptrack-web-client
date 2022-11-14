@@ -20,7 +20,8 @@ const AddGroup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addGroup(group);
+    const newgrouplist = addGroup(group);
+    setGroupList(newgrouplist)
     
   };
 

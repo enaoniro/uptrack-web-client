@@ -6,42 +6,43 @@ import Table from "react-bootstrap/Table";
 import Group from "./Group.js";
 
 const Canton = ({ canton }) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [cantonGroups, setCantonGroups] = useState([])
+  const [isOpen, setIsOpen] = useState(false);
+  const [cantonGroups, setCantonGroups] = useState([]);
 
   const { cantonList, deleteCanton } = useContext(CantonContext);
   const { groupList } = useContext(GroupContext);
 
-const handleClick = (event) => {
-  // setGroupName(event.target.innerText);
-  setCantonGroups(groupList.filter(group=>group.CantonId==canton.id))
-  setIsOpen(isOpen ? false : true);
-
-}
+  const handleClick = (event) => {
+    // setGroupName(event.target.innerText);
+    setCantonGroups(groupList.filter((group) => group.CantonId == canton.id));
+    setIsOpen(!isOpen);
+  };
 
   return (
-    <React.Fragment>
-      <tr className="w-100" key={canton.id}>
-        <td className="text-capitalize text-primary bg-body fw-bolder text-center p-5" onClick={handleClick}>
-         {/* <a className="text-decoration-none" href="http://localhost:3000/canton" >{canton.name}</a>  */}
-         {canton.name}
+    <React.Fragment key={canton.id}>
+
+      <tr className="w-100" >
+        <td
+          className="opacity-75 text-capitalize py-5 text-primary fw-bolder "
+          onClick={handleClick}
+        >
+          <span>{canton.name}</span>
         </td>
-        <td className="text-capitalize text-primary bg-body fw-bolder text-center p-5">{canton.email}</td>
-   
-        <td className="d-flex flex-column m-0">
-          
+        <td className="text-capitalize fw-bolder text-center py-5 ">
+          <span>{canton.email}</span>
+        </td>
+        <td>
           <button
             type="button"
-            className="btn btn-primary fs-6 w-20 border-white"
+            className="py-3 opacity-75 w-100 btn btn-primary"
             data-bs-toggle="modal"
             data-bs-target={"#updateCantonModal" + canton.id}
           >
             Edit Canton
           </button>
-          
           <button
             onClick={() => deleteCanton(canton.id)}
-            className="btn btn-danger fs-6 w-20"
+            className="py-3 btn w-100 btn-danger opacity-75 "
           >
             Delete Canton
           </button>
@@ -55,13 +56,25 @@ const handleClick = (event) => {
         aria-hidden="true"
       >
         <UpdateCanton canton={canton} />
-      </div>
-      <div>
-      {isOpen &&(cantonGroups.map((group)=><Group group={group}/>))}
-      </div>
-     
-    </React.Fragment>
-  );
+      </div> 
+      {/* <div className="h-100" id="form-div">
+      <tr className="w-100">
+        {isOpen && cantonGroups.map((group) => <Group group={group} />)}
+      </tr>
+      </div> */}
+
+    
+      {isOpen && 
+                (
+                  <tr className="w-100">
+     {cantonGroups.map((group) => <Group group={group} />)}
+      </tr>
+      
+      
+      )
+}
+  </React.Fragment>
+)
 };
 
 export default Canton;

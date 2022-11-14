@@ -40,6 +40,7 @@ const GroupContextProvider = (props) => {
     } catch (error) {
       console.log(error);
     }
+    
   
 };
 
@@ -57,6 +58,7 @@ const updateGroup = async (pGroup) => {
   } catch (error) {
     console.log(error);
   }
+ 
 };
 
 const deleteGroup = async (pGroupId) => {
@@ -70,6 +72,7 @@ const deleteGroup = async (pGroupId) => {
   } catch (error) {
     console.log(error);
   }
+    
 };
 
   console.log("1", groupList);

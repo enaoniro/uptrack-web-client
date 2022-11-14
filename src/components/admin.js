@@ -33,14 +33,13 @@ function Admin() {
   // };
 
   const handleClick = () => {
-
-    setIsOpen(isOpen ? false : true)
+    setIsOpen(!isOpen);
   };
 
   return (
-    <div id="main">
-      <div className="container-fluid" id="header-div">
-        <header className="mb-1 navbar navbar-expand-lg" id="header">
+    <div id="main" key={canton.id}>
+      <div className="container-fluid m-0 p-0">
+        <header className="w-100 navbar navbar-expand-lg shadow-lg bg-white mb-3 p-3" id="header">
           <a
             href="/"
             className="d-flex align-items-center text-primary text-decoration-none"
@@ -67,9 +66,9 @@ function Admin() {
                 </a>
               </li>
             </ul>
-            <div className="d-flex">
-              <ul className="navbar-nav me-auto mb-1 mb-lg-0">
-                <li>{user.name}</li>
+            <div className="d-flex align-content-center justify-content-center">
+              <ul className="navbar-nav mb-lg-0 d-flex align-items-center ">
+                <li className="me-2 ">{user.name}</li>
                 <li>
                   <button
                     className="btn bg-success btn-outline-light"
@@ -84,9 +83,9 @@ function Admin() {
         </header>
       </div>
 
-      <div className="container-fluid bg-light mr-5 p-1" id="innerdiv">
+      <div className="container-fluid bg-white" id="innerdiv">
         <div className="row">
-          <div className="col-md-2 text-primary p-3" id="listebox">
+          <div className="col-md-1 text-primary mt-3" id="listebox">
             <div className="w-100 text-align-center">
               {/* <h5 className="text-white bg-primary">CANTONS</h5> */}
               <button
@@ -132,11 +131,11 @@ function Admin() {
               id="schweiz"
               className="bg-primary d-flex align-content-center justify-content-center"
             >
-              <p className="text-white fw-bold">Switzerland</p>
+              {/* <p className="text-white fw-bold">Switzerland</p> */}
             </div>
             <div className="h-100" id="form-div">
-              <CantonList />
-              {isOpen && <UserList />}
+             
+              {isOpen ? <UserList /> :  <CantonList /> }
               {/* {newCanton && <AddCanton />} */}
             </div>
           </div>
@@ -160,7 +159,7 @@ function Admin() {
           <AddCanton canton={canton} />
         </div>
 
-        <footer className="pt-3 mt-4 text-primary border-top border-gray fixed-bottom">
+        <footer className="pt-3 mt-4 text-primary border-top border-gray fixed-bottom shadow-lg">
           <p id="copyright">can &copy; 2022</p>
         </footer>
       </div>

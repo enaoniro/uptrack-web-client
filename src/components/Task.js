@@ -4,7 +4,6 @@ import UpdateTask from "./UpdateTask";
 import Table from "react-bootstrap/Table";
 
 const Task = ({ task }) => {
-  // const { deleteStudent } = useContext(StudentContext);
   const { updateTask } = useContext(TaskContext);
 
   return (

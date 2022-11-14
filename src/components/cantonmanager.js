@@ -42,7 +42,7 @@ import ListGroupItem from "react-bootstrap/esm/ListGroupItem.js";
       }
 
 return (
-  <div id="main">
+  <div id="main" key={canton.id}>
     <main>
       <div className="container-fluid">
         <header
@@ -72,9 +72,9 @@ return (
               
             </ul>
             <div className="d-flex">
-              <ul className="navbar-nav me-auto mb-1 mb-lg-0">
+              <ul className="navbar-nav me-1 mb-1 mb-lg-0">
                 <li>
-                  {/* <h6 className="d-inline-block p-1">{user.name} </h6> */}
+                  <h6 className="d-inline-block p-1">{user.name}</h6>
                   <button
                     className="btn bg-success btn-outline-light"
                     onClick={() => logoutWithRedirect()}
@@ -86,9 +86,9 @@ return (
             </div>
           </div>
         </header>
-      <div className="container-fluid bg-light mr-5 p-1" id="innerdiv">
+      <div className="container-fluid bg-light" id="innerdiv">
         <div className="row">
-          <div className="col-md-2 text-primary p-3" id="listebox">
+          <div className="col-md-1 text-primary me-5 p-3" id="listebox">
             <div className="w-100 text-align-center">
               {/* <h5 className="text-white bg-primary">CANTONS</h5> */}
               <button
@@ -134,7 +134,7 @@ return (
               id="schweiz"
               className="bg-primary d-flex align-content-center justify-content-center"
             >
-              <p className="text-white fw-bold">Switzerland</p>
+              <p className="text-white fw-bold">{canton[0].name}</p>
             </div>
             <div className="h-100" id="form-div">
               <GroupList canton={canton}/>  

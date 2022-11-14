@@ -52,40 +52,36 @@ function Home() {
   return (
     <div>
       {!isAuthenticated && (
-        <div className="container py-4">
-          <header className="pb-3 mb-4 border-bottom navbar navbar-expand-lg">
+      <>
+        <div className="m-0 p-0 container-fluid ">
+          <header className="mb-4 px-3 border-bottom navbar navbar-expand-lg shadow-lg">
             <a
               href="/"
               className="d-flex align-items-center text-primary text-decoration-none"
             >
               <span className="fs-4">uptrack</span>
             </a>
-            <div className="navbar-collapse offcanvas-collapse">
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <a className="nav-link" href="#"></a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#"></a>
-                </li>
-              </ul>
-              <div className="d-flex">
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li>
+           
+          </header>
+        </div>
+        
+      
+
+         <div className="w-100 h-100 d-flex justify-items-center align-items-center flex-column ">
+                    
+                  <div>
+                    <h1>please login</h1>
                     <button
                       className="btn btn-outline-success"
                       onClick={() => loginWithRedirect()}
                     >
                       Login
                     </button>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </header>
+                  </div>  
+                
         </div>
-      )}
-
+      </>
+)}
       {role === "admin" && <Admin />}
       {role === "canton manager" && <CantonManager />}
       {role === "group leader" && <GroupLeader />}

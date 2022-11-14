@@ -18,6 +18,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import Home from "./components/home";
 import Admin from "./components/admin";
+import SingleGroup from "./components/singleGroup";
 import CantonManager from "./components/cantonmanager";
 import GroupLeader from "./components/groupleader";
 import Student from "./components/Student";
@@ -184,7 +185,7 @@ function App () {
                     <Route path="/" element={<Home/>}/>
                     <Route path="admin" element={<Admin/>}/>
                     <Route path="canton" element={<CantonManager/>}/>
-                    <Route path="group" element={<GroupLeader/>}/>
+                    <Route path="group" element={<SingleGroup/>}/>
                     {/* <Route path="student" element={<Student/>}/> */}
 
                 </Route>

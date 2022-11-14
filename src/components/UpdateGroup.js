@@ -3,7 +3,7 @@ import { GroupContext } from "../contexts/GroupContext";
 
 const UpdateGroup = ({ group }) => {
   const [updatedGroup, setUpdatedGroup] = useState(group);
-  const { updateGroup } = useContext(GroupContext);
+  const { updateGroup, setGroupList } = useContext(GroupContext);
 
   const handleChange = (e) => {
     setUpdatedGroup({ ...updatedGroup, [e.target.name]: e.target.value });
@@ -73,7 +73,7 @@ const UpdateGroup = ({ group }) => {
               className="btn btn-primary"
               data-bs-dismiss="modal"
             >
-              Edit
+              Update
             </button>
             </div>
           </form>

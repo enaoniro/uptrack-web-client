@@ -23,6 +23,7 @@ const AddCanton = () => {
   
     e.preventDefault();
     addCanton(canton);
+    setCantonList();
     
     
     // setIsOpen(false);
@@ -52,7 +53,7 @@ const AddCanton = () => {
         <form className="mb-4" onSubmit={handleSubmit}>
           <div>
 
-      <p color='blue'>canton bilgilerini giriniz</p>
+      <h6 color='blue'>canton bilgilerini giriniz</h6>
 
       
         <input
