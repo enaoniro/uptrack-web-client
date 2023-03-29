@@ -1,18 +1,27 @@
-import React, { useContext, useState } from "react";
-import { TaskContext } from "../contexts/TaskContext.js";
+import React, { useContext, useState, useEffect } from "react";
+import { TargetContext } from "../contexts/TargetContext";
 
-const UpdateTask = ({ task }) => {
-  const [updatedTask, setUpdatedTask] = useState(task);
-  const { updateTask } = useContext(TaskContext);
+const AddTarget = ({ target }) => {
+  const [addedTarget, setAddedTarget] = useState(target);
+  const { addTarget, getTargetList } = useContext(TargetContext);
+  const [targetList, setTargetList ] = useState([])
+
+
+  useEffect(() => {
+    getTargetList();
+  }, []);
 
   const handleChange = (e) => {
-    setUpdatedTask({ ...updatedTask, [e.target.name]: e.target.value });
+    setAddedTarget({ ...addedTarget, [e.target.name]: e.target.value });
   };
+
+  console.log(addedTarget)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // updateTask(updatedTask);
-    updateTask(updatedTask);
+    addTarget(addedTarget);
+    setTargetList();
+
   };
 
   return (
@@ -20,7 +29,7 @@ const UpdateTask = ({ task }) => {
       <div className="modal-content">
         <div className="modal-header">
           <h5 className="modal-title" id="exampleModalLabel">
-            Update Task
+            add target
           </h5>
           <button
             type="button"
@@ -32,22 +41,22 @@ const UpdateTask = ({ task }) => {
         <div className="modal-body">
           <form className="mb-4" onSubmit={handleSubmit}>
             <div>
-            <h6>risale adi</h6>
+            <h6>risale sayfa adedi</h6>
               <input
-                type="text"
+                type="number"
                 className="form-control bg-info"
                 placeholder="risale name"
                 name="task1"
-                value={updatedTask?.task1}
+                value={addedTarget?.task1 || ""}
                 onChange={handleChange}
               />
-              <h6>pirlanta adi</h6>
+              <h6>pirlanta sayfa adedi</h6>
               <input
                 type="text"
                 className="form-control bg-info"
                 placeholder="pirlanta adi"
                 name="task2"
-                value={updatedTask?.task2}
+                value={addedTarget?.task2 || ""}
                 onChange={handleChange}
               />
               <h6>namaz</h6>
@@ -56,16 +65,16 @@ const UpdateTask = ({ task }) => {
                 className="form-control bg-info"
                 placeholder="namaz"
                 name="task3"
-                value={updatedTask?.task3}
+                value={addedTarget?.task3 || ""}
                 onChange={handleChange}
               />
-              <h6>cevsen</h6>
+              <h6>cevsen bab sayisi</h6>
               <input
                 type="number"
                 className="form-control bg-info"
                 placeholder="cevsen"
                 name="task4"
-                value={updatedTask?.task4}
+                value={addedTarget?.task4 || ""}
                 onChange={handleChange}
               />
               <h6>devam</h6>
@@ -74,10 +83,18 @@ const UpdateTask = ({ task }) => {
                 className="form-control bg-info"
                 placeholder="devam"
                 name="task5"
-                value={updatedTask?.task5}
+                value={addedTarget?.task5 || ""}
+                onChange={handleChange}
+              /> 
+             <h6>TaskId</h6>
+              <input
+                type="number"
+                className="form-control bg-info"
+                placeholder="taskid"
+                name="TaskId"
+                value={addedTarget?.TaskId || ""}
                 onChange={handleChange}
               />
-            
             </div>
 
             <button
@@ -92,7 +109,7 @@ const UpdateTask = ({ task }) => {
               className="btn btn-primary"
               data-bs-dismiss="modal"
             >
-              update
+              Edit
             </button>
           </form>
         </div>
@@ -101,4 +118,4 @@ const UpdateTask = ({ task }) => {
   );
 };
 
-export default UpdateTask;
+export default AddTarget;

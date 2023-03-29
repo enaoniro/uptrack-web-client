@@ -4,7 +4,7 @@ export const CantonContext = createContext();
 const CantonContextProvider = (props) => {
   const [cantonList, setCantonList] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [newCanton, setNewCanton] = useState(false);
+  const [newCanton, setNewCanton] = useState();
 
   useEffect(() => {
     getCantonList();

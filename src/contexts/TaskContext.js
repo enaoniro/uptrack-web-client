@@ -5,7 +5,7 @@ export const TaskContext = createContext();
 const TaskContextProvider = (props) => {
   const [taskList, setTaskList] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [task, setTask] = useState([])
+  const [newtask, setNewTask] = useState({})
   const [selectedTask, setSelectedTask] = useState({})
 
   // setSelectedTask(TaskList.find((stu =>stu.id===Task.id)))
@@ -57,12 +57,13 @@ const TaskContextProvider = (props) => {
   const addTask = async (pTask) => {
       // if (pUser.email !==undefined) {
           const newTask = {
-              id: pTask.id,
-              risale: pTask.risale,
-              pirlanta: pTask.pirlanta,
-              namaz: pTask.namaz,
-              cevsen: pTask.cevsen,
-              devamlilik: pTask.devamlilik,
+              // id: pTask.id,
+              task1: pTask.task1,
+              task2: pTask.task2,
+              task3: pTask.task3,
+              task4: pTask.task4,
+              task5: pTask.task5,
+              StudentId: pTask.StudentId,
             
           };
     try {
@@ -102,7 +103,7 @@ const updateTask = async (pTask) => {
 //   return selectedTask;
 // }
 
-  console.log("1", taskList);
+  console.log(taskList);
 
   return (
     <TaskContext.Provider value={{ addTask, updateTask, getTaskList, taskList, setTaskList, isOpen, setIsOpen}}>

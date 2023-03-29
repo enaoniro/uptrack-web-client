@@ -45,7 +45,7 @@ const UpdateStudent = ({ student }) => {
                 type="text"
                 className="form-control bg-info"
                 placeholder="last_name"
-                name="lastname"
+                name="last_name"
                 value={updatedStudent.last_name}
                 onChange={handleChange}
               />

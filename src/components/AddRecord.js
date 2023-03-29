@@ -1,18 +1,26 @@
-import React, { useContext, useState } from "react";
-import { TaskContext } from "../contexts/TaskContext.js";
+import React, { useContext, useState, useEffect } from "react";
+import { RecordContext } from "../contexts/RecordContext";
 
-const UpdateTask = ({ task }) => {
-  const [updatedTask, setUpdatedTask] = useState(task);
-  const { updateTask } = useContext(TaskContext);
+const AddRecord = ({ target }) => {
+  const [addedRecord, setAddedRecord] = useState(target);
+  const [recordList, setRecordList] = useState([]);
+  const { addRecord, getRecordList } = useContext(RecordContext);
+  
+
+  useEffect(() => {
+    getRecordList();
+  }, []);
 
   const handleChange = (e) => {
-    setUpdatedTask({ ...updatedTask, [e.target.name]: e.target.value });
+    setAddedRecord({ ...addedRecord, [e.target.name]: e.target.value });
   };
+
+  console.log(addedRecord)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // updateTask(updatedTask);
-    updateTask(updatedTask);
+    const newrecordlist = addRecord(addedRecord);
+    setRecordList(newrecordlist);
   };
 
   return (
@@ -20,7 +28,7 @@ const UpdateTask = ({ task }) => {
       <div className="modal-content">
         <div className="modal-header">
           <h5 className="modal-title" id="exampleModalLabel">
-            Update Task
+            add target
           </h5>
           <button
             type="button"
@@ -32,22 +40,22 @@ const UpdateTask = ({ task }) => {
         <div className="modal-body">
           <form className="mb-4" onSubmit={handleSubmit}>
             <div>
-            <h6>risale adi</h6>
+            <h6>risale sayfa adedi</h6>
               <input
-                type="text"
+                type="number"
                 className="form-control bg-info"
                 placeholder="risale name"
                 name="task1"
-                value={updatedTask?.task1}
+                value={addedRecord?.task1 || ""}
                 onChange={handleChange}
               />
-              <h6>pirlanta adi</h6>
+              <h6>pirlanta sayfa adedi</h6>
               <input
                 type="text"
                 className="form-control bg-info"
                 placeholder="pirlanta adi"
                 name="task2"
-                value={updatedTask?.task2}
+                value={addedRecord?.task2 || ""}
                 onChange={handleChange}
               />
               <h6>namaz</h6>
@@ -56,16 +64,16 @@ const UpdateTask = ({ task }) => {
                 className="form-control bg-info"
                 placeholder="namaz"
                 name="task3"
-                value={updatedTask?.task3}
+                value={addedRecord?.task3 || ""}
                 onChange={handleChange}
               />
-              <h6>cevsen</h6>
+              <h6>cevsen bab sayisi</h6>
               <input
                 type="number"
                 className="form-control bg-info"
                 placeholder="cevsen"
                 name="task4"
-                value={updatedTask?.task4}
+                value={addedRecord?.task4 || ""}
                 onChange={handleChange}
               />
               <h6>devam</h6>
@@ -74,10 +82,18 @@ const UpdateTask = ({ task }) => {
                 className="form-control bg-info"
                 placeholder="devam"
                 name="task5"
-                value={updatedTask?.task5}
+                value={addedRecord?.task5 || ""}
+                onChange={handleChange}
+              /> 
+             <h6>TargetId</h6>
+              <input
+                type="number"
+                className="form-control bg-info"
+                placeholder="taskid"
+                name="TargetId"
+                value={addedRecord?.TargetId || ""}
                 onChange={handleChange}
               />
-            
             </div>
 
             <button
@@ -92,7 +108,7 @@ const UpdateTask = ({ task }) => {
               className="btn btn-primary"
               data-bs-dismiss="modal"
             >
-              update
+              Edit
             </button>
           </form>
         </div>
@@ -101,4 +117,4 @@ const UpdateTask = ({ task }) => {
   );
 };
 
-export default UpdateTask;
+export default AddRecord;

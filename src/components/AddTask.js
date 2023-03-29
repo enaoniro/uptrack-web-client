@@ -1,18 +1,23 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { TaskContext } from "../contexts/TaskContext.js";
 
-const UpdateTask = ({ task }) => {
-  const [updatedTask, setUpdatedTask] = useState(task);
-  const { updateTask } = useContext(TaskContext);
+const AddTask = ({ task }) => {
+  const [addedTask, setAddedTask] = useState(task);
+  const [taskList, setTaskList] = useState([]);
+  const { updateTask, addTask, getTaskList } = useContext(TaskContext);
+
+  useEffect(() => {
+    getTaskList();
+  }, []);
 
   const handleChange = (e) => {
-    setUpdatedTask({ ...updatedTask, [e.target.name]: e.target.value });
+    setAddedTask({ ...addedTask, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // updateTask(updatedTask);
-    updateTask(updatedTask);
+    const newtasklist = addTask(addedTask);
+    setTaskList(newtasklist);
   };
 
   return (
@@ -20,7 +25,7 @@ const UpdateTask = ({ task }) => {
       <div className="modal-content">
         <div className="modal-header">
           <h5 className="modal-title" id="exampleModalLabel">
-            Update Task
+            Add Task
           </h5>
           <button
             type="button"
@@ -38,7 +43,7 @@ const UpdateTask = ({ task }) => {
                 className="form-control bg-info"
                 placeholder="risale name"
                 name="task1"
-                value={updatedTask?.task1}
+                value={addedTask?.task1 || ""}
                 onChange={handleChange}
               />
               <h6>pirlanta adi</h6>
@@ -47,7 +52,7 @@ const UpdateTask = ({ task }) => {
                 className="form-control bg-info"
                 placeholder="pirlanta adi"
                 name="task2"
-                value={updatedTask?.task2}
+                value={addedTask?.task2 || ""}
                 onChange={handleChange}
               />
               <h6>namaz</h6>
@@ -56,7 +61,7 @@ const UpdateTask = ({ task }) => {
                 className="form-control bg-info"
                 placeholder="namaz"
                 name="task3"
-                value={updatedTask?.task3}
+                value={addedTask?.task3 || ""}
                 onChange={handleChange}
               />
               <h6>cevsen</h6>
@@ -65,7 +70,7 @@ const UpdateTask = ({ task }) => {
                 className="form-control bg-info"
                 placeholder="cevsen"
                 name="task4"
-                value={updatedTask?.task4}
+                value={addedTask?.task4 || ""}
                 onChange={handleChange}
               />
               <h6>devam</h6>
@@ -74,10 +79,18 @@ const UpdateTask = ({ task }) => {
                 className="form-control bg-info"
                 placeholder="devam"
                 name="task5"
-                value={updatedTask?.task5}
+                value={addedTask?.task5 || ""}
                 onChange={handleChange}
               />
-            
+               <h6>studentid</h6>
+              <input
+                type="number"
+                className="form-control bg-info"
+                placeholder="studentid"
+                name="StudentId"
+                value={addedTask?.StudentId || ""}
+                onChange={handleChange}
+              />
             </div>
 
             <button
@@ -92,7 +105,7 @@ const UpdateTask = ({ task }) => {
               className="btn btn-primary"
               data-bs-dismiss="modal"
             >
-              update
+              add
             </button>
           </form>
         </div>
@@ -101,4 +114,4 @@ const UpdateTask = ({ task }) => {
   );
 };
 
-export default UpdateTask;
+export default AddTask;

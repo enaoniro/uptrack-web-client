@@ -37,7 +37,7 @@ const UserContextProvider = (props) => {
     const data = userList.filter((user) => user.email == pUser.email);
     setUserInDatabase(data);
   };
-  console.log(userInDatabase);
+  // console.log(userInDatabase);
 
   const addUser = async (pUser) => {
     // if (pUser.email !==undefined) {

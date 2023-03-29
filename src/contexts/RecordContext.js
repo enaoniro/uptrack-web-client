@@ -17,8 +17,11 @@ const RecordContextProvider = (props) => {
   const getRecordList = async () => {
     const response = await fetch("http://localhost:3001/api/v1/records");
     const recordList = await response.json();
-    setRecordList(recordList);
-  };
+    if(!recordList){
+      return console.log("no records found!")
+    } else {
+      return setRecordList(recordList)
+  }};
 
   //   const getUserByEmail = async (pUser) => {
   //     const response = await fetch('http://localhost:3001/api/v1/users');
@@ -32,11 +35,12 @@ const RecordContextProvider = (props) => {
     // if (pUser.email !==undefined) {
     const newRecord = {
       id: pRecord.id,
-      risale: pRecord.risale,
-      pirlanta: pRecord.pirlanta,
-      namaz: pRecord.namaz,
-      cevsen: pRecord.cevsen,
-      devamlilik: pRecord.devamlilik,
+      task1: pRecord.task1,
+      task2: pRecord.task2,
+      task3: pRecord.task3,
+      task4: pRecord.task4,
+      task5: pRecord.task5,
+      TaskId: pRecord.TaskId,
     };
     try {
       await fetch("http://localhost:3001/api/v1/records", {

@@ -15,6 +15,8 @@ const UpdateCanton = ({ canton }) => {
   };
 
   return (
+
+    <td>
     <div className="modal-dialog">
       <div className="modal-content">
         <div className="modal-header">
@@ -70,6 +72,7 @@ const UpdateCanton = ({ canton }) => {
         </div>
       </div>
     </div>
+    </td>
   );
 };
 

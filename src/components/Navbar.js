@@ -8,7 +8,8 @@ import CantonManager from "../components/cantonmanager";
 import GroupLeader from "../components/groupleader";
 import Layout from "../components/layout";
 
-function Home() {
+
+function Navbar() {
   const [role, setRole] = useState("");
 
   const { addUser, getUserbyEmail, checkAuthenticatedUser, userInDatabase } =
@@ -50,8 +51,8 @@ function Home() {
   // console.log(user);
 
   return (
-    <div>
-      {!isAuthenticated && (
+    
+      
       <>
         <div className="m-0 p-0 container-fluid ">
           <header className="mb-4 px-3 border-bottom navbar navbar-expand-lg shadow-lg">
@@ -59,14 +60,14 @@ function Home() {
               href="/"
               className="d-flex align-items-center text-primary text-decoration-none"
             >
-              <span className="fs-4">uptrack</span>
+              <span className="fs-4"><button>to Home Page</button></span>
             </a>
            
           </header>
         </div>
         
       
-
+{/* 
          <div className="w-100 h-100 d-flex justify-items-center align-items-center flex-column ">
                     
                   <div>
@@ -79,14 +80,7 @@ function Home() {
                     </button>
                   </div>  
                 
-        </div>
+        </div> */}
       </>
 )}
-      {role === "admin" && <Admin />}
-      {role === "canton manager" && <CantonManager />}
-      {role === "group leader" && <GroupLeader />}
-    </div>
-  );
-};
-
-export default Home;
+export default Navbar

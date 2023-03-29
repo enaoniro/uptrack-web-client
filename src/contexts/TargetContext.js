@@ -31,12 +31,13 @@ const TargetContextProvider = (props) => {
   const addTarget = async (pTarget) => {
     // if (pUser.email !==undefined) {
     const newTarget = {
-      id: pTarget.id,
-      risale: pTarget.risale,
-      pirlanta: pTarget.pirlanta,
-      namaz: pTarget.namaz,
-      cevsen: pTarget.cevsen,
-      devamlilik: pTarget.devamlilik,
+      // id: pTarget.id,
+      task1: pTarget.task1,
+      task2: pTarget.task2,
+      task3: pTarget.task3,
+      task4: pTarget.task4,
+      task5: pTarget.task5,
+      TaskId: pTarget.TaskId,
     };
     try {
       await fetch("http://localhost:3001/api/v1/targets", {
@@ -74,7 +75,7 @@ const TargetContextProvider = (props) => {
   //   return selectedTarget;
   // }
 
-  console.log("1", targetList);
+  console.log(targetList);
 
   return (
     <TargetContext.Provider

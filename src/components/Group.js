@@ -5,65 +5,72 @@ import UpdateGroup from "./UpdateGroup";
 import Table from "react-bootstrap/Table";
 import StudentList from "./StudentList";
 import Student from "./Student.js";
+import { useNavigate } from "react-router-dom";
 
-const Group = ({group}) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [groupStudents, setGroupStudents] = useState([])
-  console.log(group)
-  
+const Group = ({ group }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [groupStudents, setGroupStudents] = useState([]);
   const [groupName, setGroupName] = useState("");
+  console.log(group);
 
   const { groupList, deleteGroup } = useContext(GroupContext);
   const { studentList, setStudentList } = useContext(StudentContext);
+  
+  // console.log(groupStudents);
+  
+  const navigate = useNavigate();
+  
+  const handleClick = () => {
 
-  // const groupStudents= studentList.filter(student=>student.GroupId==group.id)
-  // console.log(groupStudents)
-
-
-  // const group = groups.map(group=>group)
-
-  const handleClick = (event) => {
-    setGroupName(event.target.innerText);
-    setGroupStudents(studentList.filter(student=>student.GroupId==group.id))
-    
-    setIsOpen(isOpen ? false : true);
-
-  }
-
-  console.log(groupName)
-  // console.log(studentList.map(student => student.Group.name))
+    setGroupStudents(studentList.find((student) => student.GroupId === group.id));
+         
+    navigate(`/group/${group.id}`)
+  };
 
   return (
     <React.Fragment key={group.id}>
-      <tr className="w-100" key={group.id}>
-      {/* <td className="text-capitalize text-primary bg-body fw-bolder text-center p-5" key={group.id}> </td> */}
-        <td className="text-capitalize text-primary bg-body fw-bolder text-center p-5" onClick={handleClick}>
-         {/* <a className="text-decoration-none" href="http://localhost:3000/group" >{group.name}</a>  */}
-         {group.name}
+      <Table className='w-100 m-3' bordered hover>
+        <thead className='p-3'>
+         <tr>
+          <th className='w-50 h-100 opacity-75'>Group name</th>  
+        </tr>
+        </thead>
+        <tbody>
+      <tr className="w-100 d-flex justify-content-between" key={group.id}>
+        {/* <td className="text-capitalize text-primary bg-body fw-bolder text-center p-5" key={group.id}> </td> */}
+        <td
+          className="w-100 text-capitalize text-center d-flex justify-content-center align-items-center fw-bolder"
+          // colSpan={2}
+          onClick={handleClick}
+        >
+          {/* <a className="text-decoration-none" href="http://localhost:3000/group" >{group.name}</a>  */}
+          {group.id}-{group.name}
         </td>
-        {/* <td className="text-capitalize text-primary bg-body fw-bolder text-center p-5">{group.leader}</td> */}
+        {/* <td colSpan={2} className="text-capitalize text-primary bg-body fw-bolder text-center">{group.leader}</td> */}
         {/* <td className="text-capitalize text-primary bg-body fw-bolder text-center p-5">{group.Canton.name}</td> */}
-   
-        <td className="d-flex flex-column m-0">
+        
+        <td>
           
           <button
             type="button"
-            className="btn btn-primary fs-6 w-20 border-white"
+            className="w-100 btn btn-primary"
             data-bs-toggle="modal"
             data-bs-target={"#updateGroupModal" + group.id}
           >
             update Group
           </button>
-          
+          </td>
+          <td>
           <button
             onClick={() => deleteGroup(group.id)}
-            className="btn btn-danger fs-6 w-20"
+            className="w-100 btn btn-danger opacity-75 "
           >
             Delete Group
           </button>
         </td>
       </tr>
-      <div
+      
+      <tr
         className="modal fade"
         id={"updateGroupModal" + group.id}
         tabIndex="-1"
@@ -71,11 +78,13 @@ const Group = ({group}) => {
         aria-hidden="true"
       >
         <UpdateGroup group={group} />
-      </div>
-      <div>
-      {isOpen &&(groupStudents.map((student)=><Student student={student}/>))}
-      </div>
-           
+      </tr>
+      <tr>
+        {isOpen &&
+          <Student groupStudents={groupStudents} />}
+    </tr>
+          </tbody>
+      </Table>
     </React.Fragment>
   );
 };

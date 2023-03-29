@@ -1,10 +1,9 @@
 import React, { useState, useContext } from "react";
 import { TaskContext } from "../contexts/TaskContext";
-import UpdateTask from "./UpdateTask";
+import UpdateTask from "./AddTask";
 import Table from "react-bootstrap/Table";
 
 const Task = ({ task }) => {
-  // const { deleteStudent } = useContext(StudentContext);
   const { updateTask } = useContext(TaskContext);
 
   return (
