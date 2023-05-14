@@ -1,9 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
 import { TaskContext } from "../contexts/TaskContext.js";
+import { useParams } from "react-router-dom";
 
-const AddTask = ({ task }) => {
-  const [addedTask, setAddedTask] = useState(task);
+const AddTask = () => {
+  const [task, setTask] = useState({});
   const [taskList, setTaskList] = useState([]);
+
+let { id } = useParams();
+
   const { updateTask, addTask, getTaskList } = useContext(TaskContext);
 
   useEffect(() => {
@@ -11,13 +15,14 @@ const AddTask = ({ task }) => {
   }, []);
 
   const handleChange = (e) => {
-    setAddedTask({ ...addedTask, [e.target.name]: e.target.value });
+    setTask({ ...task, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newtasklist = addTask(addedTask);
-    setTaskList(newtasklist);
+    addTask(task);
+    setTaskList();
+    getTaskList();
   };
 
   return (
@@ -25,7 +30,7 @@ const AddTask = ({ task }) => {
       <div className="modal-content">
         <div className="modal-header">
           <h5 className="modal-title" id="exampleModalLabel">
-            Add Task
+            add Task
           </h5>
           <button
             type="button"
@@ -37,49 +42,49 @@ const AddTask = ({ task }) => {
         <div className="modal-body">
           <form className="mb-4" onSubmit={handleSubmit}>
             <div>
-            <h6>risale adi</h6>
+            <h6>task-1</h6>
               <input
                 type="text"
                 className="form-control bg-info"
-                placeholder="risale name"
+                placeholder="task1"
                 name="task1"
-                value={addedTask?.task1 || ""}
+                value={task?.task1 || ""}
                 onChange={handleChange}
               />
-              <h6>pirlanta adi</h6>
+              <h6>task-2</h6>
               <input
                 type="text"
                 className="form-control bg-info"
-                placeholder="pirlanta adi"
+                placeholder="task2"
                 name="task2"
-                value={addedTask?.task2 || ""}
+                value={task?.task2 || ""}
                 onChange={handleChange}
               />
-              <h6>namaz</h6>
+              <h6>task-3</h6>
               <input
                 type="text"
                 className="form-control bg-info"
-                placeholder="namaz"
+                placeholder="task3"
                 name="task3"
-                value={addedTask?.task3 || ""}
+                value={task?.task3 || ""}
                 onChange={handleChange}
               />
-              <h6>cevsen</h6>
+              <h6>task-4</h6>
               <input
-                type="number"
+                type="text"
                 className="form-control bg-info"
-                placeholder="cevsen"
+                placeholder="task4"
                 name="task4"
-                value={addedTask?.task4 || ""}
+                value={task?.task4 || ""}
                 onChange={handleChange}
               />
-              <h6>devam</h6>
+              <h6>task-5</h6>
               <input
-                type="number"
+                type="text"
                 className="form-control bg-info"
-                placeholder="devam"
+                placeholder="task5"
                 name="task5"
-                value={addedTask?.task5 || ""}
+                value={task?.task5 || ""}
                 onChange={handleChange}
               />
                <h6>studentid</h6>
@@ -88,7 +93,7 @@ const AddTask = ({ task }) => {
                 className="form-control bg-info"
                 placeholder="studentid"
                 name="StudentId"
-                value={addedTask?.StudentId || ""}
+                value={task?.StudentId || ""}
                 onChange={handleChange}
               />
             </div>

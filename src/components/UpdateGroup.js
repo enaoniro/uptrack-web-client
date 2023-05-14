@@ -4,6 +4,8 @@ import { GroupContext } from "../contexts/GroupContext";
 const UpdateGroup = ({ group }) => {
   const [updatedGroup, setUpdatedGroup] = useState(group);
   const { updateGroup, setGroupList } = useContext(GroupContext);
+  
+  const { getGroupList } = useContext(GroupContext)
 
   const handleChange = (e) => {
     setUpdatedGroup({ ...updatedGroup, [e.target.name]: e.target.value });
@@ -12,10 +14,11 @@ const UpdateGroup = ({ group }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     updateGroup(updatedGroup);
+    getGroupList()
   };
 
   return (
-    <td>
+    <>
     <div className="modal-dialog">
       <div className="modal-content">
         <div className="modal-header">
@@ -81,7 +84,8 @@ const UpdateGroup = ({ group }) => {
         </div>
       </div>
     </div>
-    </td>
+    </>
+    
   );
 };
 

@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const StudentContext = createContext();
 
@@ -8,6 +9,8 @@ const StudentContextProvider = (props) => {
   const [student, setStudent] = useState({});
   const [selectedStudent, setSelectedStudent] = useState({});
   const [studentsInGroup, setStudentsInGroup] = useState([]);
+
+  const navigate = useNavigate();
 
   // setSelectedStudent(studentList.find((stu =>stu.id===student.id)))
 
@@ -19,14 +22,12 @@ const StudentContextProvider = (props) => {
     try {
       const response = await fetch("http://localhost:3001/api/v1/students");
       const studentList = await response.json();
-        setStudentList(studentList);
+      setStudentList(studentList);
     } catch (error) {
-      if(error) {
-        console.log(error)
+      if (error) {
+        console.log(error);
       }
-      
     }
-   
   };
 
   const getStudentsInGroup = async (pId) => {
@@ -37,35 +38,33 @@ const StudentContextProvider = (props) => {
   };
 
   const getStudentById = async (pId) => {
-    const response = await fetch(`http://localhost:3001/api/v1/students/student/${pId}`);
+    const response = await fetch(
+      `http://localhost:3001/api/v1/students/student/${pId}`
+    );
     const student = await response.json();
     // const student = studentList.find((student) => student.id == pId);
     setStudent(student);
   };
 
   const addStudent = async (pStudent) => {
-    if ((pStudent !== undefined) | null) {
-      const newStudent = {
-        id: pStudent.id,
-        first_name: pStudent.first_name,
-        last_name: pStudent.last_name,
-        email: pStudent.email,
-        GroupId: pStudent.GroupId,
-        // TaskId: pStudent.TaskId,
-        // TargetId:pStudent.TargetId,
-        // RecordId:pStudent.RecordId,
-      };
-      try {
-        await fetch("http://localhost:3001/api/v1/students", {
-          method: "POST",
-          body: JSON.stringify(pStudent),
-          headers: { "Content-Type": "application/json" },
-        });
+    try {
+        const res = await fetch("http://localhost:3001/api/v1/students", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(pStudent),
+      });
 
-        setStudentList([...studentList, newStudent]);
-      } catch (error) {
-        console.log(error);
-      }
+      const data = await res.json();
+
+      // setStudentList([...studentList, data]);
+      setStudentList(currentArray => {
+        return [...currentArray, data]
+     });
+     getStudentList();
+     navigate("/")
+      console.log("student context add student is rendered")
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -82,6 +81,7 @@ const StudentContextProvider = (props) => {
           student.id === pStudent.id ? pStudent : student
         )
       );
+      
     } catch (error) {
       console.log(error);
     }
@@ -97,6 +97,10 @@ const StudentContextProvider = (props) => {
       );
 
       setStudentList(updateDStudentList);
+      getStudentList()
+      alert("the student is deleted!")
+      navigate("/")
+
     } catch (error) {
       console.log(error);
     }

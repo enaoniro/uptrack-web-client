@@ -32,10 +32,10 @@ import ListGroupItem from "react-bootstrap/esm/ListGroupItem.js";
         returnTo: window.location.origin,
       });
 
-      const group =groupList.map((group) =>group);
-      console.log(group)
-      const canton = cantonList.filter(canton=>canton.email==user.email)
+      const canton = cantonList.find((canton)=>canton.email==user.email)
       console.log(canton)
+      // const group = groupList.map((group) =>group.CantonId === canton.id);
+      // console.log(group)
     
       const handleClick =()=>{
         setIsOpen(true)
@@ -43,31 +43,31 @@ import ListGroupItem from "react-bootstrap/esm/ListGroupItem.js";
 
 return (
   <div id="main" key={canton.id}>
-    <main>
-      <div className="container-fluid">
+    
+      <div className="container-fluid m-0 p-0">
         <header
           className=" m-3 navbar navbar-expand-lg" 
           id="header"
         >
-          <a
+          {/* <a
             href="/"
             className="d-flex align-items-center text-primary text-decoration-none"
           >
             <span className="fs-5">uptrack</span>
-          </a>
+          </a> */}
           <div className="navbar-collapse offcanvas-collapse">
             <ul className="d-flex align-items-center navbar-nav me-auto mb-5 mb-lg-0">
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <span className="fs-5 p-1 text-primary"> | </span>
-              </li>
+              </li> */}
 
-                <li className="nav-item">
-                  <a
+                <li className="nav-item text-primary">
+                  {/* <a
                     className="nav-link text-primary"
                     href="http://localhost:3000/canton"
-                  >
+                  > */}
                     Canton Page
-                  </a>
+                  {/* </a> */}
                 </li>
               
             </ul>
@@ -76,7 +76,7 @@ return (
                 <li>
                   <h6 className="d-inline-block p-1">{user.name}</h6>
                   <button
-                    className="btn bg-success btn-outline-light"
+                    className="btn btn-outline-danger"
                     onClick={() => logoutWithRedirect()}
                   >
                     Logout
@@ -86,7 +86,7 @@ return (
             </div>
           </div>
         </header>
-      <div className="container-fluid bg-light" id="innerdiv">
+      <div className="container-fluid bg-white" id="innerdiv">
         <div className="row">
           <div className="col-md-1 text-primary me-5 p-3" id="listebox">
             <div className="w-100 text-align-center">
@@ -94,10 +94,10 @@ return (
               <button
                 type="button"
                 className="btn btn-success fs-6 w-100 m-1"
-                data-bs-toggle="modal"
-                data-bs-target={"#addGroupModal"}
+                // data-bs-toggle="modal"
+                // data-bs-target={"#addGroupModal"}
+                onClick={() => setIsOpen(!isOpen)}
               >
-                {/* onClick={() => setIsOpen(isOpen ? false : true)} */}
                 ADD Group
               </button>
               {/* <button
@@ -121,7 +121,7 @@ return (
               <button
                 className="w-100 m-1 btn btn-primary text-white "
                 type="button"
-                onClick={() => handleClick()}
+                // onClick={() => handleClick()}
               >
                 Groups
               </button>
@@ -130,32 +130,36 @@ return (
             
           </div>
           <div className="col-md-10" id="details-div">
-            <div
+          <div
+          className="h-100" id="form-div"
+          // className="modal fade"
+          // id={"addGroupModal"}
+          // tabIndex="-1"
+          // aria-labelledby="exampleModalLabel"
+          // aria-hidden="true"
+        >
+         {isOpen ? <AddGroup /> : null }
+         <GroupList canton={canton}/>  
+        </div>
+            {/* <div
               id="schweiz"
-              className="bg-primary d-flex align-content-center justify-content-center"
+              className="bg-primary d-flex align-content-center justify-content-center mt-2 opacity-75"
             >
-              <p className="text-white fw-bold">{canton[0].name}</p>
+              <p className="text-white fw-bold">{canton.name}</p>
             </div>
             <div className="h-100" id="form-div">
               <GroupList canton={canton}/>  
             </div>
           </div>
-        </div>
-        <div
-          className="modal fade"
-          id={"addGroupModal"}
-          tabIndex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <AddGroup group={group} />
-        </div>
+        </div> */}
+       
         <footer className="pt-3 mt-4 text-primary border-top border-gray fixed-bottom">
           <p id="copyright">can &copy; 2022</p>
         </footer>
       </div>
     </div>
-</main>
+    </div>
+    </div>
 </div>
 )
 }

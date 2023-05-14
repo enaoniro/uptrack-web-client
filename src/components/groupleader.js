@@ -15,6 +15,8 @@ function GroupLeader() {
   const [showDetails, setShowDetails] = useState(false);
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
+  console.log("group leader is rendered")
+
   console.log(user);
 
   const {
@@ -31,7 +33,7 @@ function GroupLeader() {
 
   console.log(groupList);
 
-  const group = groupList.filter((group) => group.leader == user.email);
+  const group = groupList.find((group) => group.leader == user.email);
   console.log(group);
 
   
@@ -49,7 +51,7 @@ function GroupLeader() {
     //   const students = getStudentsInGroup(id)
     // return setStudentsInGroup(students)
 
-    setShowDetails(true);
+    setShowDetails(!showDetails);
   };
 
   // const group = studentList.filter((student) => student.GroupId);
@@ -109,7 +111,7 @@ function GroupLeader() {
                       <h6 className="d-inline-block p-1 me-1">{user.name} </h6>
                     </span>
                     <button
-                      className="btn btn-outline-success"
+                      className="btn btn-outline-danger"
                       onClick={() => logoutWithRedirect()}
                     >
                       Logout
@@ -124,12 +126,13 @@ function GroupLeader() {
             <div className="row">
               <div className="col-md-1 text-primary m-1 mt-3" id="listebox">
                   <button
-                    type="button"
+                  onClick={handleClick}
+                    // type="button"
                     className="btn btn-outline-success fs-6 w-100"
-                    data-bs-toggle="modal"
-                    data-bs-target={"#addStudentModal"}
+                    // data-bs-toggle="modal"
+                    // data-bs-target={"#addStudentModal"}
                   >
-                    Add student
+                    add student
                   </button>
               </div>
               <div className="col-md-10 p-1 my-3" id="details-div">
@@ -138,21 +141,21 @@ function GroupLeader() {
                   className="d-flex shadow-sm align-items-center justify-content-center mb-1"
                 >
                   <p className="fw-bolder fs-5">Group Name :</p>
-                  <p className="text-secondary fs-5 fw-bolder">{group[0].leader}</p>
+                  <p className="text-secondary fs-5 fw-bolder">{group.leader}</p>
                 </div>
                 <div className="h-100" id="form-div">
-                  {/* {isOpen && <AddStudent />} */}
+                  {showDetails ? <AddStudent /> : null }
                   <StudentList group={group} />
                 </div>
-                <div
+                {/* <div
                   className="modal fade"
                   id={"addStudentModal"}
                   tabIndex="-1"
                   aria-labelledby="exampleModalLabel"
                   aria-hidden="true"
                 >
-                  <AddStudent student={student} />
-                </div>
+                  <AddStudent />
+                </div> */}
               </div>
             </div>
           </div>

@@ -9,23 +9,29 @@ const GroupList = ({ canton }) => {
 
   const { groupList } = useContext(GroupContext);
 
-  const group = canton[0].Groups.map((group, key) => (
-    <Group group={group} key={key} />
-  ));
-  console.log(group);
+  // const group = canton[0].Groups.map((group, key) => (
+  //   <Group group={group} key={key} />
+  // ));
+  // console.log(group);
 
   return (
     <div className="w-100">
       <Table className="w-100" responsive="lg" bordered hover>
         <thead>
-          <tr key={group.id}>
-          {/* <th className='opacity-75'>Group leader</th>
-            <th>Group no</th>   
+          <tr>
+            {/* <th className='opacity-75'>Group leader</th>
             <th className="text-center">Group Id</th> */}
-         
+
+            {/* <th>Group id</th>    */}
+            <th>Groups</th>
+            {/* <th>actions</th>    */}
           </tr>
         </thead>
-        <tbody className="w-100">{group}</tbody>
+        <tbody className="w-100">
+          {canton.Groups.map((group, key) => (
+            <Group group={group} key={key} />
+          ))}
+        </tbody>
       </Table>
     </div>
   );

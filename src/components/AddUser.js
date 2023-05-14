@@ -53,7 +53,7 @@ const AddUser = () => {
         type="text"
         className="form-control"
         name="first_name"
-        value={user.first_name}
+        value={user.first_name || ""}
         placeholder="first name"
         onChange={handleOnChange}
       />
@@ -61,7 +61,7 @@ const AddUser = () => {
         type="text"
         className="form-control"
         name="last_name"
-        value={user.last_name}
+        value={user.last_name || ""}
         placeholder="last name"
         onChange={handleOnChange}
       />
@@ -69,7 +69,7 @@ const AddUser = () => {
         type="text"
         className="form-control"
         name="email"
-        value={user.email}
+        value={user.email || ""}
         placeholder="email"
         onChange={handleOnChange}
       />
@@ -77,7 +77,7 @@ const AddUser = () => {
         type="number"
         className="form-control"
         name="RoleId"
-        value={user.RoleId}
+        value={user.RoleId || ""}
         placeholder="rolu giriniz"
         onChange={handleOnChange}
       />

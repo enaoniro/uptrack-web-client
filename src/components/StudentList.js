@@ -8,6 +8,8 @@ import { useNavigate, useParams } from "react-router-dom";
 const StudentList = ({ group }) => {
   console.log(group);
 
+  console.log("student list is rendered");
+
   const {
     studentsInGroup,
     setStudentsInGroup,
@@ -17,54 +19,62 @@ const StudentList = ({ group }) => {
   const { groupList } = useContext(GroupContext);
   console.log(studentList);
 
-  const student = group[0].Students; //?.find((student) => student.GroupId == group.id);
-  if (student) {
-    console.log(student);
-  } else {
-    console.log("no student exists!");
+  const groupStudents = studentList.filter(
+    (student) => student.GroupId === group.id
+  );
+  console.log(groupStudents);
+  if (!groupStudents) {
+    alert("no groupStudents exists!");
   }
-  // let id  = student.id ;
+  // let id  = groupStudents.id ;
   const navigate = useNavigate();
 
   return (
-    <div className="w-100 p-5 ">
-      <Table className="w-100" responsive="md" bordered hover>
+    <div className="w-100 p-3">
+      <Table className="w-100 p-3" responsive="md" bordered hover>
         <thead>
           <tr className=" opacity-75 border-3">
-            <th className="text-black">student details</th>
+            <th className="text-black">number</th>
+            <th className="text-black">Student name</th>
             <th className="text-black" rowSpan={2}>
-              risale
+              last name
             </th>
             <th className="text-black" rowSpan={2}>
-              pirlanta
+              email
             </th>
             <th className="text-black" rowSpan={2}>
-              namaz
+              group
             </th>
             <th className="text-black" rowSpan={2}>
-              cevsen
+              id
             </th>
-            <th className="text-black" rowSpan={2}>
-              devam
-            </th>
-            <th className="text-black" rowSpan={2}></th>
+            {/* <th className="text-black" rowSpan={2}>
+              class
+            </th> */}
+            {/* <th className="text-black" rowSpan={2}></th> */}
           </tr>
         </thead>
         <tbody className="w-100">
-          {student?.map((student, key) => (
+          {groupStudents?.map((student, index) => (
             <tr
-              key={key}
+              style={{ cursor: "pointer" }}
+              key={index}
               onClick={() => {
                 navigate(`/students/student/${student.id}`);
               }}
             >
+              <td>{index + 1}</td>
               <td>{student.first_name}</td>
+              <td>{student.last_name}</td>
+              <td>{student.email}</td>
+              <td>{student.GroupId}</td>
+              <td>{student.id}</td>
             </tr>
           ))}
         </tbody>
         <tfoot>
           <tr>
-            <td>number of students: {group[0].Students.length}</td>
+            <td>number of students: {group.Students.length}</td>
           </tr>
         </tfoot>
       </Table>

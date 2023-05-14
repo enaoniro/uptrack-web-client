@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { FaHome } from "react-icons/fa"
 import { useAuth0 } from "@auth0/auth0-react";
 import Table from "react-bootstrap/Table";
 import AddCanton from "./AddCanton.js";
@@ -16,8 +17,9 @@ function Admin() {
   const [showDetails, setShowDetails] = useState(false);
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
-  const { cantonList, setNewCanton, newCanton, isOpen, setIsOpen } =
-    useContext(CantonContext);
+  const { cantonList, setNewCanton, newCanton, isOpen, setIsOpen } = useContext(
+    CantonContext
+  );
 
   const logoutWithRedirect = () =>
     logout({
@@ -39,39 +41,46 @@ function Admin() {
   return (
     <div id="main" key={canton.id}>
       <div className="container-fluid m-0 p-0">
-        <header className="w-100 navbar navbar-expand-lg shadow-lg bg-white mb-3 p-3" id="header">
-          <a
-            href="/"
-            className="d-flex align-items-center text-primary text-decoration-none"
-          >
-            <span className="fs-5">uptrack</span>
-          </a>
-          <div className="navbar-collapse offcanvas-collapse">
-            <ul className="d-flex align-items-center navbar-nav me-auto mb-5 mb-lg-0">
+        <div
+          className="w-100 navbar navbar-expand-sm shadow-lg bg-light mb-3 p-3"
+          id="header"
+        >
+          <div className="navbar-collapse">
+            <ul className="navbar-nav me-auto d-flex align-items-center justify-content-center ">
+              {/* <li className="nav-item">
+                <span className="fs-5 text-primary">uptrack  </span>
+              </li>
               <li className="nav-item">
-                <span className="fs-5 p-1 text-primary"> | </span>
+                <a className="nav-link" href="/">home</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#"></a>
+              </li> */}
+              <li className="">
+              <a
+                href="/"
+                className=""
+              >
+                <span><FaHome/></span>
+              </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#"></a>
-              </li>
-              <li className="nav-item">
-                <a
+              <li className="text-primary mx-3">
+                <span>
+                  {/* <a
                   className="nav-link text-primary"
                   href="http://localhost:3000/canton"
                 >
+                </a> */}
                   Admin Page
-                </a>
+                </span>
               </li>
             </ul>
-            <div className="d-flex align-content-center justify-content-center">
-              <ul className="navbar-nav mb-lg-0 d-flex align-items-center ">
+            <div className="">
+              <ul className="navbar-nav d-flex align-items-center ">
                 <li className="me-2 ">{user.name}</li>
                 <li>
                   <button
-                    className="btn bg-success btn-outline-light"
+                    className="btn btn-outline-danger"
                     onClick={() => logoutWithRedirect()}
                   >
                     Logout
@@ -80,10 +89,10 @@ function Admin() {
               </ul>
             </div>
           </div>
-        </header>
+        </div>
       </div>
 
-      <div className="container-fluid bg-white" id="innerdiv">
+      <div className="container-fluid bg-white px-3" id="innerdiv">
         <div className="row">
           <div className="col-md-1 text-primary mt-3" id="listebox">
             <div className="w-100 text-align-center">
@@ -102,9 +111,6 @@ function Admin() {
                 className="btn btn-success fs-6 w-100 m-1"
                 data-bs-toggle="modal"
                 data-bs-target={"#addCantonModal"}
-                // className="btn w-100 m-1 bg-success text-white btn-success"
-                // type="button"
-                // onClick={()=>setNewCanton(newCanton ? false : true)}
               >
                 ADD Canton
               </button>
@@ -130,12 +136,9 @@ function Admin() {
             <div
               id="schweiz"
               className="bg-primary d-flex align-content-center justify-content-center"
-            >
-              {/* <p className="text-white fw-bold">Switzerland</p> */}
-            </div>
+            ></div>
             <div className="h-100" id="form-div">
-             
-              {isOpen ? <UserList /> :  <CantonList /> }
+              {isOpen ? <UserList /> : <CantonList />}
               {/* {newCanton && <AddCanton />} */}
             </div>
           </div>

@@ -1,9 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { RecordContext } from "../contexts/RecordContext";
+import SingleStudent from "./SingleStudent";
 
-const AddRecord = ({ target }) => {
-  const [addedRecord, setAddedRecord] = useState(target);
+const AddRecord = () => {
+  const [record, setRecord] = useState({});
   const [recordList, setRecordList] = useState([]);
+  const [ navigate,setNavigate] = useState();
+
   const { addRecord, getRecordList } = useContext(RecordContext);
   
 
@@ -12,23 +16,25 @@ const AddRecord = ({ target }) => {
   }, []);
 
   const handleChange = (e) => {
-    setAddedRecord({ ...addedRecord, [e.target.name]: e.target.value });
+    setRecord({ ...record, [e.target.name]: e.target.value });
   };
 
-  console.log(addedRecord)
+  console.log(record)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newrecordlist = addRecord(addedRecord);
-    setRecordList(newrecordlist);
-  };
+    addRecord(record);
+    setRecordList();
+    
+    };
 
+  
   return (
     <div className="modal-dialog">
       <div className="modal-content">
         <div className="modal-header">
           <h5 className="modal-title" id="exampleModalLabel">
-            add target
+            add record
           </h5>
           <button
             type="button"
@@ -40,58 +46,58 @@ const AddRecord = ({ target }) => {
         <div className="modal-body">
           <form className="mb-4" onSubmit={handleSubmit}>
             <div>
-            <h6>risale sayfa adedi</h6>
+            <h6>task-1</h6>
               <input
-                type="number"
+                type="text"
                 className="form-control bg-info"
-                placeholder="risale name"
+                placeholder="task1"
                 name="task1"
-                value={addedRecord?.task1 || ""}
+                value={record?.task1 || ""}
                 onChange={handleChange}
               />
-              <h6>pirlanta sayfa adedi</h6>
+              <h6>task-2</h6>
               <input
                 type="text"
                 className="form-control bg-info"
-                placeholder="pirlanta adi"
+                placeholder="task2"
                 name="task2"
-                value={addedRecord?.task2 || ""}
+                value={record?.task2 || ""}
                 onChange={handleChange}
               />
-              <h6>namaz</h6>
+              <h6>task-3</h6>
               <input
                 type="text"
                 className="form-control bg-info"
-                placeholder="namaz"
+                placeholder="task3"
                 name="task3"
-                value={addedRecord?.task3 || ""}
+                value={record?.task3 || ""}
                 onChange={handleChange}
               />
-              <h6>cevsen bab sayisi</h6>
+              <h6>task-4</h6>
               <input
-                type="number"
+                type="text"
                 className="form-control bg-info"
-                placeholder="cevsen"
+                placeholder="task4"
                 name="task4"
-                value={addedRecord?.task4 || ""}
+                value={record?.task4 || ""}
                 onChange={handleChange}
               />
-              <h6>devam</h6>
+              <h6>task-5</h6>
               <input
-                type="number"
+                type="text"
                 className="form-control bg-info"
-                placeholder="devam"
+                placeholder="task5"
                 name="task5"
-                value={addedRecord?.task5 || ""}
+                value={record?.task5 || ""}
                 onChange={handleChange}
               /> 
              <h6>TargetId</h6>
               <input
                 type="number"
                 className="form-control bg-info"
-                placeholder="taskid"
+                placeholder="targetid"
                 name="TargetId"
-                value={addedRecord?.TargetId || ""}
+                value={record?.TargetId || ""}
                 onChange={handleChange}
               />
             </div>

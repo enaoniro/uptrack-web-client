@@ -1,5 +1,5 @@
-import { createContext, useEffect, useState } from "react";
-
+import { createContext, useEffect, useState, useContext } from "react";
+import { StudentContext } from "../contexts/StudentContext";
 export const TargetContext = createContext();
 
 const TargetContextProvider = (props) => {
@@ -7,6 +7,7 @@ const TargetContextProvider = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [target, setTarget] = useState({});
   const [selectedTarget, setSelectedTarget] = useState({});
+  const { studentList, setStudentList } = useContext(StudentContext);
 
   // setSelectedTarget(TargetList.find((stu =>stu.id===Target.id)))
 
@@ -30,15 +31,15 @@ const TargetContextProvider = (props) => {
 
   const addTarget = async (pTarget) => {
     // if (pUser.email !==undefined) {
-    const newTarget = {
-      // id: pTarget.id,
-      task1: pTarget.task1,
-      task2: pTarget.task2,
-      task3: pTarget.task3,
-      task4: pTarget.task4,
-      task5: pTarget.task5,
-      TaskId: pTarget.TaskId,
-    };
+    // const newTarget = {
+    //   // id: pTarget.id,
+    //   task1: pTarget.task1,
+    //   task2: pTarget.task2,
+    //   task3: pTarget.task3,
+    //   task4: pTarget.task4,
+    //   task5: pTarget.task5,
+    //   TaskId: pTarget.TaskId,
+    // };
     try {
       await fetch("http://localhost:3001/api/v1/targets", {
         method: "POST",
@@ -46,7 +47,8 @@ const TargetContextProvider = (props) => {
         headers: { "Content-Type": "application/json" },
       });
 
-      setTargetList([...targetList, newTarget]);
+      setTargetList([...targetList, pTarget]);
+      getTargetList();
     } catch (error) {
       console.log(error);
     }
@@ -65,6 +67,7 @@ const TargetContextProvider = (props) => {
           target.id === pTarget.id ? pTarget : target
         )
       );
+     
     } catch (error) {
       console.log(error);
     }

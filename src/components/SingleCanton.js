@@ -28,11 +28,15 @@ function SingleCanton() {
     setIsOpen(!isOpen);
   };
 
+  const groups = cantonGroups.map((group) => (
+    <Group group={group} key={group.id} />
+  ))
+
   return (
     <React.Fragment key={canton.id}>
       {!isOpen ? (
-        <>
-          <Table className="w-100 m-3" bordered hover>
+        <div className="container-fluid p-3">
+          <Table className="w-100 p-3" bordered hover>
             <thead className="p-3">
               <tr>
                 <th className="w-50 h-100 opacity-75">Canton name</th>
@@ -42,6 +46,7 @@ function SingleCanton() {
             <tbody>
             <tr className="w-100">
               <td
+                style={{cursor:"pointer"}}
                 className="opacity-75 text-capitalize py-5 text-primary fw-bolder "
                 onClick={handleClick}
               >
@@ -78,16 +83,32 @@ function SingleCanton() {
             </tr>
             </tbody>
           </Table>
-        </>
+          </div>
+        
       ) : (
-        <>
-          {cantonGroups.map((group,key) => (
+        <div className="container-fluid p-3">
+        <Table bordered hover className="w-100 p-3">
+          <thead>
+            <tr>
+              <th>{canton.name} groups</th>
+              {/* <th>group name</th>
+              <th>actions</th> */}
+            </tr>
+          </thead>
+          <tbody>
+            {groups}
+            
+          {/* {cantonGroups.map((group) => (
             <Group group={group} key={group.id} />
-          ))}
-        </>
-      )}
+          ))} */}
+          </tbody>
+        </Table>
+        </div>
+        
+      )
+      }
     </React.Fragment>
-  );
+  )
 }
 
 export default SingleCanton;

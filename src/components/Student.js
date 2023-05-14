@@ -51,42 +51,28 @@ const Student = ({ student }) => {
   const navigate = useNavigate();
 
   const handleClick = (student) => {
-    return () => navigate(`/students/student/${student.id}`);
+    // return () => navigate(`/students/student/${student.id}`);
   };
 
   return (
     <>
-      <Table bordered className="bg-light">
-        <thead className="bg-white">
-          <tr>
-            <th>student details</th>
-            <th>task1</th>
-            <th>task2</th>
-            <th>task3</th>
-            <th>task4</th>
-            <th>task5</th>
-            <th>actions</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr
-            key={student.id}
-            onClick={() => navigate(`/students/student/${student.id}`)}
-          >
-            <td className="text-capitalize text-secondary bg-body fw-bolder text-start px-3">
-              <span className="text-black">name :</span> {student.first_name}{" "}
-              {student.last_name}
-              <br></br>
-              <span className="text-black">email :</span> {student.email}
-              <br></br>
-              <span className="text-black">group :</span>
-              {groupList
-                .filter((group) => group.id == student.GroupId)
-                .map((group) => group.name)}
-              <br></br>
-            </td>
-            {/* <td className="">
+      <tr
+        className="w-100"
+        onClick={() => navigate(`/students/student/${student.id}`)}
+      >
+        <td>
+          <span className="text-black"></span> {student.first_name}{" "}
+          {student.last_name}
+        </td>
+        <td>
+          <span className="text-black"></span> {student.email}
+        </td>
+        <td>
+          {groupList
+            .filter((group) => group.id == student.GroupId)
+            .map((group) => group.name)}
+        </td>
+        {/* <td className="">
         <p className=" bg-secondary text-dark bg-opacity-25">
           {task.task1}
         </p>
@@ -195,7 +181,7 @@ const Student = ({ student }) => {
         </p>
       </td> */}
 
-            <td className="d-flex flex-column m-0">
+        {/* <td  className="d-flex flex-column me-0">
               <button
                 type="button"
                 className="btn btn-outline-primary opacity-75 w-20"
@@ -203,8 +189,8 @@ const Student = ({ student }) => {
                 data-bs-target={"#updateStudentModal" + student.id}
               >
                 Edit student
-              </button>
-              {/* <button
+              </button> */}
+        {/* <button
           type="button"
           className="btn btn-outline-primary opacity-75 w-20 "
           data-bs-toggle="modal"
@@ -228,7 +214,7 @@ const Student = ({ student }) => {
         >
           update record
         </button> */}
-              <button
+        {/* <button
                 onClick={() => deleteStudent(student.id)}
                 className="btn btn-outline-danger opacity-75 w-20"
               >
@@ -244,9 +230,9 @@ const Student = ({ student }) => {
               aria-hidden="true"
             >
               <UpdateStudent student={student} />
-            </td>
+            </td> */}
 
-            {/* <td
+        {/* <td
         className="modal fade"
         id={"updateTaskModal" + task.id}
         tabIndex="-1"
@@ -273,9 +259,7 @@ const Student = ({ student }) => {
       >
         <UpdateRecord record={record} />
       </td> */}
-          </tr>
-        </tbody>
-      </Table>
+      </tr>
     </>
   );
 };

@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import { TargetContext } from "../contexts/TargetContext";
+import { StudentContext } from "../contexts/StudentContext";
 
-const AddTarget = ({ target }) => {
-  const [addedTarget, setAddedTarget] = useState(target);
+const AddTarget = () => {
+  const [target, setTarget] = useState({});
   const { addTarget, getTargetList } = useContext(TargetContext);
+  const { setStudentList } = useContext(StudentContext);
   const [targetList, setTargetList ] = useState([])
 
 
@@ -12,16 +14,16 @@ const AddTarget = ({ target }) => {
   }, []);
 
   const handleChange = (e) => {
-    setAddedTarget({ ...addedTarget, [e.target.name]: e.target.value });
+    setTarget({ ...target, [e.target.name]: e.target.value });
   };
 
-  console.log(addedTarget)
+  console.log(target)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTarget(addedTarget);
-    setTargetList();
-
+    const newtargetlist = addTarget(target);
+    setTargetList(newtargetlist);
+    getTargetList();
   };
 
   return (
@@ -41,49 +43,49 @@ const AddTarget = ({ target }) => {
         <div className="modal-body">
           <form className="mb-4" onSubmit={handleSubmit}>
             <div>
-            <h6>risale sayfa adedi</h6>
+            <h6>task-1</h6>
               <input
-                type="number"
+                type="text"
                 className="form-control bg-info"
                 placeholder="risale name"
                 name="task1"
-                value={addedTarget?.task1 || ""}
+                value={target?.task1 || ""}
                 onChange={handleChange}
               />
-              <h6>pirlanta sayfa adedi</h6>
+              <h6>task-2</h6>
               <input
                 type="text"
                 className="form-control bg-info"
                 placeholder="pirlanta adi"
                 name="task2"
-                value={addedTarget?.task2 || ""}
+                value={target?.task2 || ""}
                 onChange={handleChange}
               />
-              <h6>namaz</h6>
+              <h6>task-3</h6>
               <input
                 type="text"
                 className="form-control bg-info"
                 placeholder="namaz"
                 name="task3"
-                value={addedTarget?.task3 || ""}
+                value={target?.task3 || ""}
                 onChange={handleChange}
               />
-              <h6>cevsen bab sayisi</h6>
+              <h6>task-4</h6>
               <input
-                type="number"
+                type="text"
                 className="form-control bg-info"
                 placeholder="cevsen"
                 name="task4"
-                value={addedTarget?.task4 || ""}
+                value={target?.task4 || ""}
                 onChange={handleChange}
               />
-              <h6>devam</h6>
+              <h6>task-5</h6>
               <input
-                type="number"
+                type="text"
                 className="form-control bg-info"
                 placeholder="devam"
                 name="task5"
-                value={addedTarget?.task5 || ""}
+                value={target?.task5 || ""}
                 onChange={handleChange}
               /> 
              <h6>TaskId</h6>
@@ -92,7 +94,7 @@ const AddTarget = ({ target }) => {
                 className="form-control bg-info"
                 placeholder="taskid"
                 name="TaskId"
-                value={addedTarget?.TaskId || ""}
+                value={target?.TaskId || ""}
                 onChange={handleChange}
               />
             </div>

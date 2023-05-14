@@ -16,7 +16,13 @@ import UpdateTask from "./UpdateTask";
 import AddRecord from "./AddRecord";
 
 const SingleStudent = () => {
+  // const [ task, setTask ] = useState({})
+  // const [ target, setTarget ] = useState({})
+  // const [ record, setRecord ] = useState({})
   let { id } = useParams();
+  console.log("single student rendered")
+
+  const navigate = useNavigate()
 
   const {
     studentList,
@@ -35,17 +41,19 @@ const SingleStudent = () => {
   const { taskList } = useContext(TaskContext);
   console.log(taskList);
   const { targetList } = useContext(TargetContext);
+  console.log(targetList);
   const { recordList } = useContext(RecordContext);
+  console.log(recordList)
 
-  const task = taskList.find((task) => task?.StudentId ===student.id);
-  console.log(task);
+  const task = taskList.find((task) => task?.StudentId === student.id);
+  console.log(task || "no tasks");
   const target = targetList.find((target) => target?.TaskId === task?.id);
   console.log(target ?? "no targets");
   const record = recordList.find((record) => record?.TargetId === target?.id);
   console.log(record ?? "no records");
 
   return (
-    // <Container className="mt-5">
+    <Container fluid className=" mt-5 p-3">
       <Table bordered className="bg-light">
         <thead className="bg-white">
           <tr>
@@ -55,36 +63,36 @@ const SingleStudent = () => {
             <th>task3</th>
             <th>task4</th>
             <th>task5</th>
-            <th>actions</th>
+            <th className="bg-primary text-light opacity-75">actions</th>
           </tr>
         </thead>
 
         <tbody>
           <tr key={student.id}>
-            <td className="text-capitalize text-secondary bg-body fw-bolder text-start px-3 ">
+            <td className="text-capitalize text-secondary  bg-body fw-bolder text-start ">
               <span className="text-black">name :</span> {student.first_name}{" "}
               {student.last_name}
               <br></br>
-              <span className="text-black">email :</span> {student.email}
+              <span className="text-black">email     :</span> {student.email}
               <br></br>
-              <span className="text-black">group :{student.GroupId}</span>
+              <span className="text-black">groupId   :{student.GroupId}</span>
               <br></br>
-              <span className="text-black">id :{student.id}</span>
+              <span className="text-black">Studentid :{student.id}</span>
               <br></br>
-              <span className="text-black">Taskid :{student.Tasks[0]?.id}</span>
+              <span className="text-black">Taskid    :{task?.id}</span>
               <br></br>
-              <span className="text-black">Targetid :{target?.id}</span>
+              <span className="text-black">Targetid  :{target?.id}</span>
               {/* {groupList
           .filter((group) => group.id == student.GroupId)
           .map((group) => group.name)}
           <br></br> */}
             </td>
             <td className="">
-              <p className=" bg-secondary text-dark bg-opacity-25">
+              <p className={(target?.task1 <= record?.task1 ) ? " bg-secondary text-dark bg-opacity-25 " : "bg-danger text-light border border-dark"}>
                 {task?.task1}
               </p>
               <p className=" border border-info d-flex justify-content-between px-1 py-1">
-                hedef:
+                goal:
                 <mark className="border">
                   <span className=" w-30 bg-light m-0 mx-3 text-danger fw-bold">
                     {target?.task1}
@@ -92,7 +100,7 @@ const SingleStudent = () => {
                 </mark>
               </p>
               <p className=" border border-warning d-flex justify-content-between px-1 py-1">
-                gerceklesen:
+                achieved:
                 <mark className="border">
                   <span className=" w-30 m-0 text-danger fw-bold mx-3">
                     {record?.task1}
@@ -101,11 +109,11 @@ const SingleStudent = () => {
               </p>
             </td>
             <td>
-              <p className="bg-secondary text-dark bg-opacity-25">
+              <p className={(target?.task2 <= record?.task2 ) ? " bg-secondary text-dark bg-opacity-25 " : "bg-danger text-light border border-dark"}>
                 {task?.task2}
               </p>
               <p className="border border-info d-flex justify-content-between px-1 py-1">
-                hedef:
+                goal:
                 <mark className="border">
                   <span className=" w-30 m-0 text-danger fw-bold mx-3">
                     {target?.task2}
@@ -114,7 +122,7 @@ const SingleStudent = () => {
               </p>
 
               <p className="border border-warning d-flex justify-content-between px-1 py-1">
-                gerceklesen:
+                achieved:
                 <mark className="border">
                   <span className=" w-30 m-0 text-danger fw-bold mx-3">
                     {record?.task2}
@@ -124,11 +132,11 @@ const SingleStudent = () => {
             </td>
 
             <td>
-              <p className="bg-secondary text-dark bg-opacity-25">
+              <p className={(target?.task3 <= record?.task3 ) ? " bg-secondary text-dark bg-opacity-25 " : "bg-danger text-light border border-dark"}>
                 {task?.task3}
               </p>
               <p className="border border-info d-flex justify-content-between px-1 py-1">
-                hedef:
+                goal:
                 <mark className="border">
                   <span className=" w-30 m-0 text-danger fw-bold mx-3">
                     {target?.task3}
@@ -137,7 +145,7 @@ const SingleStudent = () => {
               </p>
 
               <p className="border border-warning d-flex justify-content-between px-1 py-1">
-                gerceklesen:
+                achieved:
                 <mark className="border">
                   <span className="w-30 m-0 text-danger fw-bold mx-3">
                     {record?.task3}
@@ -147,11 +155,11 @@ const SingleStudent = () => {
             </td>
 
             <td>
-              <p className="bg-secondary text-dark bg-opacity-25">
+              <p className={(target?.task4 <= record?.task4 ) ? " bg-secondary text-dark bg-opacity-25 " : "bg-danger text-light border border-dark"}>
                 {task?.task4}
               </p>
               <p className="border border-info d-flex justify-content-between px-1 py-1">
-                hedef:
+                goal:
                 <mark className="border">
                   <span className=" w-30 m-0 text-danger fw-bold mx-3">
                     {target?.task4}
@@ -160,7 +168,7 @@ const SingleStudent = () => {
               </p>
 
               <p className="border border-warning d-flex justify-content-between px-1 py-1">
-                gerceklesen:
+                achieved:
                 <mark className="border">
                   <span className=" w-30 m-0 text-danger fw-bold mx-3">
                     {record?.task4}
@@ -170,11 +178,11 @@ const SingleStudent = () => {
             </td>
 
             <td>
-              <p className="bg-secondary text-dark bg-opacity-25">
+              <p className={(target?.task5 <= record?.task5 ) ? "bg-secondary text-dark bg-opacity-25" : "bg-danger text-light border border-dark"} >
                 {task?.task5}
               </p>
               <p className="border border-info d-flex justify-content-between px-1 py-1 ">
-                <span>hedef:</span>
+                <span>goal:</span>
                 <mark className="border">
                   <span className=" w-30 m-0 text-danger fw-bold mx-3 ">
                     {target?.task5}
@@ -183,7 +191,7 @@ const SingleStudent = () => {
               </p>
 
               <p className="border border-warning d-flex justify-content-between px-1 py-1">
-                gerceklesen:
+                achieved:
                 <mark className="border">
                   <span className=" w-30 m-0 text-danger fw-bold mx-3">
                     {record?.task5}
@@ -202,6 +210,7 @@ const SingleStudent = () => {
                 Edit student
               </button>
               <button
+                
                 type="button"
                 className="btn btn-outline-primary opacity-75 w-20 "
                 data-bs-toggle="modal"
@@ -218,20 +227,21 @@ const SingleStudent = () => {
                 update task
               </button>
               <button
-                type="button"
-                className="btn btn-outline-primary opacity-75 w-20"
-                data-bs-toggle="modal"
-                data-bs-target={"#updateTargetModal" + target?.id}
-              >
-                update target
-              </button>
-              <button
+                
                 type="button"
                 className="btn btn-outline-primary opacity-75 w-20 "
                 data-bs-toggle="modal"
                 data-bs-target={"#addTargetModal" + target?.id}
               >
                 add target
+              </button>
+              <button
+                type="button"
+                className="btn btn-outline-primary opacity-75 w-20"
+                data-bs-toggle="modal"
+                data-bs-target={"#updateTargetModal" + target?.id}
+              >
+                update target
               </button>
               <button
                 type="button"
@@ -250,7 +260,7 @@ const SingleStudent = () => {
                 update record
               </button>
               <button
-                onClick={() => deleteStudent(student.id)}
+                onClick={() => deleteStudent(id) }
                 className="btn btn-outline-danger opacity-75 w-20"
               >
                 Delete student
@@ -324,7 +334,7 @@ const SingleStudent = () => {
           </tr>
         </tbody>
       </Table>
-    // </Container>
+    </Container>
   );
 };
 
