@@ -10,7 +10,7 @@ import GroupLeader from "./GroupLeader";
 import Layout from "./Layout";
 import Container from "react-bootstrap/Container";
 
-function Home() {
+function Home = () => {
   const [role, setRole] = useState("");
 
   const {
