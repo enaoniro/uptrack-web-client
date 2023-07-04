@@ -129,13 +129,13 @@ const SingleStudent = () => {
               <div className="d-flex">
                 <ul className="navbar-nav me-auto m-1 mb-lg-0">
                   <li>
-                    <span className="user-info">
-                      {/* <img
+                    {/* <span className="user-info">
+                      <img
                       src={user.picture}
                       alt="Profile"
                       className="nav-user-profile d-inline-block rounded-circle mr-3"
                       width="40"
-                    /> */}
+                    />
                       <h6 className="d-inline-block p-1 me-1">{user.name} </h6>
                     </span>
                     <button
@@ -143,7 +143,7 @@ const SingleStudent = () => {
                       onClick={() => logoutWithRedirect()}
                     >
                       Logout
-                    </button>
+                    </button> */}
                   </li>
                 </ul>
               </div>

@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import { useNavigate, useParams } from "react-router-dom";
 
 const StudentList = ({showDetails, setShowDetails, group }) => {
-  console.log(group);
+  // console.log(group);
  
 
   console.log("student list is rendered");
