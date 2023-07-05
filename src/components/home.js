@@ -3,11 +3,11 @@ import { useEffect, useState, useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 // import  * as userService  from "../service/front.user.service";
 import { UserContext } from "../contexts/UserContext";
-import Admin from "./Admin";
+import Admin from "./admin";
 import UnregisteredUser from "./UnregisteredUser";
-import CantonManager from "./Cantonmanager";
-import GroupLeader from "./GroupLeader";
-import Layout from "./Layout";
+import CantonManager from "./cantonmanager";
+import GroupLeader from "./groupleader";
+import Layout from "./layout";
 import Container from "react-bootstrap/Container";
 
 function Home() {
@@ -86,7 +86,9 @@ function Home() {
               </button>
             </div>
           </div>
-          <UnregisteredUser user={{name:"newuser", email:"uptracknewuser@gmail.com"}} /> 
+          <UnregisteredUser
+            user={{ name: "newuser", email: "uptracknewuser@gmail.com" }}
+          />
         </Container>
       )}
       <Container fluid className=" p-3 bg-white shadow-lg">

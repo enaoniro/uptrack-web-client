@@ -14,17 +14,17 @@ import { useAuth0 } from "@auth0/auth0-react";
 // import  * as userService  from "./service/user.service";
 import { useEffect } from "react";
 import Home from "./components/home";
-import Admin from "./components/Admin";
+import Admin from "./components/admin";
 import Group from "./components/Group";
-import SingleGroup from "./components/SingleGroup";
-import CantonManager from "./components/Cantonmanager";
+import SingleGroup from "./components/singleGroup";
+import CantonManager from "./components/cantonmanager";
 import Canton from "./components/Canton";
-import GroupLeader from "./components/GroupLeader";
+import GroupLeader from "./components/groupleader";
 import Student from "./components/Student";
 import AddStudent from "./components/AddStudent";
 import SingleStudent from "./components/SingleStudent";
 import SingleCanton from "./components/SingleCanton";
-import Layout from "./components/Layout";
+import Layout from "./components/layout";
 import AddRecord from "./components/AddRecord";
 
 function App() {
