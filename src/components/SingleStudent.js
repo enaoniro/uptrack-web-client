@@ -33,6 +33,12 @@ const SingleStudent = () => {
   let { id } = useParams();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    //   getStudentList();
+      getStudentById();
+    //   setStudent(student=> student.id === id)
+    },[id]);
+
   const {
     studentList,
     getStudentById,
@@ -83,6 +89,10 @@ const SingleStudent = () => {
     setShowCompletedTasks(!showCompletedTasks);
   };
   // console.log(student.Tasks.filter((task) => task.isCompleted === true));
+
+  if (!student) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>

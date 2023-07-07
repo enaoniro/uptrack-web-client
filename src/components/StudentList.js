@@ -62,7 +62,7 @@ const StudentList = ({showDetails, setShowDetails, group }) => {
               style={{ cursor: "pointer" }}
               key={index}
               onClick={() => {
-                navigate(`/students/student/${student.id}`);
+                navigate(`/students/${student.id}`);
               }}
             >
               <td>{index + 1}</td>

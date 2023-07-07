@@ -39,7 +39,7 @@ const StudentContextProvider = (props) => {
 
   const getStudentById = async (pId) => {
     const response = await fetch(
-      `http://localhost:3001/api/v1/students/student/${pId}`
+      `http://localhost:3001/api/v1/student/${pId}`
     );
     const student = await response.json();
     // const student = studentList.find((student) => student.id == pId);
