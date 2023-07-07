@@ -33,7 +33,7 @@ const StudentList = ({showDetails, setShowDetails, group }) => {
   return (
     <div className="container-fluid bg-white shadow-lg ">
       {/* <Container fluid className="mt-10 p-3 bg-white shadow-lg"> */}
-      <Table className="m-3 bg-white table-responsive-xl" bordered hover>
+      <Table className="mt-3 bg-white table-responsive-xl" bordered hover>
         <thead>
           <tr className=" opacity-75 border-3 " style={{ hover: "red" }}>
             <th className="text-black">number</th>
