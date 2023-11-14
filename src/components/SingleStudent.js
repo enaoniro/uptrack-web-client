@@ -236,9 +236,9 @@ const SingleStudent = () => {
                 </div>
               </div>
               <div className="col-lg-10 bg-white mt-2" id="details-div">
-                {/* <Container fluid className="w-75 mt-5 bg-white"> */}
+              <Container fluid className="w-100 mt-5 bg-white">
                 <Table
-                  bordered
+                  bordered responsive
                   className="bg-white shadow-lg mt-3 table-responsive"
                 >
                   <thead className="bg-white">
@@ -577,8 +577,10 @@ const SingleStudent = () => {
                           ))}
                       </tbody>
                     </Table>
+                    
                   </>
                 )}
+                </Container>
               </div>
             </div>
           </div>
