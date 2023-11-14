@@ -120,8 +120,8 @@ function GroupLeader() {
 
         <div className="container-fluid bg-white" id="innerdiv">
           <div className="row">
-            <div className="col-md-1 text-primary m-1 mt-3" id="listebox">
-              <button
+            <div className="col-md-1 text-primary m-1 mt-3 d-md-inline-block" id="listebox">
+              <Button
                 onClick={handleClick}
                 // type="button"
                 className="btn btn-outline-success fs-6 w-100 mb-2"
@@ -129,8 +129,8 @@ function GroupLeader() {
                 // data-bs-target={"#addStudentModal"}
               >
                 add student
-              </button>
-              <button
+              </Button>
+              {/* <button
                 onClick={handleClick}
                 // type="button"
                 className="btn btn-outline-success fs-6 w-100"
@@ -138,7 +138,14 @@ function GroupLeader() {
                 // data-bs-target={"#addStudentModal"}
               >
                 group students
-              </button>
+              </button> */}
+              <button
+  onClick={handleClick}
+  className="btn btn-outline-success fs-md-6 fs-lg-5 fs-xl-4 w-100"
+>
+  group students
+</button>
+
             </div>
             <div className="col-md-10 p-1 my-3" id="details-div">
               <div

@@ -31,36 +31,75 @@ const StudentList = ({showDetails, setShowDetails, group }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="container-fluid bg-white shadow-lg ">
-      {/* <Container fluid className="mt-10 p-3 bg-white shadow-lg"> */}
-      <Table className="mt-3 bg-white table-responsive-xl" bordered hover>
+    // <div className="container-fluid bg-white shadow-lg ">
+    //   {/* <Container fluid className="mt-10 p-3 bg-white shadow-lg"> */}
+    //   <Table className="mt-3 bg-white table-responsive-xl" bordered hover>
+    //     <thead>
+    //       <tr className=" opacity-75 border-3 " style={{ hover: "red" }}>
+    //         <th className="text-black">number</th>
+    //         <th className="text-black">Student name</th>
+    //         <th className="text-black" rowSpan={2}>
+    //           last name
+    //         </th>
+    //         <th className="text-black" rowSpan={2}>
+    //           email
+    //         </th>
+    //         <th className="text-black" rowSpan={2}>
+    //           group
+    //         </th>
+    //         <th className="text-black" rowSpan={2}>
+    //           id
+    //         </th>
+    //         {/* <th className="text-black" rowSpan={2}>
+    //           class
+    //         </th> */}
+    //         {/* <th className="text-black" rowSpan={2}></th> */}
+    //       </tr>
+    //     </thead>
+    //     <tbody className="">
+    //       {groupStudents?.map((student, index) => (
+    //         <tr
+    //           style={{ cursor: "pointer" }}
+    //           key={index}
+    //           onClick={() => {
+    //             navigate(`/students/${student.id}`);
+    //           }}
+    //         >
+    //           <td>{index + 1}</td>
+    //           <td>{student.first_name}</td>
+    //           <td>{student.last_name}</td>
+    //           <td>{student.email}</td>
+    //           <td>{student.GroupId}</td>
+    //           <td>{student.id}</td>
+    //         </tr>
+    //       ))}
+    //     </tbody>
+    //     <tfoot>
+    //       <tr>
+    //         <td>number of students: {groupStudents.length}</td>
+    //       </tr>
+    //     </tfoot>
+    //   </Table>
+    //   {/* </Container> */}
+    // </div>
+    <div className="container-fluid bg-white shadow-lg">
+    <Container fluid className="mt-10 p-3 bg-white shadow-lg">
+      <Table responsive bordered hover>
         <thead>
-          <tr className=" opacity-75 border-3 " style={{ hover: "red" }}>
-            <th className="text-black">number</th>
-            <th className="text-black">Student name</th>
-            <th className="text-black" rowSpan={2}>
-              last name
-            </th>
-            <th className="text-black" rowSpan={2}>
-              email
-            </th>
-            <th className="text-black" rowSpan={2}>
-              group
-            </th>
-            <th className="text-black" rowSpan={2}>
-              id
-            </th>
-            {/* <th className="text-black" rowSpan={2}>
-              class
-            </th> */}
-            {/* <th className="text-black" rowSpan={2}></th> */}
+          <tr className="opacity-75 border-3">
+            <th className="text-black">Number</th>
+            <th className="text-black">Student Name</th>
+            <th className="text-black">Last Name</th>
+            <th className="text-black">Email</th>
+            <th className="text-black">Group</th>
+            <th className="text-black">ID</th>
           </tr>
         </thead>
-        <tbody className="">
+        <tbody>
           {groupStudents?.map((student, index) => (
             <tr
-              style={{ cursor: "pointer" }}
               key={index}
+              style={{ cursor: 'pointer' }}
               onClick={() => {
                 navigate(`/students/${student.id}`);
               }}
@@ -76,12 +115,12 @@ const StudentList = ({showDetails, setShowDetails, group }) => {
         </tbody>
         <tfoot>
           <tr>
-            <td>number of students: {groupStudents.length}</td>
+            <td colSpan="6">Number of students: {groupStudents.length}</td>
           </tr>
         </tfoot>
       </Table>
-      {/* </Container> */}
-    </div>
+    </Container>
+  </div>
   );
 };
 
