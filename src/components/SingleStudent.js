@@ -264,16 +264,16 @@ const SingleStudent = () => {
                           />
                         </span>
                         <p className="d-flex justify-content-around">
-                          <span className="text-black align-content-md-between">
+                          {/* <span className="text-black align-content-md-between">
                             name :
-                          </span>
+                          </span> */}
                           <span>
                             {student.first_name} {student.last_name}
                           </span>
                         </p>
                         <br></br>
                         <span className=" text-black">
-                          email : {student.email}
+                          {student.email}
                         </span>
                         <br></br>
                         <span className="text-black">
@@ -281,10 +281,10 @@ const SingleStudent = () => {
                         </span>
                         <br></br>
                         <span className="text-black">
-                          Studentid :{student.id}
+                        {student.id}
                         </span>
                         <br></br>
-                        <span className="text-black">Taskid :{task?.id}</span>
+                        <span className="text-black">{task?.id}</span>
                         <br></br>
                         {/* <span className="text-black">Targetid :{target?.id}</span> */}
                       </td>
