@@ -239,7 +239,7 @@ const SingleStudent = () => {
               <Container fluid className="w-100 mt-5 bg-white">
                 <Table
                   bordered responsive
-                  className="bg-white shadow-lg mt-3 table-responsive"
+                  // className="bg-white shadow-lg mt-3 table-responsive"
                 >
                   <thead className="bg-white">
                     <tr>
