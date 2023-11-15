@@ -53,7 +53,7 @@ const AddTarget = ({task}) => {
               <input
                 type="number"
                 className="form-control bg-info"
-                placeholder="risale name"
+                placeholder=" the no of the target"
                 name="task1"
                 value={target?.task1 || ""}
                 onChange={handleChange}

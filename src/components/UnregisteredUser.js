@@ -108,12 +108,12 @@ function UnregisteredUser({user}) {
                     /> */}
                     <h6 className="d-inline-block p-1 me-1">{user.name} </h6>
                   </span>
-                  <button
+                  {/* <button
                     className="btn btn-outline-danger"
                     // onClick={() => logoutWithRedirect()}
                   >
                     Logout
-                  </button>
+                  </button> */}
                 </li>
               </ul>
             </div>
