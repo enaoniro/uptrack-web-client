@@ -106,7 +106,7 @@ function UnregisteredUser({user}) {
                       className="nav-user-profile d-inline-block rounded-circle mr-3"
                       width="40"
                     /> */}
-                    <h6 className="d-inline-block p-1 me-1">{user.name} </h6>
+                    <h6 className="d-inline-block text-danger p-1 me-1">{user.name} </h6>
                   </span>
                   {/* <button
                     className="btn btn-outline-danger"
