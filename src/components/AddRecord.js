@@ -49,7 +49,7 @@ const AddRecord = ({task}) => {
             <div>
             <h6>task-1</h6>
               <input
-                type="text"
+                type="number"
                 className="form-control bg-info"
                 placeholder="task1"
                 name="task1"
@@ -58,7 +58,7 @@ const AddRecord = ({task}) => {
               />
               <h6>task-2</h6>
               <input
-                type="text"
+                type="number"
                 className="form-control bg-info"
                 placeholder="task2"
                 name="task2"
@@ -67,7 +67,7 @@ const AddRecord = ({task}) => {
               />
               <h6>task-3</h6>
               <input
-                type="text"
+                type="number"
                 className="form-control bg-info"
                 placeholder="task3"
                 name="task3"
@@ -76,7 +76,7 @@ const AddRecord = ({task}) => {
               />
               <h6>task-4</h6>
               <input
-                type="text"
+                type="number"
                 className="form-control bg-info"
                 placeholder="task4"
                 name="task4"
@@ -85,7 +85,7 @@ const AddRecord = ({task}) => {
               />
               <h6>task-5</h6>
               <input
-                type="text"
+                type="number"
                 className="form-control bg-info"
                 placeholder="task5"
                 name="task5"

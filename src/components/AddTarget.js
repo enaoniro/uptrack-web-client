@@ -51,7 +51,7 @@ const AddTarget = ({task}) => {
             <div>
             <h6>task-1</h6>
               <input
-                type="text"
+                type="number"
                 className="form-control bg-info"
                 placeholder="risale name"
                 name="task1"
@@ -60,7 +60,7 @@ const AddTarget = ({task}) => {
               />
               <h6>task-2</h6>
               <input
-                type="text"
+                type="number"
                 className="form-control bg-info"
                 placeholder="pirlanta adi"
                 name="task2"
@@ -69,7 +69,7 @@ const AddTarget = ({task}) => {
               />
               <h6>task-3</h6>
               <input
-                type="text"
+                type="number"
                 className="form-control bg-info"
                 placeholder="namaz"
                 name="task3"
@@ -78,7 +78,7 @@ const AddTarget = ({task}) => {
               />
               <h6>task-4</h6>
               <input
-                type="text"
+                type="number"
                 className="form-control bg-info"
                 placeholder="cevsen"
                 name="task4"
@@ -87,7 +87,7 @@ const AddTarget = ({task}) => {
               />
               <h6>task-5</h6>
               <input
-                type="text"
+                type="number"
                 className="form-control bg-info"
                 placeholder="devam"
                 name="task5"
