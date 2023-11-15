@@ -13,7 +13,7 @@ import StudentList from "./StudentList.js";
 
 function GroupLeader() {
   const [showDetails, setShowDetails] = useState(false);
-  const [ groupStudents, setGroupStudents] = useState([])
+  const [groupStudents, setGroupStudents] = useState([]);
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   console.log("group leader is rendered");
@@ -120,7 +120,10 @@ function GroupLeader() {
 
         <div className="container-fluid bg-white" id="innerdiv">
           <div className="row">
-            <div className="col-md-1 text-primary m-1 mt-3 d-md-inline-block" id="listebox">
+            <div
+              className="col-md-1 text-primary m-1 mt-3 d-md-inline-block"
+              id="listebox"
+            >
               <Button
                 onClick={handleClick}
                 // type="button"
@@ -140,12 +143,11 @@ function GroupLeader() {
                 group students
               </button> */}
               <button
-  onClick={handleClick}
-  className="btn btn-outline-success fs-md-6 fs-lg-5 fs-xl-4 w-100"
->
-  group students
-</button>
-
+                onClick={handleClick}
+                className="btn btn-outline-success fs-md-6 fs-lg-5 fs-xl-4 w-100"
+              >
+                group students
+              </button>
             </div>
             <div className="col-md-10 p-1 my-3" id="details-div">
               <div
@@ -156,8 +158,15 @@ function GroupLeader() {
                 <p className="text-secondary fs-5 fw-bolder">{group?.leader}</p>
               </div>
               <div className="w-90 h-100 m-5" id="form-div">
-                {showDetails ? <AddStudent showDetails={showDetails} setShowDetails={setShowDetails} group={group} /> : 
-                <StudentList  group={group} />}
+                {showDetails ? (
+                  <AddStudent
+                    showDetails={showDetails}
+                    setShowDetails={setShowDetails}
+                    group={group}
+                  />
+                ) : (
+                  <StudentList group={group} />
+                )}
               </div>
               {/* <div
                   className="modal fade"

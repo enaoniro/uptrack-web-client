@@ -62,17 +62,17 @@ function UnregisteredUser({user}) {
           className="w-100 navbar navbar-expand-lg shadow-sm bg-white mb-3 p-3"
           id="header"
         >
-          <a
+          {/* <a
             href="/"
             className="d-flex align-items-center text-primary text-decoration-none"
           >
             <span className="fs-5">uptrack</span>
-          </a>
+          </a> */}
           <div className="navbar-collapse offcanvas-collapse">
             <ul className="d-flex align-items-center navbar-nav me-auto mb-5 mb-lg-0">
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <span className="fs-5 p-1 text-primary"> | </span>
-              </li>
+              </li> */}
 
               {/* <li className="nav-item">
                   <a className="nav-link" href="#"></a>
