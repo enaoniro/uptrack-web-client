@@ -104,7 +104,7 @@ const StudentContextProvider = (props) => {
 
       setStudentList(updateDStudentList);
       getStudentList()
-      alert("the student is deleted!")
+      confirm("do you really want to delete this student?")
       navigate("/")
 
     } catch (error) {
