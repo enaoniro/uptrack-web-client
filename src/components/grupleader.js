@@ -6,9 +6,9 @@ import Student from "./Student.js";
 import { useEffect, useState } from "react";
 import { StudentContext } from "../contexts/StudentContext.js";
 import { GrupContext } from "../contexts/GrupContext.js";
-import ListGrup from "react-bootstrap/ListGrup";
+// import ListGrup from "react-bootstrap/ListGrup";
 import Button from "react-bootstrap/Button";
-import ListGrupItem from "react-bootstrap/esm/ListGrupItem.js";
+// import ListGrupItem from "react-bootstrap/esm/ListGrupItem.js";
 import StudentList from "./StudentList.js";
 
 function GrupLeader() {
