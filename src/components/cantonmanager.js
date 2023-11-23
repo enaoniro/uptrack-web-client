@@ -10,9 +10,9 @@ import Grup from "./Grup.js";
 import { useEffect, useState } from "react";
 import { GrupContext } from "../contexts/GrupContext.js";
 import { CantonContext } from "../contexts/CantonContext.js";
-import ListGrup from "react-bootstrap/ListGrup";
+// import ListGrup from "react-bootstrap/ListGrup";
 import Button from "react-bootstrap/Button";
-import ListGrupItem from "react-bootstrap/esm/ListGrupItem.js";
+// import ListGrupItem from "react-bootstrap/esm/ListGrupItem.js";
 
 function CantonManager() {
   const [isOpen, setIsOpen] = useState(false);

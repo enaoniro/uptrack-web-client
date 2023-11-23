@@ -10,9 +10,9 @@ import UserList from "./UserList .js";
 import AddUser from "./AddUser.js";
 import { useEffect, useState } from "react";
 import { CantonContext } from "../contexts/CantonContext.js";
-import ListGrup from "react-bootstrap/ListGrup";
+// import ListGrup from "react-bootstrap/ListGrup";
 import Button from "react-bootstrap/Button";
-import ListGrupItem from "react-bootstrap/esm/ListGrupItem.js";
+// import ListGrupItem from "react-bootstrap/esm/ListGrupItem.js";
 
 function Admin() {
   const [showDetails, setShowDetails] = useState(false);
