@@ -1,33 +1,33 @@
 import React, { useContext, useState } from "react";
 import { StudentContext } from "../contexts/StudentContext";
-import { GroupContext } from "../contexts/GroupContext";
+import { GrupContext } from "../contexts/GrupContext";
 import Student from "./Student";
 import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/Container";
 import { useNavigate, useParams } from "react-router-dom";
 
-const StudentList = ({showDetails, setShowDetails, group }) => {
-  // console.log(group);
- 
+const StudentList = ({ showDetails, setShowDetails, grup }) => {
+  // console.log(grup);
 
   console.log("student list is rendered");
 
   const {
-    studentsInGroup,
-    setStudentsInGroup,
-    getStudentsInGroup,
+    studentsInGrup,
+    setStudentsInGrup,
+    getStudentsInGrup,
     studentList,
   } = useContext(StudentContext);
-  const { groupList } = useContext(GroupContext);
+  const { grupList } = useContext(GrupContext);
   console.log(studentList);
 
-  const groupStudents = studentList?.filter(
-  (student) => student?.GroupId === group?.id );
-  console.log(groupStudents);
-  if (!groupStudents) {
-    alert("no groupStudents exists!");
+  const grupStudents = studentList?.filter(
+    (student) => student?.GrupId === grup?.id
+  );
+  console.log(grupStudents);
+  if (!grupStudents) {
+    alert("no grupStudents exists!");
   }
-  // let id  = groupStudents.id ;
+  // let id  = grupStudents.id ;
   const navigate = useNavigate();
 
   return (
@@ -45,7 +45,7 @@ const StudentList = ({showDetails, setShowDetails, group }) => {
     //           email
     //         </th>
     //         <th className="text-black" rowSpan={2}>
-    //           group
+    //           grup
     //         </th>
     //         <th className="text-black" rowSpan={2}>
     //           id
@@ -57,7 +57,7 @@ const StudentList = ({showDetails, setShowDetails, group }) => {
     //       </tr>
     //     </thead>
     //     <tbody className="">
-    //       {groupStudents?.map((student, index) => (
+    //       {grupStudents?.map((student, index) => (
     //         <tr
     //           style={{ cursor: "pointer" }}
     //           key={index}
@@ -69,58 +69,58 @@ const StudentList = ({showDetails, setShowDetails, group }) => {
     //           <td>{student.first_name}</td>
     //           <td>{student.last_name}</td>
     //           <td>{student.email}</td>
-    //           <td>{student.GroupId}</td>
+    //           <td>{student.GrupId}</td>
     //           <td>{student.id}</td>
     //         </tr>
     //       ))}
     //     </tbody>
     //     <tfoot>
     //       <tr>
-    //         <td>number of students: {groupStudents.length}</td>
+    //         <td>number of students: {grupStudents.length}</td>
     //       </tr>
     //     </tfoot>
     //   </Table>
     //   {/* </Container> */}
     // </div>
     <div className="container-fluid bg-white shadow-lg">
-    <Container fluid className="mt-10 p-3 bg-white shadow-lg">
-      <Table responsive bordered hover>
-        <thead>
-          <tr className="opacity-75 border-3">
-            <th className="text-black">Number</th>
-            <th className="text-black">Student Name</th>
-            <th className="text-black">Last Name</th>
-            <th className="text-black">Email</th>
-            <th className="text-black">Group</th>
-            <th className="text-black">ID</th>
-          </tr>
-        </thead>
-        <tbody>
-          {groupStudents?.map((student, index) => (
-            <tr
-              key={index}
-              style={{ cursor: 'pointer' }}
-              onClick={() => {
-                navigate(`/students/${student.id}`);
-              }}
-            >
-              <td>{index + 1}</td>
-              <td>{student.first_name}</td>
-              <td>{student.last_name}</td>
-              <td>{student.email}</td>
-              <td>{student.GroupId}</td>
-              <td>{student.id}</td>
+      <Container fluid className="mt-10 p-3 bg-white shadow-lg">
+        <Table responsive bordered hover>
+          <thead>
+            <tr className="opacity-75 border-3">
+              <th className="text-black">Number</th>
+              <th className="text-black">Student Name</th>
+              <th className="text-black">Last Name</th>
+              <th className="text-black">Email</th>
+              <th className="text-black">Grup</th>
+              <th className="text-black">ID</th>
             </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colSpan="6">Number of students: {groupStudents.length}</td>
-          </tr>
-        </tfoot>
-      </Table>
-    </Container>
-  </div>
+          </thead>
+          <tbody>
+            {grupStudents?.map((student, index) => (
+              <tr
+                key={index}
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  navigate(`/students/${student.id}`);
+                }}
+              >
+                <td>{index + 1}</td>
+                <td>{student.first_name}</td>
+                <td>{student.last_name}</td>
+                <td>{student.email}</td>
+                <td>{student.GrupId}</td>
+                <td>{student.id}</td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan="6">Number of students: {grupStudents.length}</td>
+            </tr>
+          </tfoot>
+        </Table>
+      </Container>
+    </div>
   );
 };
 

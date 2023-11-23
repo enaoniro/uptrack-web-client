@@ -6,7 +6,7 @@ import { UserContext } from "../contexts/UserContext";
 import Admin from "./admin";
 import UnregisteredUser from "./UnregisteredUser";
 import CantonManager from "./cantonmanager";
-import GroupLeader from "./groupleader";
+import GrupLeader from "./grupleader";
 import Layout from "./layout";
 import Container from "react-bootstrap/Container";
 
@@ -94,7 +94,7 @@ function Home() {
       <Container fluid className=" p-3 bg-white shadow-lg">
         {role === "admin" && <Admin />}
         {role === "canton manager" && <CantonManager />}
-        {role === "group leader" && <GroupLeader />}
+        {role === "grup leader" && <GrupLeader />}
       </Container>
     </>
   );

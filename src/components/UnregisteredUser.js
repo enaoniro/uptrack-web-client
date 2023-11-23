@@ -5,55 +5,53 @@ import AddStudent from "./AddStudent.js";
 import Student from "./Student.js";
 import { useEffect, useState } from "react";
 import { StudentContext } from "../contexts/StudentContext.js";
-import { GroupContext } from "../contexts/GroupContext.js";
-import ListGroup from "react-bootstrap/ListGroup";
+import { GrupContext } from "../contexts/GrupContext.js";
+import ListGrup from "react-bootstrap/ListGrup";
 import Button from "react-bootstrap/Button";
-import ListGroupItem from "react-bootstrap/esm/ListGroupItem.js";
+import ListGrupItem from "react-bootstrap/esm/ListGrupItem.js";
 import StudentList from "./StudentList.js";
 
-function UnregisteredUser({user}) {
+function UnregisteredUser({ user }) {
   const [showDetails, setShowDetails] = useState(false);
-  const [ groupStudents, setGroupStudents] = useState([])
-//   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const [grupStudents, setGrupStudents] = useState([]);
+  //   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
-  console.log("group leader is rendered");
+  console.log("grup leader is rendered");
 
-  
-
-//   console.log(user);
+  //   console.log(user);
 
   const {
     studentList,
     student,
     isOpen,
     setIsOpen,
-    setStudentsInGroup,
-    studentsInGroup,
-    getStudentsInGroup,
+    setStudentsInGrup,
+    studentsInGrup,
+    getStudentsInGrup,
   } = useContext(StudentContext);
 
-  const { groupList } = useContext(GroupContext);
+  const { grupList } = useContext(GrupContext);
 
-  console.log(groupList);
+  console.log(grupList);
 
-  const group = groupList?.find((group) => group?.leader === user.email);
-//   console.log(group);
+  const grup = grupList?.find((grup) => grup?.leader === user.email);
+  //   console.log(grup);
 
-//   const logoutWithRedirect = () =>
-//     logout({
-//       returnTo: window.location.origin,
-//     });
+  //   const logoutWithRedirect = () =>
+  //     logout({
+  //       returnTo: window.location.origin,
+  //     });
 
-  //  const students = groupList.map(group=>group.Students).map(student=>student.GroupId)
+  //  const students = grupList.map(grup=>grup.Students).map(student=>student.GrupId)
   //  console.log(students)
 
   const handleClick = () => {
-    // setGroupStudents(group.Students)
+    // setGrupStudents(grup.Students)
     setShowDetails(!showDetails);
   };
 
-  // const group = studentList.filter((student) => student.GroupId);
-  // console.log(groupOneStudent);
+  // const grup = studentList.filter((student) => student.GrupId);
+  // console.log(grupOneStudent);
 
   return (
     <div id="main">
@@ -87,9 +85,9 @@ function UnregisteredUser({user}) {
               <li className="nav-item">
                 <a
                   className="nav-link text-primary"
-                  href="http://localhost:3000/group"
+                  href="http://localhost:3000/grup"
                 >
-                  Group Page
+                  Grup Page
                 </a>
               </li>
               {/* <li className="nav-item">
@@ -106,7 +104,9 @@ function UnregisteredUser({user}) {
                       className="nav-user-profile d-inline-block rounded-circle mr-3"
                       width="40"
                     /> */}
-                    <h6 className="d-inline-block text-danger p-1 me-1">{user.name} </h6>
+                    <h6 className="d-inline-block text-danger p-1 me-1">
+                      {user.name}{" "}
+                    </h6>
                   </span>
                   {/* <button
                     className="btn btn-outline-danger"
@@ -139,7 +139,7 @@ function UnregisteredUser({user}) {
                 // data-bs-toggle="modal"
                 // data-bs-target={"#addStudentModal"}
               >
-                group students
+                grup students
               </button>
             </div>
             <div className="col-md-10 p-1 my-3" id="details-div">
@@ -147,12 +147,19 @@ function UnregisteredUser({user}) {
                 id="schweiz"
                 className="d-flex shadow-sm align-items-center justify-content-center mb-1"
               >
-                <p className="fw-bolder fs-5">Group Name :</p>
-                <p className="text-secondary fs-5 fw-bolder">{group?.leader}</p>
+                <p className="fw-bolder fs-5">Grup Name :</p>
+                <p className="text-secondary fs-5 fw-bolder">{grup?.leader}</p>
               </div>
               <div className="w-90 h-100 m-5" id="form-div">
-                {showDetails ? <AddStudent showDetails={showDetails} setShowDetails={setShowDetails} group={group} /> : 
-                <StudentList  group={group} />}
+                {showDetails ? (
+                  <AddStudent
+                    showDetails={showDetails}
+                    setShowDetails={setShowDetails}
+                    grup={grup}
+                  />
+                ) : (
+                  <StudentList grup={grup} />
+                )}
               </div>
               {/* <div
                   className="modal fade"
