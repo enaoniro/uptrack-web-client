@@ -87,7 +87,7 @@ function GrupLeader() {
                   className="nav-link text-primary"
                   href="http://localhost:3000/grup"
                 >
-                  Grup Page
+                  Group Page
                 </a>
               </li>
               {/* <li className="nav-item">
@@ -146,7 +146,7 @@ function GrupLeader() {
                 onClick={handleClick}
                 className="btn btn-outline-success fs-md-6 fs-lg-5 fs-xl-4 w-100"
               >
-                grup students
+                group students
               </button>
             </div>
             <div className="col-md-10 p-1 my-3" id="details-div">
@@ -154,7 +154,7 @@ function GrupLeader() {
                 id="schweiz"
                 className="d-flex shadow-sm align-items-center justify-content-center mb-1"
               >
-                <p className="fw-bolder fs-5">Grup Name :</p>
+                <p className="fw-bolder fs-5">Group Name :</p>
                 <p className="text-secondary fs-5 fw-bolder">{grup?.leader}</p>
               </div>
               <div className="w-90 h-100 m-5" id="form-div">
