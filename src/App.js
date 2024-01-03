@@ -12,7 +12,6 @@ import "./App.css";
 import Profile from "./components/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 // import  * as userService  from "./service/user.service";
-import { useEffect } from "react";
 import Home from "./components/home";
 import Admin from "./components/admin";
 import Grup from "./components/Grup";
