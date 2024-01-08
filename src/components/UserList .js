@@ -6,7 +6,7 @@ import Table from "react-bootstrap/Table";
 const UserList = () => {
   const { userList } = useContext(UserContext);
 
-  const user = userList.map((user) => <User user={user} />);
+  const user = userList.map((user) => <User user={user} key={user._id} />);
 
   return (
     <div className='w-100'>

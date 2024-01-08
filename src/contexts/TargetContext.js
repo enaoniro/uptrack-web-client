@@ -12,17 +12,17 @@ const TargetContextProvider = (props) => {
   // setSelectedTarget(TargetList.find((stu =>stu.id===Target.id)))
 
   useEffect(() => {
-    getTargetList();
+    getTargets();
   }, []);
 
-  const getTargetList = async () => {
-    const response = await fetch("http://localhost:3001/api/v1/targets");
+  const getTargets = async () => {
+    const response = await fetch("https://uptrackrest.onrender.com/api/v1/targets");
     const targetList = await response.json();
     setTargetList(targetList);
   };
 
   //   const getUserByEmail = async (pUser) => {
-  //     const response = await fetch('http://localhost:3001/api/v1/users');
+  //     const response = await fetch('https://uptrackrest.onrender.com/users');
   //     const userList= await response.json();
   //     const data = userList.filter(user=>user.email==pUser.email);
   //     setUserInDatabase(data);
@@ -32,44 +32,44 @@ const TargetContextProvider = (props) => {
   const addTarget = async (pTarget, id) => {
     // if (pUser.email !==undefined) {
     const newTarget = {
-      task1: pTarget.task1,
-      task2: pTarget.task2,
-      task3: pTarget.task3,
-      task4: pTarget.task4,
-      task5: pTarget.task5,
-      TaskId: id,
+      target1: pTarget.target1,
+      target2: pTarget.target2,
+      target3: pTarget.target3,
+      target4: pTarget.target4,
+      target5: pTarget.target5,
+      task: id
     };
     try {
-      await fetch("http://localhost:3001/api/v1/targets", {
+      await fetch("https://uptrackrest.onrender.com/api/v1/targets", {
         method: "POST",
         body: JSON.stringify(newTarget),
         headers: { "Content-Type": "application/json" },
       });
 
       setTargetList(previousState => [...targetList, newTarget]);
-      getTargetList();
+      getTargets();
     } catch (error) {
       console.log(error);
     }
   };
 
   const updateTarget = async (pTarget) => {
+    console.log(pTarget._id);
+    console.log(pTarget)
     try {
-      await fetch("http://localhost:3001/api/v1/targets/" + pTarget.id, {
+      await fetch("https://uptrackrest.onrender.com/api/v1/targets/", {
         method: "PUT",
         body: JSON.stringify(pTarget),
         headers: { "Content-Type": "application/json" },
       });
 
       setTargetList(
-        targetList.map((target) =>
-          target.id === pTarget.id ? pTarget : target
-        )
+        targetList.map((target) => (target._id === pTarget._id ? pTarget : target))
       );
-     
     } catch (error) {
       console.log(error);
     }
+    console.log(targetList)
   };
 
   // const selectTarget = (id) => {
@@ -84,7 +84,7 @@ const TargetContextProvider = (props) => {
       value={{
         addTarget,
         updateTarget,
-        getTargetList,
+        getTargets,
         targetList,
         setTargetList,
         isOpen,

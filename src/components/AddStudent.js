@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const AddStudent = ({ showDetails, setShowDetails, grup }) => {
   console.log(grup);
 
-  const id = grup.id;
+  const id = grup._id;
 
   const [student, setStudent] = useState({});
   const [studentList, setStudentList] = useState([]);
@@ -99,14 +99,14 @@ const AddStudent = ({ showDetails, setShowDetails, grup }) => {
             placeholder="img"
             onChange={handleOnChange}
           />
-          {/* <input
-            type="number"
+          <input
+            type="text"
             className="form-control mb-2 bg-light"
-            name="GrupId"
-            value={student.GrupId || ""}
+            name="group"
+            value={student.group || ""}
             placeholder="grup no giriniz"
             onChange={handleOnChange}
-          /> */}
+          />
           {/* <button
                 type="button"
                 className="btn btn-secondary"

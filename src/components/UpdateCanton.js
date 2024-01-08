@@ -15,8 +15,6 @@ const UpdateCanton = ({ canton }) => {
   };
 
   return (
-
-    <td>
     <div className="modal-dialog">
       <div className="modal-content">
         <div className="modal-header">
@@ -38,8 +36,8 @@ const UpdateCanton = ({ canton }) => {
                 type="text"
                 className="form-control bg-info"
                 placeholder="Canton Name"
-                name="name"
-                value={updatedCanton.name}
+                name="cantonname"
+                value={updatedCanton?.cantonname}
                 onChange={handleChange}
               />
               <h6>canton manager</h6>
@@ -48,11 +46,10 @@ const UpdateCanton = ({ canton }) => {
                 className="form-control bg-info"
                 placeholder="email"
                 name="email"
-                value={updatedCanton.email}
+                value={updatedCanton?.email}
                 onChange={handleChange}
               />
              
-
             <button
               type="button"
               className="btn btn-secondary"
@@ -67,12 +64,13 @@ const UpdateCanton = ({ canton }) => {
             >
               Edit
             </button>
+
             </div>
           </form>
         </div>
       </div>
     </div>
-    </td>
+    
   );
 };
 

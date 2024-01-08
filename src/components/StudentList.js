@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import { useNavigate, useParams } from "react-router-dom";
 
 const StudentList = ({ showDetails, setShowDetails, grup }) => {
-  // console.log(grup);
+  console.log(grup);
 
   console.log("student list is rendered");
 
@@ -21,7 +21,7 @@ const StudentList = ({ showDetails, setShowDetails, grup }) => {
   console.log(studentList);
 
   const grupStudents = studentList?.filter(
-    (student) => student?.GrupId === grup?.id
+    (student) => student?.group === grup?._id
   );
   console.log(grupStudents);
   if (!grupStudents) {
@@ -101,15 +101,15 @@ const StudentList = ({ showDetails, setShowDetails, grup }) => {
                 key={index}
                 style={{ cursor: "pointer" }}
                 onClick={() => {
-                  navigate(`/students/${student.id}`);
+                  navigate(`/students/${student._id}`);
                 }}
               >
                 <td>{index + 1}</td>
                 <td>{student.first_name}</td>
                 <td>{student.last_name}</td>
                 <td>{student.email}</td>
-                <td>{student.GrupId}</td>
-                <td>{student.id}</td>
+                <td>{student.groupname}</td>
+                <td>{student._id}</td>
               </tr>
             ))}
           </tbody>

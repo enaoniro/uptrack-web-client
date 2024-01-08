@@ -4,6 +4,7 @@ import { GrupContext } from "../contexts/GrupContext";
 const UpdateGrup = ({ grup }) => {
   const [updatedGrup, setUpdatedGrup] = useState(grup);
   const { updateGrup, setGrupList } = useContext(GrupContext);
+  console.log(grup)
 
   const { getGrupList } = useContext(GrupContext);
 
@@ -40,8 +41,8 @@ const UpdateGrup = ({ grup }) => {
                   type="text"
                   className="form-control bg-info"
                   placeholder="Grup Name"
-                  name="name"
-                  value={updatedGrup.name}
+                  name="groupname"
+                  value={updatedGrup.groupname}
                   onChange={handleChange}
                 />
                 <h6>Group Leader</h6>
@@ -49,17 +50,17 @@ const UpdateGrup = ({ grup }) => {
                   type="text"
                   className="form-control bg-info"
                   placeholder="grup leader"
-                  name="leader"
-                  value={updatedGrup.leader}
+                  name="email"
+                  value={updatedGrup.email}
                   onChange={handleChange}
                 />
                 <h6>canton</h6>
                 <input
-                  type="number"
+                  type="text"
                   className="form-control bg-info"
                   placeholder="canton id"
-                  name="CantonId"
-                  value={updatedGrup.CantonId}
+                  name="canton"
+                  value={updatedGrup.canton}
                   onChange={handleChange}
                 />
 

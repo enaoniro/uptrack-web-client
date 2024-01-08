@@ -6,18 +6,20 @@ import UpdateUser from "./UpdateUser";
 const User = ({ user }) => {
   const { deleteUser } = useContext(UserContext);
   const { updateUser } = useContext(UserContext);
+
+  console.log(user)
  
   return (
     <React.Fragment>
       <tr className="w-100" key={user.id}>
         <td className="text-capitalize text-primary bg-body fw-bolder text-center p-5">
-          {user.first_name} {user.last_name}
+          {user.username}
         </td>
         <td className="text-capitalize text-primary bg-body fw-bolder text-center p-5">
           {user.email} 
         </td>
         <td className="text-capitalize text-primary bg-body fw-bolder text-center p-5">
-          {user.RoleId}
+          {user.role}
         </td>
 
      
@@ -27,12 +29,12 @@ const User = ({ user }) => {
             type="button"
             className="btn btn-primary fs-6 w-20 border-white"
             data-bs-toggle="modal"
-            data-bs-target={"#updateUserModal" + user.id}
+            data-bs-target={"#updateUserModal" + user._id}
           >
             Edit User
           </button>
           <button
-            onClick={() => deleteUser(user.id)}
+            onClick={() => deleteUser(user._id)}
             className="btn btn-danger fs-6 w-20"
           >
             Delete User
@@ -41,7 +43,7 @@ const User = ({ user }) => {
       </tr>
       <div
         className="modal fade"
-        id={"updateUserModal" + user.id}
+        id={"updateUserModal" + user._id}
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"

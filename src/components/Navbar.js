@@ -37,7 +37,7 @@ function Navbar() {
 
       // Rolü elde ettikten sonra state'i güncelliyoruz.
       // Gelen user bilgisi aynı postman'de gördüğümüz şekilde olacak
-      setRole(user.Role.name);
+      setRole(user.role);
       console.log(user);
     };
 

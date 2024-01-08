@@ -44,52 +44,37 @@ const UpdateStudent = ({ student }) => {
               <input
                 type="text"
                 className="form-control bg-info"
-                placeholder="last_name"
+                placeholder="lastname"
                 name="last_name"
                 value={updatedStudent.last_name}
                 onChange={handleChange}
               />
               <h5>email</h5>
               <input
-                type="email"
+                type="text"
                 className="form-control bg-info"
                 placeholder="email"
                 name="email"
                 value={updatedStudent.email}
                 onChange={handleChange}
               />
-              <h6>grup no</h6>
+              <h6>grup</h6>
               <input
-                type="number"
+                type="text"
                 className="form-control bg-info"
-                name="GrupId"
-                value={updatedStudent.GrupId}
+                name="group"
+                value={updatedStudent.group}
                 onChange={handleChange}
               />
-              <h6>task no</h6>
+               <h6>img</h6>
               <input
-                type="number"
+                type="text"
                 className="form-control bg-info"
-                name="TaskId"
-                value={updatedStudent.TaskId}
+                name="img"
+                value={updatedStudent.img}
                 onChange={handleChange}
               />
-              <h6>target no</h6>
-              <input
-                type="number"
-                className="form-control bg-info"
-                name="TargetId"
-                value={updatedStudent.TargetId}
-                onChange={handleChange}
-              />
-              <h6>record no</h6>
-              <input
-                type="number"
-                className="form-control bg-info"
-                name="RecordId"
-                value={updatedStudent.RecordId}
-                onChange={handleChange}
-              />
+           
             </div>
 
             <button

@@ -22,7 +22,7 @@ const SingleGrup = () => {
   const navigate = useNavigate();
 
   let { id } = useParams();
-  const grup = grupList.find((grup) => grup.id == id);
+  const grup = grupList.find((grup) => grup._id == id);
   console.log(grup);
 
   const handleClick = () => {
@@ -51,7 +51,7 @@ const SingleGrup = () => {
                 onClick={handleClick}
               >
                 {/* <a className="text-decoration-none" href="http://localhost:3000/grup" >{grup.name}</a>  */}
-                {grup.id}-{grup.leader} grOup
+                {grup.groupname} grOup
               </td>
               {/* <td colSpan={2} className="text-capitalize text-primary bg-body fw-bolder text-center">{grup.leader}</td> */}
               {/* <td className="text-capitalize text-primary bg-body fw-bolder text-center p-5">{grup.Canton.name}</td> */}

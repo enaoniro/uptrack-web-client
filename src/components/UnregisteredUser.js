@@ -34,7 +34,7 @@ function UnregisteredUser({ user }) {
 
   console.log(grupList);
 
-  const grup = grupList?.find((grup) => grup?.leader === user.email);
+  const grup = grupList?.find((grup) => grup?.email === user.email);
   //   console.log(grup);
 
   //   const logoutWithRedirect = () =>
@@ -87,7 +87,7 @@ function UnregisteredUser({ user }) {
                   className="nav-link text-primary"
                   href="http://localhost:3000/grup"
                 >
-                  Grup Page
+                  Group Page
                 </a>
               </li>
               {/* <li className="nav-item">
@@ -105,7 +105,7 @@ function UnregisteredUser({ user }) {
                       width="40"
                     /> */}
                     <h6 className="d-inline-block text-danger p-1 me-1">
-                      {user.name}{" "}
+                      {user.username}{" "}
                     </h6>
                   </span>
                   {/* <button
@@ -135,11 +135,11 @@ function UnregisteredUser({ user }) {
               <button
                 onClick={handleClick}
                 // type="button"
-                className="btn btn-outline-success fs-6 w-100"
+                className="btn btn-success fs-6 w-100 disabled"
                 // data-bs-toggle="modal"
                 // data-bs-target={"#addStudentModal"}
               >
-                grup students
+                group students
               </button>
             </div>
             <div className="col-md-10 p-1 my-3" id="details-div">
@@ -147,8 +147,8 @@ function UnregisteredUser({ user }) {
                 id="schweiz"
                 className="d-flex shadow-sm align-items-center justify-content-center mb-1"
               >
-                <p className="fw-bolder fs-5">Grup Name :</p>
-                <p className="text-secondary fs-5 fw-bolder">{grup?.leader}</p>
+                <p className="fw-bolder fs-5">Group Name :</p>
+                <p className="text-secondary fs-5 fw-bolder">{grup?.groupname}</p>
               </div>
               <div className="w-90 h-100 m-5" id="form-div">
                 {showDetails ? (

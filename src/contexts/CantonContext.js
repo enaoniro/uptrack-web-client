@@ -7,7 +7,7 @@ const CantonContextProvider = (props) => {
   const [newCanton, setNewCanton] = useState();
 
   useEffect(() => {
-    getCantonList();
+    getCantons();
   }, []);
 
   //pCanton auth0 dan gelen Canton bilgileri
@@ -25,8 +25,8 @@ const CantonContextProvider = (props) => {
 
   // }
 
-  const getCantonList = async () => {
-    const response = await fetch("http://localhost:3001/api/v1/cantons");
+  const getCantons = async () => {
+    const response = await fetch("https://uptrackrest.onrender.com/api/v1/cantons");
     const cantonList = await response.json();
     setCantonList(cantonList);
   };
@@ -34,12 +34,14 @@ const CantonContextProvider = (props) => {
   const addCanton = async (pCanton) => {
     // if (pCanton.email !==undefined) {
     const newCanton = {
-      id: pCanton.id,
-      name: pCanton.name,
-      manager: pCanton.manager,
+    
+      
+      cantonname: pCanton.cantonname,
+      email: pCanton.email,
+      role: pCanton.role,
     };
     try {
-      await fetch("http://localhost:3001/api/v1/cantons", {
+      await fetch("https://uptrackrest.onrender.com/api/v1/cantons", {
         method: "POST",
         body: JSON.stringify(pCanton),
         headers: { "Content-Type": "application/json" },
@@ -51,18 +53,21 @@ const CantonContextProvider = (props) => {
     }
   };
 
+
   const updateCanton = async (pCanton) => {
+
+    console.log(pCanton)
+    console.log(pCanton._id)
+
     try {
-      await fetch("http://localhost:3001/api/v1/cantons/" + pCanton.id, {
+      await fetch(`https://uptrackrest.onrender.com/api/v1/cantons/`, {
         method: "PUT",
         body: JSON.stringify(pCanton),
         headers: { "Content-Type": "application/json" },
       });
 
       setCantonList(
-        cantonList.map((canton) =>
-          canton.id === pCanton.id ? pCanton : canton
-        )
+        cantonList.map((canton) => (canton._id === pCanton._id ? pCanton : canton))
       );
     } catch (error) {
       console.log(error);
@@ -70,15 +75,16 @@ const CantonContextProvider = (props) => {
   };
 
   const deleteCanton = async (pCantonId) => {
+    console.log(pCantonId)
     try {
-      await fetch("http://localhost:3001/api/v1/cantons/" + pCantonId, {
+      await fetch("https://uptrackrest.onrender.com/api/v1/cantons/" + pCantonId, {
         method: "DELETE",
+      
       });
-      const updatedCantonList = cantonList.filter(
-        (canton) => canton.id !== pCantonId
-      );
+      const updateDCantonList = cantonList.filter((canton) => canton._id !== pCantonId);
+      console.log(updateDCantonList)
 
-      setCantonList(updatedCantonList);
+      setCantonList(updateDCantonList);
     } catch (error) {
       console.log(error);
     }
@@ -92,7 +98,7 @@ const CantonContextProvider = (props) => {
         addCanton,
         deleteCanton,
         updateCanton,
-        getCantonList,
+        getCantons,
         setCantonList,
         newCanton,
         setNewCanton,

@@ -15,7 +15,7 @@ const GrupContextProvider = (props) => {
   }, []);
 
   const getGrupList = async () => {
-    const response = await fetch("http://localhost:3001/api/v1/grups");
+    const response = await fetch("https://uptrackrest.onrender.com/api/v1/groups");
     const grupList = await response.json();
     setGrupList(grupList);
   };
@@ -27,7 +27,7 @@ const GrupContextProvider = (props) => {
       CantonId: id,
     };
     try {
-      const res = await fetch("http://localhost:3001/api/v1/grups", {
+      const res = await fetch("https://uptrackrest.onrender.com/api/v1/groups", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newGrup),
@@ -44,14 +44,14 @@ const GrupContextProvider = (props) => {
 
   const updateGrup = async (pGrup) => {
     try {
-      await fetch("http://localhost:3001/api/v1/grups/" + pGrup.id, {
+      await fetch("https://uptrackrest.onrender.com/api/v1/groups/" , {
         method: "PUT",
         body: JSON.stringify(pGrup),
         headers: { "Content-Type": "application/json" },
       });
 
       setGrupList(
-        grupList.map((grup) => (grup.id === pGrup.id ? pGrup : grup))
+        grupList.map((grup) => (grup._id === pGrup._id ? pGrup : grup))
       );
     } catch (error) {
       console.log(error);
@@ -60,14 +60,14 @@ const GrupContextProvider = (props) => {
 
   const deleteGrup = async (pGrupId) => {
     try {
-      await fetch("http://localhost:3001/api/v1/grups/" + pGrupId, {
+      await fetch("https://uptrackrest.onrender.com/api/v1/groups/" + pGrupId, {
         method: "DELETE",
       });
       const updateDGrupList = grupList.filter((grup) => grup.id !== pGrupId);
 
       setGrupList(updateDGrupList);
       getGrupList();
-      navigate("/");
+      // navigate("/");
     } catch (error) {
       console.log(error);
     }

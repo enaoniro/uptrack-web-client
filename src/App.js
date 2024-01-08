@@ -12,7 +12,7 @@ import "./App.css";
 import Profile from "./components/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 // import  * as userService  from "./service/user.service";
-import Home from "./components/home";
+import Home from "./components/Home";
 import Admin from "./components/admin";
 import Grup from "./components/Grup";
 import SingleGrup from "./components/singleGrup";

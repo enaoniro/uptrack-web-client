@@ -18,9 +18,9 @@ import "bootstrap/dist/js/bootstrap.min.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-console.log(process.env.REACT_APP_AUTH0_DOMAIN);
+// console.log(process.env.REACT_APP_AUTH0_DOMAIN);
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-console.log(process.env.REACT_APP_AUTH0_CLIENT_ID);
+// console.log(process.env.REACT_APP_AUTH0_CLIENT_ID);
 
 root.render(
   <BrowserRouter>

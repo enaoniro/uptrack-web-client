@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { TaskContext } from "../contexts/TaskContext.js";
+import { useParams } from "react-router-dom";
 
 const UpdateTask = ({ task }) => {
   const [updatedTask, setUpdatedTask] = useState(task);
@@ -11,7 +12,8 @@ const UpdateTask = ({ task }) => {
     setUpdatedTask({ ...updatedTask, [e.target.name]: e.target.value });
   };
 
-  
+  const id  = task?._id;
+  console.log(id)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -82,6 +84,22 @@ const UpdateTask = ({ task }) => {
                 value={updatedTask?.task5 || "" }
                 onChange={handleChange}
               />
+              {/* <h6>student</h6>
+               <input
+                type="text"
+                className="form-control bg-info"
+                placeholder="student"
+                defaultValue={id}
+                // onChange={handleChange}
+              />
+               <h6>isCompleted</h6>
+               <input
+                type="checkbox"
+                className="form__checkbox"
+                placeholder="isCompleted"
+                Boolean={false}
+                // onChange={handleChange}
+              /> */}
             
             </div>
 

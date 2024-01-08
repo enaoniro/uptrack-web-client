@@ -7,6 +7,8 @@ const UpdateUser = ({ user }) => {
   const [updatedUser, setUpdatedUser] = useState(user);
   const [userList, setUserList] = useState([]);
 
+  console.log(user)
+
   const { addUser, updateUser, getUserList, isOpen, setIsOpen } = useContext(
     UserContext
   );
@@ -18,7 +20,7 @@ const UpdateUser = ({ user }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     updateUser(updatedUser);
-    // setIsOpen(false);
+    console.log(updatedUser)
   };
 
   const hideForm = () => {
@@ -46,32 +48,24 @@ const UpdateUser = ({ user }) => {
               <input
                 type="text"
                 className="form-control"
-                name="first_name"
-                value={user.first_name}
-                placeholder="first name"
-                onChange={handleOnChange}
-              />
-              <input
-                type="text"
-                className="form-control"
-                name="last_name"
-                value={user.last_name}
-                placeholder="last name"
+                name="username"
+                value={updatedUser?.username}
+                placeholder="username"
                 onChange={handleOnChange}
               />
               <input
                 type="text"
                 className="form-control"
                 name="email"
-                value={user.email}
+                value={updatedUser?.email}
                 placeholder="email"
                 onChange={handleOnChange}
               />
               <input
-                type="number"
+                type="text"
                 className="form-control"
-                name="RoleId"
-                value={user.RoleId}
+                name="role"
+                value={updatedUser?.role}
                 placeholder="rolu giriniz"
                 onChange={handleOnChange}
               />

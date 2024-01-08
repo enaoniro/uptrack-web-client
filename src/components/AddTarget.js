@@ -7,14 +7,14 @@ const AddTarget = ({task}) => {
   const [targetList, setTargetList ] = useState([])
 
 
-  const { addTarget, getTargetList } = useContext(TargetContext);
+  const { addTarget, getTargets } = useContext(TargetContext);
   const { setStudentList } = useContext(StudentContext);
 
-  const id = task?.id;
+  const id = task?._id;
 
 
   useEffect(() => {
-    getTargetList();
+    getTargets();
   }, []);
 
   const handleChange = (e) => {
@@ -49,49 +49,49 @@ const AddTarget = ({task}) => {
         <div className="modal-body">
           <form className="mb-4" onSubmit={handleSubmit}>
             <div>
-            <h6>task-1</h6>
+            <h6>target-1</h6>
               <input
                 type="number"
                 className="form-control bg-info"
                 placeholder=" the no of the target"
-                name="task1"
-                value={target?.task1 || ""}
+                name="target1"
+                value={target?.target1 || ""}
                 onChange={handleChange}
               />
-              <h6>task-2</h6>
+              <h6>target-2</h6>
               <input
                 type="number"
                 className="form-control bg-info"
                 placeholder="pirlanta adi"
-                name="task2"
-                value={target?.task2 || ""}
+                name="target2"
+                value={target?.target2 || ""}
                 onChange={handleChange}
               />
-              <h6>task-3</h6>
+              <h6>target-3</h6>
               <input
                 type="number"
                 className="form-control bg-info"
                 placeholder="namaz"
-                name="task3"
-                value={target?.task3 || ""}
+                name="target3"
+                value={target?.target3 || ""}
                 onChange={handleChange}
               />
-              <h6>task-4</h6>
+              <h6>target-4</h6>
               <input
                 type="number"
                 className="form-control bg-info"
                 placeholder="cevsen"
-                name="task4"
-                value={target?.task4 || ""}
+                name="target4"
+                value={target?.target4 || ""}
                 onChange={handleChange}
               />
-              <h6>task-5</h6>
+              <h6>target-5</h6>
               <input
                 type="number"
                 className="form-control bg-info"
                 placeholder="devam"
-                name="task5"
-                value={target?.task5 || ""}
+                name="target5"
+                value={target?.target5 || ""}
                 onChange={handleChange}
               /> 
              {/* <h6>TaskId</h6>

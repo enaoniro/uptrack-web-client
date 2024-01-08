@@ -16,7 +16,7 @@ const UserContextProvider = (props) => {
   const checkAuthenticatedUser = async (pUser) => {
     console.log(pUser);
 
-    const response = await fetch("http://localhost:3001/api/v1/users/check", {
+    const response = await fetch("https://uptrackrest.onrender.com/api/v1/users/check", {
       method: "post",
       body: JSON.stringify(pUser),
       headers: { "Content-Type": "application/json" },
@@ -26,13 +26,15 @@ const UserContextProvider = (props) => {
   };
 
   const getUserList = async () => {
-    const response = await fetch("http://localhost:3001/api/v1/users");
+    const response = await fetch("https://uptrackrest.onrender.com/api/v1/users");
     const userList = await response.json();
     setUserList(userList);
   };
 
+console.log(userList)
+
   const getUserByEmail = async (pUser) => {
-    const response = await fetch("http://localhost:3001/api/v1/users");
+    const response = await fetch("https://uptrackrest.onrender.com/api/v1/users");
     const userList = await response.json();
     const data = userList.filter((user) => user.email == pUser.email);
     setUserInDatabase(data);
@@ -42,14 +44,14 @@ const UserContextProvider = (props) => {
   const addUser = async (pUser) => {
     // if (pUser.email !==undefined) {
     const newUser = {
-      id: pUser.id,
-      first_name: pUser.first_name,
-      last_name: pUser.last_name,
+    
+      
+      username: pUser.username,
       email: pUser.email,
-      RoleId: pUser.RoleId,
+      role: pUser.role,
     };
     try {
-      await fetch("http://localhost:3001/api/v1/users", {
+      await fetch("https://uptrackrest.onrender.com/api/v1/users", {
         method: "POST",
         body: JSON.stringify(pUser),
         headers: { "Content-Type": "application/json" },
@@ -61,16 +63,21 @@ const UserContextProvider = (props) => {
     }
   };
 
+
   const updateUser = async (pUser) => {
+
+    console.log(pUser)
+    console.log(pUser._id)
+
     try {
-      await fetch("http://localhost:3001/api/v1/users/" + pUser.id, {
+      await fetch(`https://uptrackrest.onrender.com/api/v1/users/`, {
         method: "PUT",
         body: JSON.stringify(pUser),
         headers: { "Content-Type": "application/json" },
       });
 
       setUserList(
-        userList.map((user) => (user.id === pUser.id ? pUser : user))
+        userList.map((user) => (user._id === pUser._id ? pUser : user))
       );
     } catch (error) {
       console.log(error);
@@ -79,10 +86,10 @@ const UserContextProvider = (props) => {
 
   const deleteUser = async (pUserId) => {
     try {
-      await fetch("http://localhost:3001/api/v1/users/" + pUserId, {
+      await fetch("https://uptrackrest.onrender.com/api/v1/users/" +pUserId, {
         method: "DELETE",
       });
-      const updateDUserList = userList.filter((user) => user.id !== pUserId);
+      const updateDUserList = userList.filter((user) => user._id !== pUserId);
 
       setUserList(updateDUserList);
     } catch (error) {

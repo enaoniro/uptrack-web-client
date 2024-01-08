@@ -11,20 +11,17 @@ const RecordContextProvider = (props) => {
   // setSelectedRecord(RecordList.find((stu =>stu.id===Record.id)))
 
   useEffect(() => {
-    getRecordList();
+    getRecords();
   }, []);
 
-  const getRecordList = async () => {
-    const response = await fetch("http://localhost:3001/api/v1/records");
+  const getRecords = async () => {
+    const response = await fetch("https://uptrackrest.onrender.com/api/v1/records");
     const recordList = await response.json();
-    if(!recordList){
-      return console.log("no records found!")
-    } else {
-      return setRecordList(recordList)
-  }};
+    setRecordList(recordList);
+  };
 
   //   const getUserByEmail = async (pUser) => {
-  //     const response = await fetch('http://localhost:3001/api/v1/users');
+  //     const response = await fetch('https://uptrackrest.onrender.com/users');
   //     const userList= await response.json();
   //     const data = userList.filter(user=>user.email==pUser.email);
   //     setUserInDatabase(data);
@@ -34,46 +31,44 @@ const RecordContextProvider = (props) => {
   const addRecord = async (pRecord, id) => {
     // if (pUser.email !==undefined) {
     const newRecord = {
-     
-      task1: pRecord.task1,
-      task2: pRecord.task2,
-      task3: pRecord.task3,
-      task4: pRecord.task4,
-      task5: pRecord.task5,
-      TaskId: id,
+      record1: pRecord.record1,
+      record2: pRecord.record2,
+      record3: pRecord.record3,
+      record4: pRecord.record4,
+      record5: pRecord.record5,
+      task: id
     };
     try {
-        await fetch("http://localhost:3001/api/v1/records", {
+      await fetch("https://uptrackrest.onrender.com/api/v1/records", {
         method: "POST",
         body: JSON.stringify(newRecord),
         headers: { "Content-Type": "application/json" },
       });
 
-      // const data = await res.json();
-
       setRecordList(previousState => [...recordList, newRecord]);
-      getRecordList();
+      getRecords();
     } catch (error) {
       console.log(error);
     }
   };
 
   const updateRecord = async (pRecord) => {
+    console.log(pRecord._id);
+    console.log(pRecord)
     try {
-      await fetch("http://localhost:3001/api/v1/records/" + pRecord.id, {
+      await fetch("https://uptrackrest.onrender.com/api/v1/records/", {
         method: "PUT",
         body: JSON.stringify(pRecord),
         headers: { "Content-Type": "application/json" },
       });
 
       setRecordList(
-        recordList.map((record) =>
-          record.id === pRecord.id ? pRecord : record
-        )
+        recordList.map((record) => (record._id === pRecord._id ? pRecord : record))
       );
     } catch (error) {
       console.log(error);
     }
+    console.log(recordList)
   };
 
   // const selectRecord = (id) => {
@@ -81,14 +76,15 @@ const RecordContextProvider = (props) => {
   //   return selectedRecord;
   // }
 
-  console.log("1", recordList);
+  console.log(recordList);
+
 
   return (
     <RecordContext.Provider
       value={{
         addRecord,
         updateRecord,
-        getRecordList,
+        getRecords,
         recordList,
         setRecordList,
         isOpen,

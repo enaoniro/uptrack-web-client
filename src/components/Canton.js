@@ -27,21 +27,22 @@ const Canton = ({ canton }) => {
 
   const handleClick = () => {
     // setGrupName(event.target.innerText);
-    setCantonGrups(grupList.filter((grup) => grup.CantonId == canton.id));
+    setCantonGrups(grupList.filter((grup) => grup.canton == canton._id));
     // setIsOpen(!isOpen);
-    navigate(`/canton/${canton.id}`);
+    navigate(`/canton/${canton._id}`);
   };
 
   return (
     <React.Fragment key={canton.id}>
       {!isOpen ? (
         <>
-          <tr className="w-100 p-3 bg-white" onClick={handleClick}>
+          <tr className="w-100 p-3 bg-white">
             <td
+               onClick={handleClick}
               style={{ cursor: "pointer" }}
               className="opacity-75 text-capitalize py-5 bg-white text-primary fw-bolder "
             >
-              <span>{canton.name}</span>
+              <span>{canton.cantonname}</span>
             </td>
             <td className="text-capitalize fw-bolder text-center py-5 ">
               <span>{canton.email}</span>
@@ -51,12 +52,12 @@ const Canton = ({ canton }) => {
                 type="button"
                 className="py-3 opacity-75 w-100 btn btn-primary"
                 data-bs-toggle="modal"
-                data-bs-target={"#updateCantonModal" + canton.id}
+                data-bs-target={"#updateCantonModal" + canton._id}
               >
                 Edit Canton
               </button>
               <button
-                onClick={() => deleteCanton(canton.id)}
+                onClick={() => deleteCanton(canton._id)}
                 className="py-3 btn w-100 btn-danger opacity-75 "
               >
                 Delete Canton
@@ -65,7 +66,7 @@ const Canton = ({ canton }) => {
           </tr>
           <tr
             className="modal fade"
-            id={"updateCantonModal" + canton.id}
+            id={"updateCantonModal" + canton._id}
             tabIndex="-1"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"

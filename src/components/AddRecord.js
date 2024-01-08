@@ -8,11 +8,13 @@ const AddRecord = ({task}) => {
   const [recordList, setRecordList] = useState([]);
   const [ navigate,setNavigate] = useState();
 
-  const { addRecord, getRecordList } = useContext(RecordContext);
+  const { addRecord, getRecords } = useContext(RecordContext);
+
+  const id = task?._id;
   
 
   useEffect(() => {
-    getRecordList();
+    getRecords();
   }, []);
 
   const handleChange = (e) => {
@@ -20,7 +22,7 @@ const AddRecord = ({task}) => {
   };
 
   console.log(record)
-  const id = task?.id;
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,8 +54,8 @@ const AddRecord = ({task}) => {
                 type="number"
                 className="form-control bg-info"
                 placeholder="task1"
-                name="task1"
-                value={record?.task1 || ""}
+                name="record1"
+                value={record?.record1 || ""}
                 onChange={handleChange}
               />
               <h6>task-2</h6>
@@ -61,8 +63,8 @@ const AddRecord = ({task}) => {
                 type="number"
                 className="form-control bg-info"
                 placeholder="task2"
-                name="task2"
-                value={record?.task2 || ""}
+                name="record2"
+                value={record?.record2 || ""}
                 onChange={handleChange}
               />
               <h6>task-3</h6>
@@ -70,8 +72,8 @@ const AddRecord = ({task}) => {
                 type="number"
                 className="form-control bg-info"
                 placeholder="task3"
-                name="task3"
-                value={record?.task3 || ""}
+                name="record3"
+                value={record?.record3 || ""}
                 onChange={handleChange}
               />
               <h6>task-4</h6>
@@ -79,8 +81,8 @@ const AddRecord = ({task}) => {
                 type="number"
                 className="form-control bg-info"
                 placeholder="task4"
-                name="task4"
-                value={record?.task4 || ""}
+                name="record4"
+                value={record?.record4 || ""}
                 onChange={handleChange}
               />
               <h6>task-5</h6>
@@ -88,17 +90,17 @@ const AddRecord = ({task}) => {
                 type="number"
                 className="form-control bg-info"
                 placeholder="task5"
-                name="task5"
-                value={record?.task5 || ""}
+                name="record5"
+                value={record?.record5 || ""}
                 onChange={handleChange}
               /> 
              {/* <h6>TaskId</h6>
               <input
-                type="number"
+                type="text"
                 className="form-control bg-info"
                 placeholder="taskid"
-                name="TaskId"
-                value={record?.TaskId || ""}
+                name="task"
+                value={record?.task || ""}
                 onChange={handleChange}
               /> */}
             </div>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { CantonContext } from "../contexts/CantonContext";
 import { GrupContext } from "../contexts/GrupContext";
 import UpdateCanton from "./UpdateCanton";
@@ -11,10 +11,18 @@ import { useAuth0 } from "@auth0/auth0-react";
 function SingleCanton() {
   const [isOpen, setIsOpen] = useState(false);
   const [cantonGrups, setCantonGrups] = useState([]);
-  const { cantonList, deleteCanton } = useContext(CantonContext);
+  const { cantonList, deleteCanton, getCantons } = useContext(CantonContext);
+
+  useEffect(() => {
+    getCantons();
+  }, []);
+
+  console.log(cantonList)
 
   let { id } = useParams();
-  const canton = cantonList.find((canton) => canton.id == id);
+
+  console.log(id)
+  const canton = cantonList.find((canton) => canton?._id === id);
   console.log(canton);
 
   const { grupList } = useContext(GrupContext);
@@ -25,11 +33,11 @@ function SingleCanton() {
 
   const handleClick = () => {
     // setGrupName(event.target.innerText);
-    setCantonGrups(grupList.filter((grup) => grup.CantonId == canton.id));
+    setCantonGrups(grupList.filter((grup) => grup.canton == canton?._id));
     setIsOpen(!isOpen);
   };
 
-  const grups = cantonGrups.map((grup) => <Grup grup={grup} key={grup.id} />);
+  const grups = cantonGrups.map((grup) => <Grup grup={grup} key={grup._id} />);
 
   return (
     <React.Fragment key={canton.id}>
@@ -50,12 +58,12 @@ function SingleCanton() {
                       style={{ cursor: "pointer" }}
                       className="opacity-75 text-capitalize py-5 text-primary fw-bolder "
                     >
-                      <span>{canton.name}</span>
+                      <span>{canton?.cantonname}</span>
                     </td>
                     <td className="text-capitalize fw-bolder text-center py-5 ">
-                      <span>{canton.email}</span>
+                      <span>{canton?.email}</span>
                     </td>
-                    <td>
+                    {/* <td>
                       <button
                         type="button"
                         className="py-3 opacity-75 w-100 btn btn-primary"
@@ -70,11 +78,11 @@ function SingleCanton() {
                       >
                         Delete Canton
                       </button>
-                    </td>
+                    </td> */}
                   </tr>
                   <tr
                     className="modal fade"
-                    id={"updateCantonModal" + canton.id}
+                    id={"updateCantonModal" + canton?._id}
                     tabIndex="-1"
                     aria-labelledby="exampleModalLabel"
                     aria-hidden="true"
@@ -91,7 +99,7 @@ function SingleCanton() {
           <Table bordered hover className="w-100 p-3 bg-white shadow-lg">
             <thead>
               <tr>
-                <th>{canton.name} grups</th>
+                <th>{canton?.cantonname} grups</th>
                 {/* <th>grup name</th>
               <th>actions</th> */}
               </tr>

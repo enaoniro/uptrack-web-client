@@ -5,12 +5,12 @@ const AddCanton = () => {
   const [canton, setCanton] = useState({});
   const [cantonList, setCantonList] = useState([]);
 
-  const { addCanton, getCantonList, isOpen, setIsOpen } = useContext(
+  const { addCanton, getCantons, isOpen, setIsOpen } = useContext(
     CantonContext
   );
 
   useEffect(() => {
-    getCantonList();
+    getCantons();
   }, []);
 
   const handleOnChange = (e) => {
@@ -51,8 +51,8 @@ const AddCanton = () => {
               <input
                 type="text"
                 className="form-control"
-                name="name"
-                value={canton.name || ""}
+                name="cantonname"
+                value={canton?.cantonname || ""}
                 placeholder="name"
                 onChange={handleOnChange}
               />
@@ -60,7 +60,7 @@ const AddCanton = () => {
                 type="email"
                 className="form-control"
                 name="email"
-                value={canton.email || ""}
+                value={canton?.email || ""}
                 placeholder="email"
                 onChange={handleOnChange}
               />

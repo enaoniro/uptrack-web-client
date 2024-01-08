@@ -38,7 +38,7 @@ function Home() {
 
       // Rolü elde ettikten sonra state'i güncelliyoruz.
       // Gelen user bilgisi aynı postman'de gördüğümüz şekilde olacak
-      setRole(user.Role.name);
+      setRole(user.role);
       console.log(user);
     };
 
@@ -72,6 +72,7 @@ function Home() {
 
           <div className="w-100 h-100 d-flex justify-items-center bg-white align-items-center flex-column ">
             <div className="bg-white">
+              <h3 className="text-danger">NOTE : This is just the guest page. A user can be registered only by the admin and then he or she can login!</h3>
               <h1>please login</h1>
               {/* <p>
                 You can login with the below information:<br></br>

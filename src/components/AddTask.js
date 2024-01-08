@@ -8,10 +8,10 @@ const AddTask = () => {
 
 let { id } = useParams();
 
-  const { updateTask, addTask, getTaskList } = useContext(TaskContext);
+  const { updateTask, addTask, getTasks } = useContext(TaskContext);
 
   useEffect(() => {
-    getTaskList();
+    getTasks();
   }, []);
 
   const handleChange = (e) => {
@@ -22,7 +22,7 @@ let { id } = useParams();
     e.preventDefault();
     addTask(task, id);
     setTaskList();
-    // getTaskList();
+    // getTasks();
     setTask("")
   };
 

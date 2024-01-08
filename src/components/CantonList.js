@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 const CantonList = () => {
   const { cantonList } = useContext(CantonContext);
 
-  // const canton = cantonList.map((canton) => <Canton canton={canton} key={canton.id}/>);
+  const canton = cantonList.map((canton) => <Canton canton={canton} key={canton._id}/>);
 
   return (
     <Container fluid className="mt-10 p-3 bg-white">
@@ -19,9 +19,10 @@ const CantonList = () => {
           </tr>
         </thead>
         <tbody className="w-100 bg-white">
-          {cantonList.map((canton) => (
-            <Canton canton={canton} key={canton.id} />
-          ))}
+          {/* {cantonList.map((canton) => (
+            <Canton canton={canton} key={canton._id} />
+          ))} */}
+          {canton}
         </tbody>
       </Table>
     </Container>

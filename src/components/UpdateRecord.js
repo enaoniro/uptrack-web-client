@@ -36,8 +36,8 @@ const UpdateRecord = ({ record }) => {
                 type="text"
                 className="form-control bg-info"
                 placeholder="risale name"
-                name="task1"
-                value={updatedRecord?.task1}
+                name="record1"
+                value={updatedRecord?.record1}
                 onChange={handleChange}
               />
               <h6>pirlanta sayfa adedi</h6>
@@ -45,8 +45,8 @@ const UpdateRecord = ({ record }) => {
                 type="text"
                 className="form-control bg-info"
                 placeholder="pirlanta adi"
-                name="task2"
-                value={updatedRecord?.task2}
+                name="record2"
+                value={updatedRecord?.record2}
                 onChange={handleChange}
               />
               <h6>namaz</h6>
@@ -54,8 +54,8 @@ const UpdateRecord = ({ record }) => {
                 type="text"
                 className="form-control bg-info"
                 placeholder="namaz"
-                name="task3"
-                value={updatedRecord?.task3}
+                name="record3"
+                value={updatedRecord?.record3}
                 onChange={handleChange}
               />
               <h6>cevsen bab sayisi</h6>
@@ -63,8 +63,8 @@ const UpdateRecord = ({ record }) => {
                 type="number"
                 className="form-control bg-info"
                 placeholder="cevsen"
-                name="task4"
-                value={updatedRecord?.task4}
+                name="record4"
+                value={updatedRecord?.record4}
                 onChange={handleChange}
               />
               <h6>devam</h6>
@@ -72,8 +72,8 @@ const UpdateRecord = ({ record }) => {
                 type="number"
                 className="form-control bg-info"
                 placeholder="devam"
-                name="task5"
-                value={updatedRecord?.task5}
+                name="record5"
+                value={updatedRecord?.record5}
                 onChange={handleChange}
               />
             </div>

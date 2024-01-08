@@ -21,29 +21,31 @@ const Grup = ({ grup }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    setGrupStudents(studentList.find((student) => student.GrupId === grup.id));
+    setGrupStudents(studentList?.find((student) => student?.group === grup?._id));
 
-    navigate(`/grup/${grup.id}`);
+    navigate(`/grup/${grup?._id}`);
   };
 
   return (
     <>
-      <tr className="w-100 d-flex bg-white" onClick={handleClick} key={grup.id}>
+      <tr className="w-100 d-flex bg-white"  key={grup.id}>
         <td
+          onClick={handleClick}
           style={{ cursor: "pointer" }}
           className="w-100 text-capitalize text-center d-flex justify-content-center align-items-center"
           // colSpan={2}
         >
           {/* <a className="text-decoration-none" href="http://localhost:3000/grup" >{grup.name}</a>  */}
-          {grup.id}
+          {grup._id}
         </td>
         <td
+          onClick={handleClick}
           style={{ cursor: "pointer" }}
           className="w-100 text-capitalize text-center d-flex justify-content-center align-items-center"
           // colSpan={2}
         >
           {/* <a className="text-decoration-none" href="http://localhost:3000/grup" >{grup.name}</a>  */}
-          {grup.leader}
+          {grup.email}
         </td>
 
         <td className="w-100 text-capitalize text-center d-flex justify-content-center align-items-center fw-bolder opacity-75">
@@ -51,14 +53,14 @@ const Grup = ({ grup }) => {
             type="button"
             className="w-100 btn btn-primary"
             data-bs-toggle="modal"
-            data-bs-target={"#updateGrupModal" + grup.id}
+            data-bs-target={"#updateGrupModal" + grup?._id}
           >
             Update Group
           </button>
           {/* </td>
               <td> */}
           <button
-            onClick={() => deleteGrup(grup.id)}
+            onClick={() => deleteGrup(grup?._id)}
             className="w-100 btn btn-danger opacity-75 "
           >
             Delete Group
@@ -66,7 +68,7 @@ const Grup = ({ grup }) => {
         </td>
         <td
           className="modal fade"
-          id={"updateGrupModal" + grup.id}
+          id={"updateGrupModal" + grup?._id}
           tabIndex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"

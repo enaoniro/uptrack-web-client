@@ -31,11 +31,12 @@ const SingleStudent = () => {
     });
 
   let { id } = useParams();
+  console.log(id)
   const navigate = useNavigate();
 
   useEffect(() => {
     //   getStudentList();
-    getStudentById();
+    getStudentById(id);
     //   setStudent(student=> student.id === id)
   }, [id]);
 
@@ -51,10 +52,10 @@ const SingleStudent = () => {
 
   const { grupList } = useContext(GrupContext);
 
-  const student = studentList.find((student) => student.id == id);
+  const student = studentList.find((student) => student._id == id);
   console.log(student);
 
-  const { taskList, setTaskList, getTaskList, setTaskCompleted } = useContext(
+  const { taskList, setTaskList, getTasks, setTaskCompleted } = useContext(
     TaskContext
   );
   console.log(taskList);
@@ -64,12 +65,12 @@ const SingleStudent = () => {
   console.log(recordList);
 
   const task = taskList?.find(
-    (task) => task?.StudentId === student?.id && task?.isCompleted === false
+    (task) => task?.student === student?._id && task?.isCompleted === false
   );
   console.log(task || "no tasks");
-  const target = targetList.find((target) => target?.TaskId === task?.id); //.sort((targetLast, targetPrevious) => targetLast.id - targetPrevious.id);
+  const target = targetList?.find((target) => target?.task === task?._id); //.sort((targetLast, targetPrevious) => targetLast.id - targetPrevious.id);
   console.log(target ?? "no targets");
-  const record = recordList.find((record) => record?.TaskId === task?.id);
+  const record = recordList.find((record) => record?.task === task?._id);
   console.log(record ?? "no records");
 
   const setTaskEnd = (task) => {
@@ -166,7 +167,7 @@ const SingleStudent = () => {
                     type="button"
                     className="btn btn-outline-primary opacity-75 w-20"
                     data-bs-toggle="modal"
-                    data-bs-target={"#updateStudentModal" + student.id}
+                    data-bs-target={"#updateStudentModal" + student?.id}
                   >
                     Edit student
                   </button>
@@ -274,7 +275,7 @@ const SingleStudent = () => {
                           <span className=" text-black">{student.email}</span>
                           <br></br>
                           <span className="text-black">
-                            grupId :{student.GrupId}
+                            grupId :{student.group}
                           </span>
                           <br></br>
                           <span className="text-black">{student.id}</span>
@@ -298,7 +299,7 @@ const SingleStudent = () => {
                             target:
                             <mark className="border">
                               <span className=" w-30 bg-light m-0 mx-3 text-danger fw-bold">
-                                {target?.task1}
+                                {target?.target1}
                               </span>
                             </mark>
                           </p>
@@ -306,7 +307,7 @@ const SingleStudent = () => {
                             record:
                             <mark className="border">
                               <span className=" w-30 m-0 text-danger fw-bold mx-3">
-                                {record?.task1}
+                                {record?.record1}
                               </span>
                             </mark>
                           </p>
@@ -325,7 +326,7 @@ const SingleStudent = () => {
                             target:
                             <mark className="border">
                               <span className=" w-30 m-0 text-danger fw-bold mx-3">
-                                {target?.task2}
+                                {target?.target2}
                               </span>
                             </mark>
                           </p>
@@ -334,7 +335,7 @@ const SingleStudent = () => {
                             record:
                             <mark className="border">
                               <span className=" w-30 m-0 text-danger fw-bold mx-3">
-                                {record?.task2}
+                                {record?.record2}
                               </span>
                             </mark>
                           </p>
@@ -354,7 +355,7 @@ const SingleStudent = () => {
                             target:
                             <mark className="border">
                               <span className=" w-30 m-0 text-danger fw-bold mx-3">
-                                {target?.task3}
+                                {target?.target3}
                               </span>
                             </mark>
                           </p>
@@ -363,7 +364,7 @@ const SingleStudent = () => {
                             record:
                             <mark className="border">
                               <span className="w-30 m-0 text-danger fw-bold mx-3">
-                                {record?.task3}
+                                {record?.record3}
                               </span>
                             </mark>
                           </p>
@@ -383,7 +384,7 @@ const SingleStudent = () => {
                             target:
                             <mark className="border">
                               <span className=" w-30 m-0 text-danger fw-bold mx-3">
-                                {target?.task4}
+                                {target?.target4}
                               </span>
                             </mark>
                           </p>
@@ -392,7 +393,7 @@ const SingleStudent = () => {
                             record:
                             <mark className="border">
                               <span className=" w-30 m-0 text-danger fw-bold mx-3">
-                                {record?.task4}
+                                {record?.record4}
                               </span>
                             </mark>
                           </p>
@@ -412,7 +413,7 @@ const SingleStudent = () => {
                             <span>target:</span>
                             <mark className="border">
                               <span className=" w-30 m-0 text-danger fw-bold mx-3 ">
-                                {target?.task5}
+                                {target?.target5}
                               </span>
                             </mark>
                           </p>
@@ -421,7 +422,7 @@ const SingleStudent = () => {
                             record:
                             <mark className="border">
                               <span className=" w-30 m-0 text-danger fw-bold mx-3">
-                                {record?.task5}
+                                {record?.record5}
                               </span>
                             </mark>
                           </p>
@@ -437,7 +438,7 @@ const SingleStudent = () => {
 
                         <td
                           className="modal fade"
-                          id={"updateStudentModal" + student.id}
+                          id={"updateStudentModal" + student?.id}
                           tabIndex="-1"
                           aria-labelledby="exampleModalLabel"
                           aria-hidden="true"

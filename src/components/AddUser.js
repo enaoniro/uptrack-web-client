@@ -51,19 +51,19 @@ const AddUser = () => {
               <input
                 type="text"
                 className="form-control"
-                name="first_name"
-                value={user.first_name || ""}
-                placeholder="first name"
+                name="username"
+                value={user.username || ""}
+                placeholder="username"
                 onChange={handleOnChange}
               />
-              <input
+              {/* <input
                 type="text"
                 className="form-control"
                 name="last_name"
                 value={user.last_name || ""}
                 placeholder="last name"
                 onChange={handleOnChange}
-              />
+              /> */}
               <input
                 type="text"
                 className="form-control"
@@ -73,10 +73,10 @@ const AddUser = () => {
                 onChange={handleOnChange}
               />
               <input
-                type="number"
+                type="text"
                 className="form-control"
-                name="RoleId"
-                value={user.RoleId || ""}
+                name="role"
+                value={user.role || ""}
                 placeholder="rolu giriniz"
                 onChange={handleOnChange}
               />
