@@ -39,8 +39,7 @@ const StudentContextProvider = (props) => {
 
   const getStudentById = async (id) => {
     const response = await fetch(
-      `https://uptrackrest.onrender.com/api/v1/students/byId/${id}`
-    );
+      "https://uptrackrest.onrender.com/api/v1/students/byId" + id );
     const student = await response.json();
 
     console.log(student)
