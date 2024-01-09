@@ -285,7 +285,11 @@ const SingleStudent = () => {
                           {/* <span className="text-black">Targetid :{target?.id}</span> */}
                         </td>
 
-                        <td className="">
+                        <td className={
+                              target?.target1 <= record?.record1
+                                ? " bg-secondary text-dark bg-opacity-25 "
+                                : "bg-danger text-light "
+                            }>
                           <p
                             className={
                               target?.target1 <= record?.record1
