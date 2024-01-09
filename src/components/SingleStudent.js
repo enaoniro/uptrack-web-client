@@ -128,7 +128,7 @@ const SingleStudent = () => {
                     className="nav-link text-primary"
                     href="http://localhost:3000/grup"
                   >
-                    Grup Page
+                    Group Page
                   </a>
                 </li>
                 {/* <li className="nav-item">
@@ -272,10 +272,10 @@ const SingleStudent = () => {
                             </span>
                           </p>
                           <br></br>
-                          <span className=" text-black">{student.email}</span>
+                          <span className=" text-black">email : {student.email}</span>
                           <br></br>
                           <span className="text-black">
-                            grupId :{student.group}
+                            group :{student.groupname}
                           </span>
                           <br></br>
                           <span className="text-black">{student.id}</span>
