@@ -58,7 +58,7 @@ const Student = ({ student }) => {
     <>
       <tr
         className="w-100"
-        onClick={() => navigate(`/students/student/${student._id}`)}
+        onClick={() => navigate(`/students/byId/${student._id}`)}
       >
         <td>
           <span className="text-black"></span> {student.first_name}{" "}
