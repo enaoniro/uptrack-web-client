@@ -34,11 +34,11 @@ const SingleStudent = () => {
   console.log(id)
   const navigate = useNavigate();
 
-  useEffect(() => {
-    //   getStudentList();
-    getStudentById(id);
-    //   setStudent(student=> student.id === id)
-  }, [id]);
+  // useEffect(() => {
+  //   //   getStudentList();
+  //   getStudentById(id);
+  //   //   setStudent(student=> student.id === id)
+  // }, [id]);
 
   const {
     studentList,

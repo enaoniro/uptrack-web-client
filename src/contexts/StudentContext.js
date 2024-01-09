@@ -42,6 +42,8 @@ const StudentContextProvider = (props) => {
       `https://uptrackrest.onrender.com/api/v1/students/byId/${id}`
     );
     const student = await response.json();
+
+    console.log(student)
     // const student = studentList.find((student) => student.id == pId);
     setStudent(student);
   };
