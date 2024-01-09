@@ -288,7 +288,7 @@ const SingleStudent = () => {
                         <td className="">
                           <p
                             className={
-                              target?.task1 <= record?.task1
+                              target?.target1 <= record?.record1
                                 ? " bg-secondary text-dark bg-opacity-25 "
                                 : "bg-danger text-light "
                             }
@@ -315,7 +315,7 @@ const SingleStudent = () => {
                         <td>
                           <p
                             className={
-                              target?.task2 <= record?.task2
+                              target?.target2 <= record?.record2
                                 ? " bg-secondary text-dark bg-opacity-25 "
                                 : "bg-danger text-light "
                             }
@@ -344,7 +344,7 @@ const SingleStudent = () => {
                         <td>
                           <p
                             className={
-                              target?.task3 <= record?.task3
+                              target?.target3 <= record?.record3
                                 ? " bg-secondary text-dark bg-opacity-25 "
                                 : "bg-danger text-light "
                             }
@@ -373,7 +373,7 @@ const SingleStudent = () => {
                         <td>
                           <p
                             className={
-                              target?.task4 <= record?.task4
+                              target?.target4 <= record?.record4
                                 ? " bg-secondary text-dark bg-opacity-25 "
                                 : "bg-danger text-light "
                             }
@@ -402,7 +402,7 @@ const SingleStudent = () => {
                         <td>
                           <p
                             className={
-                              target?.task5 <= record?.task5
+                              target?.target5 <= record?.record5
                                 ? "bg-secondary text-dark bg-opacity-25"
                                 : "bg-danger text-light "
                             }
