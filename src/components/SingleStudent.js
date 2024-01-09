@@ -24,6 +24,16 @@ const SingleStudent = () => {
   // const [ record, setRecord ] = useState({})
   // console.log("single student rendered");
 
+  const {
+    studentList,
+    getStudentById,
+    setStudent,
+    deleteStudent,
+    updateStudent,
+    isOpen,
+    setIsOpen,
+  } = useContext(StudentContext);
+
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const logoutWithRedirect = () =>
     logout({
@@ -40,15 +50,7 @@ const SingleStudent = () => {
     //   setStudent(student=> student.id === id)
   }, [id]);
 
-  const {
-    studentList,
-    getStudentById,
-    setStudent,
-    deleteStudent,
-    updateStudent,
-    isOpen,
-    setIsOpen,
-  } = useContext(StudentContext);
+ 
 
   const { grupList } = useContext(GrupContext);
 
