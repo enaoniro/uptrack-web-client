@@ -24,6 +24,8 @@ const SingleStudent = () => {
   // const [ record, setRecord ] = useState({})
   // console.log("single student rendered");
 
+  
+
   const {
     studentList,
     getStudentById,
@@ -41,6 +43,7 @@ const SingleStudent = () => {
     });
 
   let { id } = useParams();
+  
   console.log(id)
   const navigate = useNavigate();
 

@@ -35,7 +35,7 @@ function UnregisteredUser({ user }) {
   console.log(grupList);
 
   const grup = grupList?.find((grup) => grup?.email === user.email);
-  //   console.log(grup);
+   console.log(grup);
 
   //   const logoutWithRedirect = () =>
   //     logout({
@@ -85,7 +85,7 @@ function UnregisteredUser({ user }) {
               <li className="nav-item">
                 <a
                   className="nav-link text-primary"
-                  href="http://localhost:3000/grup"
+                  href="/"
                 >
                   Group Page
                 </a>

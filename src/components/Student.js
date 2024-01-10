@@ -69,8 +69,8 @@ const Student = ({ student }) => {
         </td>
         <td>
           {grupList
-            .filter((grup) => grup.id == student.GrupId)
-            .map((grup) => grup.name)}
+            .filter((grup) => grup._id == student.group)
+            .map((grup) => grup.groupname)}
         </td>
         {/* <td className="">
         <p className=" bg-secondary text-dark bg-opacity-25">
