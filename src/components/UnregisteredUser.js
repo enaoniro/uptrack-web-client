@@ -85,7 +85,7 @@ function UnregisteredUser({ user }) {
               <li className="nav-item">
                 <a
                   className="nav-link text-primary"
-                  href="/"
+                  href="https://uptrack.onrender.com/"
                 >
                   Group Page
                 </a>
