@@ -51,7 +51,7 @@ function UnregisteredUser({ user }) {
   };
 
   if (!grup) {
-    return <div>Loading...</div>;
+    return <div><h4>Loading...</h4></div>;
   }
 
   // const grup = studentList.filter((student) => student.GrupId);
