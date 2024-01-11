@@ -50,6 +50,10 @@ function UnregisteredUser({ user }) {
     setShowDetails(!showDetails);
   };
 
+  if (!grup) {
+    return <div>Loading...</div>;
+  }
+
   // const grup = studentList.filter((student) => student.GrupId);
   // console.log(grupOneStudent);
 
