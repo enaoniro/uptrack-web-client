@@ -441,62 +441,7 @@ const SingleStudent = () => {
                         </button>
                       </td> */}
 
-                        <td
-                          className="modal fade"
-                          id={"updateStudentModal" + student?.id}
-                          tabIndex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <UpdateStudent student={student} />
-                        </td>
-
-                        <td
-                          className="modal fade"
-                          id={"addTaskModal" + task?.id}
-                          tabIndex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <AddTask task={task} />
-                        </td>
-                        <td
-                          className="modal fade"
-                          id={"updateTaskModal" + task?.id}
-                          tabIndex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <UpdateTask task={task} />
-                        </td>
-                        <td
-                          className="modal fade"
-                          id={"addTargetModal" + target?.id}
-                          tabIndex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <AddTarget target={target} task={task} />
-                        </td>
-                        <td
-                          className="modal fade"
-                          id={"updateTargetModal" + target?.id}
-                          tabIndex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <UpdateTarget target={target} />
-                        </td>
-                        <td
-                          className="modal fade"
-                          id={"addRecordModal" + record?.id}
-                          tabIndex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <AddRecord record={record} task={task} />
-                        </td>
-                        <td
+                        {/* <td
                           className="modal fade"
                           id={"updateRecordModal" + record?.id}
                           tabIndex="-1"
@@ -504,7 +449,7 @@ const SingleStudent = () => {
                           aria-hidden="true"
                         >
                           <UpdateRecord record={record} />
-                        </td>
+                        </td> */}
                       </tr>
                       <tr
                         className="w-50 mb-3 text-primary opacity-75"
@@ -524,6 +469,71 @@ const SingleStudent = () => {
                       </tr>
                     </tbody>
                   </Table>
+                  
+                  <div
+                          className="modal fade"
+                          id={"updateStudentModal" + student?.id}
+                          tabIndex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <UpdateStudent student={student} />
+                        </div>
+
+                        <div
+                          className="modal fade"
+                          id={"addTaskModal" + task?.id}
+                          tabIndex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <AddTask task={task} />
+                        </div>
+                        <div
+                          className="modal fade"
+                          id={"updateTaskModal" + task?.id}
+                          tabIndex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <UpdateTask task={task} />
+                        </div>
+                        <div
+                          className="modal fade"
+                          id={"addTargetModal" + target?.id}
+                          tabIndex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <AddTarget target={target} task={task} />
+                        </div>
+                        <div
+                          className="modal fade"
+                          id={"updateTargetModal" + target?.id}
+                          tabIndex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <UpdateTarget target={target} />
+                        </div>
+                        <div
+                          className="modal fade"
+                          id={"addRecordModal" + record?.id}
+                          tabIndex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <AddRecord record={record} task={task} />
+                        </div>
+                  <div
+                          className="modal fade"
+                          id={"updateRecordModal" + record?.id}
+                          tabIndex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <UpdateRecord record={record} />
+                        </div>
 
                   {showCompletedTasks && (
                     <>
