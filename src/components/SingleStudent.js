@@ -131,7 +131,7 @@ const SingleStudent = () => {
                 <li className="nav-item text-align-center">
                   <a
                     className="nav-link text-primary"
-                    href="http://localhost:3000/grup"
+                    href="/"
                   >
                     Group Page
                   </a>

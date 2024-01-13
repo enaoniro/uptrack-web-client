@@ -45,7 +45,9 @@ const RecordContextProvider = (props) => {
         headers: { "Content-Type": "application/json" },
       });
 
-      setRecordList(previousState => [...recordList, newRecord]);
+      setRecordList(
+        recordList.map((record) => (record.task === id ? record : newRecord))
+      );
       getRecords();
     } catch (error) {
       console.log(error);
@@ -71,6 +73,29 @@ const RecordContextProvider = (props) => {
     console.log(recordList)
   };
 
+
+  const deleteRecord = async (pid) => {
+    // const pid = req.params.id
+
+    try { 
+      await fetch("https://uptrackrest.onrender.com/api/v1/records/" +pid, {
+        method:"DELETE",
+      })
+
+      const updateDRecordList = recordList.filter(
+        (record) => record._id !== pid
+      );
+
+      setRecordList(updateDRecordList);
+      getRecords();
+      alert("the record is deleted!");
+      
+    } catch (error) {
+      console.log(error);
+    }
+
+  
+  }
   // const selectRecord = (id) => {
   //   setSelectedRecord(RecordList.find(Record=>Record.id==id));
   //   return selectedRecord;
@@ -85,6 +110,7 @@ const RecordContextProvider = (props) => {
         addRecord,
         updateRecord,
         getRecords,
+        deleteRecord,
         recordList,
         setRecordList,
         isOpen,
