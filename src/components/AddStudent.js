@@ -101,10 +101,10 @@ const AddStudent = ({ showDetails, setShowDetails, grup }) => {
           />
           <input
             type="text"
-            className="form-control mb-2 bg-light"
+            className="form-control mb-2 bg-secondary "
             name="group"
-            value={student.group || ""}
-            placeholder="grup no giriniz"
+            defaultValue={grup._id || ""}
+            disabled
             onChange={handleOnChange}
           />
           {/* <button

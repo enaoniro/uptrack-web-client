@@ -85,6 +85,26 @@ const SingleStudent = () => {
     setTaskList();
   };
 
+  const confirmDelete = () => {
+  
+      let isConfirmed = window.confirm("Are you sure you want to delete this item?");
+  
+      // Check the user's choice
+      if (isConfirmed) {
+        deleteStudent(id)
+          // User clicked OK, proceed with deletion
+          // Perform the deletion logic here, for example:
+          
+          console.log("Deleting item with ID: " );
+          // Perform the actual deletion operation, e.g., send a request to the server
+      } else {
+          // User clicked Cancel, do nothing or provide feedback
+          console.log("Deletion canceled by the user");
+      }
+  }
+  
+
+
   const handleClick = () => {
     // getTaskList();
 
@@ -226,7 +246,10 @@ const SingleStudent = () => {
                   </button>
                   <button
                     // disabled
-                    onClick={() => deleteStudent(id)}
+                    onClick={() => {
+                      confirmDelete()
+                      }
+                    }
                     className="btn btn-outline-danger opacity-75 w-20"
                   >
                     Delete student

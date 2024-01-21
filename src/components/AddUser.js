@@ -100,54 +100,6 @@ const AddUser = () => {
         </div>
       </div>
     </div>
-    // <div id="form-container">
-    //   <p color="blue">kullanici bilgilerini giriniz</p>
-
-    //   <Form onSubmit={handleSubmit}>
-    //     <input
-    //       type="text"
-    //       className="form-control"
-    //       name="first_name"
-    //       value={user.first_name}
-    //       placeholder="first name"
-    //       onChange={handleOnChange}
-    //     />
-    //     <input
-    //       type="text"
-    //       className="form-control"
-    //       name="last_name"
-    //       value={user.last_name}
-    //       placeholder="last name"
-    //       onChange={handleOnChange}
-    //     />
-    //     <input
-    //       type="text"
-    //       className="form-control"
-    //       name="email"
-    //       value={user.email}
-    //       placeholder="email"
-    //       onChange={handleOnChange}
-    //     />
-    //        <input
-    //       type="number"
-    //       className="form-control"
-    //       name="RoleId"
-    //       value={user.RoleId}
-    //       placeholder="rolunu giriniz"
-    //       onChange={handleOnChange}
-    //     />
-
-    //     <button
-    //       type="submit"
-    //       className="btn bg-success text-white btn-outline-success"
-    //     >
-    //       save
-    //     </button>
-    //     <button type="button" className="btn btn-danger" onClick={hideForm}>
-    //       close
-    //     </button>
-    //   </Form>
-    // </div>
   );
 };
 

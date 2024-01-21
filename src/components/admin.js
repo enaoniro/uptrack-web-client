@@ -40,7 +40,7 @@ function Admin() {
   };
 
   return (
-    <div className="" id="main" key={canton.id}>
+    <div className="" id="main">
       <Container fluid className="bg-white">
         <div className="container-fluid mb-2 p-1 shadow-sm">
           <header className="m-2 navbar navbar-expand-lg " id="header">
