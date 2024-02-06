@@ -33,7 +33,7 @@ const StudentContextProvider = (props) => {
   const getStudentsInGrup = async (pId) => {
     const response = await fetch("https://uptrackrest.onrender.com/api/v1/students" + pId);
     const studentList = await response.json();
-    const grup = studentList.filter((student) => student.GrupId == pId);
+    const grup = studentList?.filter((student) => student.GrupId == pId);
     setStudentsInGrup(grup);
   };
 
@@ -47,12 +47,12 @@ const StudentContextProvider = (props) => {
     setStudent(student);
   };
 
-  const addStudent = async (pStudent) => {
+  const addStudent = async (pStudent, id) => {
     const newStudent = {
       first_name: pStudent.first_name,
       last_name: pStudent.last_name,
       email: pStudent.email,
-      group: pStudent.group,
+      group: id,
       img: pStudent.img,
     };
     try {

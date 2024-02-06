@@ -99,14 +99,13 @@ const AddStudent = ({ showDetails, setShowDetails, grup }) => {
             placeholder="img"
             onChange={handleOnChange}
           />
-          <input
+          {/* <input
             type="text"
-            className="form-control mb-2 bg-secondary "
+            className="form-control mb-2 bg-light "
             name="group"
-            defaultValue={grup._id || ""}
-            disabled
+            value={student.group || ""}
             onChange={handleOnChange}
-          />
+          /> */}
           {/* <button
                 type="button"
                 className="btn btn-secondary"

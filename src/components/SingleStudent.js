@@ -24,8 +24,6 @@ const SingleStudent = () => {
   // const [ record, setRecord ] = useState({})
   // console.log("single student rendered");
 
-  
-
   const {
     studentList,
     getStudentById,
@@ -43,39 +41,50 @@ const SingleStudent = () => {
     });
 
   let { id } = useParams();
-  
-  console.log(id)
+
+  console.log(id);
   const navigate = useNavigate();
 
   useEffect(() => {
-    //   getStudentList();
     getStudentById(id);
-    //   setStudent(student=> student.id === id)
   }, [id]);
-
- 
 
   const { grupList } = useContext(GrupContext);
 
-  const student = studentList.find((student) => student._id == id);
+  const {
+    taskList,
+    setTaskList,
+    getTasks,
+    setTaskCompleted,
+    setTask,
+  } = useContext(TaskContext);
+
+  const { targetList, getTargets, setTarget } = useContext(TargetContext);
+  console.log(targetList || "");
+
+  const { recordList, getRecords, setRecord } = useContext(RecordContext);
+  console.log(recordList);
+
+  const student = studentList?.find((student) => student._id == id);
+  if (!studentList || !student) {
+    return <div>no students found , please add student</div>;
+  }
   console.log(student);
 
-  const { taskList, setTaskList, getTasks, setTaskCompleted } = useContext(
-    TaskContext
-  );
   console.log(taskList);
-  const { targetList } = useContext(TargetContext);
-  console.log(targetList);
-  const { recordList } = useContext(RecordContext);
-  console.log(recordList);
 
   const task = taskList?.find(
     (task) => task?.student === student?._id && task?.isCompleted === false
   );
-  console.log(task || "no tasks");
-  const target = targetList?.find((target) => target?.task === task?._id); //.sort((targetLast, targetPrevious) => targetLast.id - targetPrevious.id);
+
+  console.log(task ?? "no tasks");
+
+  const target = targetList?.find((target) => target?.task === task?._id);
+
   console.log(target ?? "no targets");
+
   const record = recordList.find((record) => record?.task === task?._id);
+
   console.log(record ?? "no records");
 
   const setTaskEnd = (task) => {
@@ -86,24 +95,23 @@ const SingleStudent = () => {
   };
 
   const confirmDelete = () => {
-  
-      let isConfirmed = window.confirm("Are you sure you want to delete this item?");
-  
-      // Check the user's choice
-      if (isConfirmed) {
-        deleteStudent(id)
-          // User clicked OK, proceed with deletion
-          // Perform the deletion logic here, for example:
-          
-          console.log("Deleting item with ID: " );
-          // Perform the actual deletion operation, e.g., send a request to the server
-      } else {
-          // User clicked Cancel, do nothing or provide feedback
-          console.log("Deletion canceled by the user");
-      }
-  }
-  
+    let isConfirmed = window.confirm(
+      "Are you sure you want to delete this item?"
+    );
 
+    // Check the user's choice
+    if (isConfirmed) {
+      deleteStudent(id);
+      // User clicked OK, proceed with deletion
+      // Perform the deletion logic here, for example:
+
+      console.log("Deleting item with ID: ");
+      // Perform the actual deletion operation, e.g., send a request to the server
+    } else {
+      // User clicked Cancel, do nothing or provide feedback
+      console.log("Deletion canceled by the user");
+    }
+  };
 
   const handleClick = () => {
     // getTaskList();
@@ -114,9 +122,9 @@ const SingleStudent = () => {
   };
   // console.log(student.Tasks.filter((task) => task.isCompleted === true));
 
-  if (!student) {
-    return <div>Loading...</div>;
-  }
+  // if (!student) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <>
@@ -149,10 +157,7 @@ const SingleStudent = () => {
                       <a className="nav-link active" aria-current="page" href="#">Dashboard</a>
                     </li> */}
                 <li className="nav-item text-align-center">
-                  <a
-                    className="nav-link text-primary"
-                    href="/"
-                  >
+                  <a className="nav-link text-primary" href="/">
                     Group Page
                   </a>
                 </li>
@@ -247,9 +252,8 @@ const SingleStudent = () => {
                   <button
                     // disabled
                     onClick={() => {
-                      confirmDelete()
-                      }
-                    }
+                      confirmDelete();
+                    }}
                     className="btn btn-outline-danger opacity-75 w-20"
                   >
                     Delete student
@@ -300,7 +304,9 @@ const SingleStudent = () => {
                             </span>
                           </p>
                           <br></br>
-                          <span className=" text-black">email : {student.email}</span>
+                          <span className=" text-black">
+                            email : {student.email}
+                          </span>
                           <br></br>
                           <span className="text-black">
                             group :{student.groupname}
@@ -326,7 +332,13 @@ const SingleStudent = () => {
                           <p className=" border border-info d-flex justify-content-between px-1 py-1">
                             target:
                             <mark className="border">
-                              <span className=" w-30 bg-light m-0 mx-3 text-danger fw-bold">
+                              <span
+                                className={
+                                  target?.target1 <= record?.record1
+                                    ? " text-success fw-bold mx-3 w-30 m-0  "
+                                    : "text-danger fw-bold mx-3 w-30 m-0 "
+                                }
+                              >
                                 {target?.target1}
                               </span>
                             </mark>
@@ -353,7 +365,13 @@ const SingleStudent = () => {
                           <p className="border border-info d-flex justify-content-between px-1 py-1">
                             target:
                             <mark className="border">
-                              <span className=" w-30 m-0 text-danger fw-bold mx-3">
+                              <span
+                                className={
+                                  target?.target2 <= record?.record2
+                                    ? " text-success fw-bold mx-3 w-30 m-0  "
+                                    : "text-danger fw-bold mx-3 w-30 m-0 "
+                                }
+                              >
                                 {target?.target2}
                               </span>
                             </mark>
@@ -492,71 +510,71 @@ const SingleStudent = () => {
                       </tr>
                     </tbody>
                   </Table>
-                  
-                  <div
-                          className="modal fade"
-                          id={"updateStudentModal" + student?.id}
-                          tabIndex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <UpdateStudent student={student} />
-                        </div>
 
-                        <div
-                          className="modal fade"
-                          id={"addTaskModal" + task?.id}
-                          tabIndex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <AddTask task={task} />
-                        </div>
-                        <div
-                          className="modal fade"
-                          id={"updateTaskModal" + task?.id}
-                          tabIndex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <UpdateTask task={task} />
-                        </div>
-                        <div
-                          className="modal fade"
-                          id={"addTargetModal" + target?.id}
-                          tabIndex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <AddTarget target={target} task={task} />
-                        </div>
-                        <div
-                          className="modal fade"
-                          id={"updateTargetModal" + target?.id}
-                          tabIndex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <UpdateTarget target={target} />
-                        </div>
-                        <div
-                          className="modal fade"
-                          id={"addRecordModal" + record?.id}
-                          tabIndex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <AddRecord record={record} task={task} />
-                        </div>
                   <div
-                          className="modal fade"
-                          id={"updateRecordModal" + record?.id}
-                          tabIndex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <UpdateRecord record={record} />
-                        </div>
+                    className="modal fade"
+                    id={"updateStudentModal" + student?.id}
+                    tabIndex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <UpdateStudent student={student} />
+                  </div>
+
+                  <div
+                    className="modal fade"
+                    id={"addTaskModal" + task?.id}
+                    tabIndex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <AddTask task={task} />
+                  </div>
+                  <div
+                    className="modal fade"
+                    id={"updateTaskModal" + task?.id}
+                    tabIndex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <UpdateTask task={task} />
+                  </div>
+                  <div
+                    className="modal fade"
+                    id={"addTargetModal" + target?.id}
+                    tabIndex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <AddTarget target={target} task={task} />
+                  </div>
+                  <div
+                    className="modal fade"
+                    id={"updateTargetModal" + target?.id}
+                    tabIndex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <UpdateTarget target={target} />
+                  </div>
+                  <div
+                    className="modal fade"
+                    id={"addRecordModal" + record?.id}
+                    tabIndex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <AddRecord record={record} task={task} />
+                  </div>
+                  <div
+                    className="modal fade"
+                    id={"updateRecordModal" + record?.id}
+                    tabIndex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <UpdateRecord record={record} />
+                  </div>
 
                   {showCompletedTasks && (
                     <>

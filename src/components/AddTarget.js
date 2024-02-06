@@ -53,7 +53,7 @@ const AddTarget = ({task}) => {
               <input
                 type="number"
                 className="form-control bg-info"
-                placeholder=" the no of the target"
+                placeholder="target value"
                 name="target1"
                 value={target?.target1 || ""}
                 onChange={handleChange}
@@ -62,7 +62,7 @@ const AddTarget = ({task}) => {
               <input
                 type="number"
                 className="form-control bg-info"
-                placeholder="pirlanta adi"
+                placeholder="target value"
                 name="target2"
                 value={target?.target2 || ""}
                 onChange={handleChange}
@@ -71,7 +71,7 @@ const AddTarget = ({task}) => {
               <input
                 type="number"
                 className="form-control bg-info"
-                placeholder="namaz"
+                placeholder="target value"
                 name="target3"
                 value={target?.target3 || ""}
                 onChange={handleChange}
@@ -80,7 +80,7 @@ const AddTarget = ({task}) => {
               <input
                 type="number"
                 className="form-control bg-info"
-                placeholder="cevsen"
+                placeholder="target value"
                 name="target4"
                 value={target?.target4 || ""}
                 onChange={handleChange}
@@ -89,7 +89,7 @@ const AddTarget = ({task}) => {
               <input
                 type="number"
                 className="form-control bg-info"
-                placeholder="devam"
+                placeholder="target value"
                 name="target5"
                 value={target?.target5 || ""}
                 onChange={handleChange}

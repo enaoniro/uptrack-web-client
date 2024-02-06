@@ -18,7 +18,10 @@ const TargetContextProvider = (props) => {
   const getTargets = async () => {
     const response = await fetch("https://uptrackrest.onrender.com/api/v1/targets");
     const targetList = await response.json();
-    setTargetList(targetList);
+    if(targetList) {
+      setTargetList(targetList);
+    }
+    return targetList;
   };
 
   //   const getUserByEmail = async (pUser) => {

@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
 export const TaskContext = createContext();
 
@@ -18,9 +18,18 @@ const TaskContextProvider = (props) => {
   }, []);
 
   const getTasks = async () => {
-    const response = await fetch("https://uptrackrest.onrender.com/api/v1/tasks");
-    const taskList = await response.json();
-    setTaskList(taskList);
+    try {
+      const response = await fetch(
+        "https://uptrackrest.onrender.com/api/v1/tasks"
+      );
+      const taskList = await response.json();
+
+      if (taskList) {
+        setTaskList(taskList);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // const getTaskByStudentId = async (id) => {
@@ -53,11 +62,9 @@ const TaskContextProvider = (props) => {
     }
   };
 
-  
-
   const updateTask = async (pTask) => {
     console.log(pTask._id);
-    console.log(pTask)
+    console.log(pTask);
     try {
       await fetch("https://uptrackrest.onrender.com/api/v1/tasks/", {
         method: "PUT",
@@ -71,7 +78,7 @@ const TaskContextProvider = (props) => {
     } catch (error) {
       console.log(error);
     }
-    console.log(taskList)
+    console.log(taskList);
   };
 
   const setTaskCompleted = async (pTask) => {
@@ -79,17 +86,19 @@ const TaskContextProvider = (props) => {
     const newTask = { ...pTask, isCompleted: !pTask.isCompleted };
 
     try {
-      const res = await fetch("https://uptrackrest.onrender.com/api/v1/tasks/settask", {
-        method: "PUT",
-        body: JSON.stringify(newTask),
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await fetch(
+        "https://uptrackrest.onrender.com/api/v1/tasks/settask",
+        {
+          method: "PUT",
+          body: JSON.stringify(newTask),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
       // const data = await res.json();
 
-
       setTaskList(
-         taskList.map((task) => (task.id === newTask.id ? newTask : task))
+        taskList.map((task) => (task.id === newTask.id ? newTask : task))
       );
       getTasks();
 
