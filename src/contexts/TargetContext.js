@@ -49,7 +49,7 @@ const TargetContextProvider = (props) => {
         headers: { "Content-Type": "application/json" },
       });
 
-      setTargetList(previousState => [...targetList, newTarget]);
+      setTargetList([...targetList, newTarget]);
       getTargets();
     } catch (error) {
       console.log(error);

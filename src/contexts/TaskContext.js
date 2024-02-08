@@ -34,8 +34,8 @@ const TaskContextProvider = (props) => {
 
   // const getTaskByStudentId = async (id) => {
   //   const response = await fetch(`https://uptrackrest.onrender.com/api/v1/tasks/${id}`);
-  //   const suttasks = await response.json();
-  //   setStudentTasks(suttasks);
+  //   const studentTasks = await response.json();
+  //   setStudentTasks(studentTasks);
   // };
 
   const addTask = async (pTask, id) => {
@@ -55,7 +55,7 @@ const TaskContextProvider = (props) => {
         headers: { "Content-Type": "application/json" },
       });
 
-      setTaskList((previousTaskList) => [...taskList, newTask]);
+      setTaskList([...taskList, newTask]);
       getTasks();
     } catch (error) {
       console.log(error);

@@ -1,5 +1,8 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { TaskContext } from "./TaskContext";
+import { TargetContext } from "./TargetContext";
+import { RecordContext } from "./RecordContext";
 
 export const StudentContext = createContext();
 
@@ -9,6 +12,10 @@ const StudentContextProvider = (props) => {
   const [student, setStudent] = useState({});
   const [selectedStudent, setSelectedStudent] = useState({});
   const [studentsInGrup, setStudentsInGrup] = useState([]);
+  const [taskList, setTaskList] = useState([]);
+  const [targetList, setTargetList] = useState([]);
+  const [recordList, setRecordList] = useState([]);
+
 
   const navigate = useNavigate();
 
@@ -16,7 +23,14 @@ const StudentContextProvider = (props) => {
 
   useEffect(() => {
     getStudentList();
+    // getTaskList();
+    // getTargetList();
+    // getRecordList();
   }, []);
+
+  // const { getTaskList } = useContext(TaskContext);
+  // const { setTargetList, targetList, getTargetList } = useContext(TargetContext);
+  // const {setRecordList, recordList, getRecordList } = useContext(RecordContext);
 
   const getStudentList = async () => {
     try {
@@ -103,6 +117,9 @@ const StudentContextProvider = (props) => {
       );
 
       setStudentList(updateDStudentList);
+      setTaskList(taskList?.filter((task)=>task._id == student._id));
+      setTargetList(targetList?.filter((target)=>target._id == student._id));
+      setRecordList(recordList?.filter((record)=>record._id == student._id));
       getStudentList();
       alert("the student is deleted!");
       navigate("/");

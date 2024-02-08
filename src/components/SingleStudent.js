@@ -11,6 +11,7 @@ import { RecordContext } from "../contexts/RecordContext";
 import { TaskContext } from "../contexts/TaskContext";
 import UpdateStudent from "./UpdateStudent";
 import AddTask from "./AddTask.js";
+import Task from "./Task.js";
 import AddTarget from "./AddTarget.js";
 import UpdateTarget from "./UpdateTarget.js";
 import UpdateRecord from "./UpdateRecord.js";
@@ -59,40 +60,59 @@ const SingleStudent = () => {
     setTask,
   } = useContext(TaskContext);
 
-  const { targetList, getTargets, setTarget } = useContext(TargetContext);
-  console.log(targetList || "");
-
-  const { recordList, getRecords, setRecord } = useContext(RecordContext);
-  console.log(recordList);
 
   const student = studentList?.find((student) => student._id == id);
+
+
   if (!studentList || !student) {
     return <div>no students found , please add student</div>;
   }
+
   console.log(student);
 
   console.log(taskList);
 
-  const task = taskList?.find(
-    (task) => task?.student === student?._id && task?.isCompleted === false
-  );
 
-  console.log(task ?? "no tasks");
+let task = "";
 
-  const target = targetList?.find((target) => target?.task === task?._id);
-
-  console.log(target ?? "no targets");
-
-  const record = recordList.find((record) => record?.task === task?._id);
-
-  console.log(record ?? "no records");
-
-  const setTaskEnd = (task) => {
-    console.log(task?.isCompleted);
-    task.isCompleted = !task.isCompleted;
-    setTaskCompleted(task);
-    setTaskList();
+if(taskList && taskList.length){
+  task = taskList?.find(
+    (task) => task?.student === student?._id && task?.isCompleted === false);
   };
+
+
+
+//   console.log(task ?? "no tasks");
+
+//   let target = "";
+
+//   if(targetList && targetList.length) {
+
+//   const target = targetList?.find((target) => target?.task === task?._id);
+
+//   return target;
+
+//   };
+
+//   console.log(target ?? "no targets");
+
+//   let record  = "";
+
+//   if(recordList && recordList.length) {
+
+//   const record = recordList.find((record) => record?.task === task?._id);
+
+//   return record;
+//   };
+
+//   console.log(record ?? "no records");
+
+//   const setTaskEnd = (task) => {
+//     console.log(task?.isCompleted);
+//     task.isCompleted = !task.isCompleted;
+//     setTaskCompleted(task);
+//     setTaskList();
+//   };
 
   const confirmDelete = () => {
     let isConfirmed = window.confirm(
@@ -113,13 +133,13 @@ const SingleStudent = () => {
     }
   };
 
-  const handleClick = () => {
-    // getTaskList();
+  // const handleClick = () => {
+  //   // getTaskList();
 
-    setTasksCompleted(taskList.filter((task) => task.isCompleted === true));
-    console.log(tasksCompleted);
-    setShowCompletedTasks(!showCompletedTasks);
-  };
+  //   setTasksCompleted(taskList.filter((task) => task.isCompleted === true));
+  //   console.log(tasksCompleted);
+  //   setShowCompletedTasks(!showCompletedTasks);
+  // };
   // console.log(student.Tasks.filter((task) => task.isCompleted === true));
 
   // if (!student) {
@@ -195,60 +215,13 @@ const SingleStudent = () => {
                   {/* <div className="w-100 text-align-center"> */}
                   <button
                     type="button"
-                    className="btn btn-outline-primary opacity-75 w-20"
+                    className="btn btn-outline-primary opacity-75 w-20 my-1"
                     data-bs-toggle="modal"
                     data-bs-target={"#updateStudentModal" + student?.id}
                   >
                     Edit student
                   </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary opacity-75 w-20 "
-                    data-bs-toggle="modal"
-                    data-bs-target={"#addTaskModal" + task?.id}
-                  >
-                    add task
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary opacity-75 w-20 "
-                    data-bs-toggle="modal"
-                    data-bs-target={"#updateTaskModal" + task?.id}
-                  >
-                    update task
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary opacity-75 w-20 "
-                    data-bs-toggle="modal"
-                    data-bs-target={"#addTargetModal" + target?.id}
-                  >
-                    add target
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary opacity-75 w-20"
-                    data-bs-toggle="modal"
-                    data-bs-target={"#updateTargetModal" + target?.id}
-                  >
-                    update target
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary opacity-75 w-20 "
-                    data-bs-toggle="modal"
-                    data-bs-target={"#addRecordModal" + record?.id}
-                  >
-                    add record
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary opacity-75 w-20"
-                    data-bs-toggle="modal"
-                    data-bs-target={"#updateRecordModal" + record?.id}
-                  >
-                    update record
-                  </button>
+                  
                   <button
                     // disabled
                     onClick={() => {
@@ -256,14 +229,14 @@ const SingleStudent = () => {
                     }}
                     className="btn btn-outline-danger opacity-75 w-20"
                   >
-                    Delete student
-                  </button>
-                  <button
+                    delete student
+                    </button>
+                  {/* <button
                     onClick={() => handleClick()}
                     className="btn btn-primary opacity-75 w-20"
                   >
                     Completed Tasks
-                  </button>
+                  </button> */}
                 </div>
               </div>
               <div className="col-lg-10 bg-white mt-2" id="details-div">
@@ -276,11 +249,13 @@ const SingleStudent = () => {
                     <thead className="bg-white">
                       <tr>
                         <th>student details</th>
+                       
                         <th>task1</th>
                         <th>task2</th>
                         <th>task3</th>
                         <th>task4</th>
                         <th>task5</th>
+                        <th>task actions</th>
                         {/* <th className="bg-primary text-light opacity-75">actions</th> */}
                       </tr>
                     </thead>
@@ -313,201 +288,17 @@ const SingleStudent = () => {
                           </span>
                           <br></br>
                           <span className="text-black">{student.id}</span>
-                          <br></br>
+                          {/* <br></br>
                           <span className="text-black">{task?.id}</span>
-                          <br></br>
+                          <br></br> */}
                           {/* <span className="text-black">Targetid :{target?.id}</span> */}
                         </td>
+                         <Task task={task}/>
+                       
 
-                        <td className="">
-                          <p
-                            className={
-                              target?.target1 <= record?.record1
-                                ? " bg-secondary text-dark bg-opacity-25 "
-                                : "bg-danger text-light "
-                            }
-                          >
-                            {task?.task1}
-                          </p>
-                          <p className=" border border-info d-flex justify-content-between px-1 py-1">
-                            target:
-                            <mark className="border">
-                              <span
-                                className={
-                                  target?.target1 <= record?.record1
-                                    ? " text-success fw-bold mx-3 w-30 m-0  "
-                                    : "text-danger fw-bold mx-3 w-30 m-0 "
-                                }
-                              >
-                                {target?.target1}
-                              </span>
-                            </mark>
-                          </p>
-                          <p className=" border border-warning d-flex justify-content-between px-1 py-1">
-                            record:
-                            <mark className="border">
-                              <span className=" w-30 m-0 text-danger fw-bold mx-3">
-                                {record?.record1}
-                              </span>
-                            </mark>
-                          </p>
-                        </td>
-                        <td>
-                          <p
-                            className={
-                              target?.target2 <= record?.record2
-                                ? " bg-secondary text-dark bg-opacity-25 "
-                                : "bg-danger text-light "
-                            }
-                          >
-                            {task?.task2}
-                          </p>
-                          <p className="border border-info d-flex justify-content-between px-1 py-1">
-                            target:
-                            <mark className="border">
-                              <span
-                                className={
-                                  target?.target2 <= record?.record2
-                                    ? " text-success fw-bold mx-3 w-30 m-0  "
-                                    : "text-danger fw-bold mx-3 w-30 m-0 "
-                                }
-                              >
-                                {target?.target2}
-                              </span>
-                            </mark>
-                          </p>
-
-                          <p className="border border-warning d-flex justify-content-between px-1 py-1">
-                            record:
-                            <mark className="border">
-                              <span className=" w-30 m-0 text-danger fw-bold mx-3">
-                                {record?.record2}
-                              </span>
-                            </mark>
-                          </p>
-                        </td>
-
-                        <td>
-                          <p
-                            className={
-                              target?.target3 <= record?.record3
-                                ? " bg-secondary text-dark bg-opacity-25 "
-                                : "bg-danger text-light "
-                            }
-                          >
-                            {task?.task3}
-                          </p>
-                          <p className="border border-info d-flex justify-content-between px-1 py-1">
-                            target:
-                            <mark className="border">
-                              <span className=" w-30 m-0 text-danger fw-bold mx-3">
-                                {target?.target3}
-                              </span>
-                            </mark>
-                          </p>
-
-                          <p className="border border-warning d-flex justify-content-between px-1 py-1">
-                            record:
-                            <mark className="border">
-                              <span className="w-30 m-0 text-danger fw-bold mx-3">
-                                {record?.record3}
-                              </span>
-                            </mark>
-                          </p>
-                        </td>
-
-                        <td>
-                          <p
-                            className={
-                              target?.target4 <= record?.record4
-                                ? " bg-secondary text-dark bg-opacity-25 "
-                                : "bg-danger text-light "
-                            }
-                          >
-                            {task?.task4}
-                          </p>
-                          <p className="border border-info d-flex justify-content-between px-1 py-1">
-                            target:
-                            <mark className="border">
-                              <span className=" w-30 m-0 text-danger fw-bold mx-3">
-                                {target?.target4}
-                              </span>
-                            </mark>
-                          </p>
-
-                          <p className="border border-warning d-flex justify-content-between px-1 py-1">
-                            record:
-                            <mark className="border">
-                              <span className=" w-30 m-0 text-danger fw-bold mx-3">
-                                {record?.record4}
-                              </span>
-                            </mark>
-                          </p>
-                        </td>
-
-                        <td>
-                          <p
-                            className={
-                              target?.target5 <= record?.record5
-                                ? "bg-secondary text-dark bg-opacity-25"
-                                : "bg-danger text-light "
-                            }
-                          >
-                            {task?.task5}
-                          </p>
-                          <p className="border border-info d-flex justify-content-between px-1 py-1 ">
-                            <span>target:</span>
-                            <mark className="border">
-                              <span className=" w-30 m-0 text-danger fw-bold mx-3 ">
-                                {target?.target5}
-                              </span>
-                            </mark>
-                          </p>
-
-                          <p className="border border-warning d-flex justify-content-between px-1 py-1">
-                            record:
-                            <mark className="border">
-                              <span className=" w-30 m-0 text-danger fw-bold mx-3">
-                                {record?.record5}
-                              </span>
-                            </mark>
-                          </p>
-                        </td>
-                        {/* <td>
-                        <button
-                          onClick={() => setTaskEnd(task)}
-                          className="btn btn-secondary opacity-75 w-100"
-                        >
-                          mark task as completed
-                        </button>
-                      </td> */}
-
-                        {/* <td
-                          className="modal fade"
-                          id={"updateRecordModal" + record?.id}
-                          tabIndex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <UpdateRecord record={record} />
-                        </td> */}
+                      
                       </tr>
-                      <tr
-                        className="w-50 mb-3 text-primary opacity-75"
-                        onClick={() => setTaskEnd(task)}
-                      >
-                        <td className="" colSpan={6}>
-                          {task ? (
-                            <button className="w-100 btn btn-primary m-auto">
-                              mark task as completed
-                            </button>
-                          ) : (
-                            <p className="bg-danger text-white">
-                              no current task to display
-                            </p>
-                          )}
-                        </td>
-                      </tr>
+                      
                     </tbody>
                   </Table>
 
@@ -521,67 +312,14 @@ const SingleStudent = () => {
                     <UpdateStudent student={student} />
                   </div>
 
-                  <div
-                    className="modal fade"
-                    id={"addTaskModal" + task?.id}
-                    tabIndex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                  >
-                    <AddTask task={task} />
-                  </div>
-                  <div
-                    className="modal fade"
-                    id={"updateTaskModal" + task?.id}
-                    tabIndex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                  >
-                    <UpdateTask task={task} />
-                  </div>
-                  <div
-                    className="modal fade"
-                    id={"addTargetModal" + target?.id}
-                    tabIndex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                  >
-                    <AddTarget target={target} task={task} />
-                  </div>
-                  <div
-                    className="modal fade"
-                    id={"updateTargetModal" + target?.id}
-                    tabIndex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                  >
-                    <UpdateTarget target={target} />
-                  </div>
-                  <div
-                    className="modal fade"
-                    id={"addRecordModal" + record?.id}
-                    tabIndex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                  >
-                    <AddRecord record={record} task={task} />
-                  </div>
-                  <div
-                    className="modal fade"
-                    id={"updateRecordModal" + record?.id}
-                    tabIndex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                  >
-                    <UpdateRecord record={record} />
-                  </div>
+                 
 
                   {showCompletedTasks && (
                     <>
                       <div className="w-100 mt-5 shadow-lg" id="recent">
                         <div className="bg-danger opacity-50 d-flex justify-content-center text-red align-items-center">
                           <p
-                            onClick={handleClick}
+                            // onClick={handleClick}
                             className="d-flex justify-content-center align-items-center text-white text-center fw-bold "
                             style={{ cursor: "pointer" }}
                           >
@@ -607,7 +345,10 @@ const SingleStudent = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {tasksCompleted
+                          <tr>
+                           
+                          </tr>
+                          {/* {tasksCompleted
                             .sort(
                               (firstItem, secondItem) =>
                                 secondItem.id - firstItem.id
@@ -629,11 +370,12 @@ const SingleStudent = () => {
                                 <td>{task.task4}</td>
                                 <td>{task.task5}</td>
                               </tr>
-                            ))}
+                            ))} */}
                         </tbody>
                       </Table>
                     </>
                   )}
+                  
                 </Container>
               </div>
             </div>
