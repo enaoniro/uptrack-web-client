@@ -10,8 +10,11 @@ import UpdateRecord from "./UpdateRecord.js";
 import UpdateTask from "./UpdateTask";
 import AddRecord from "./AddRecord";
 
-const Task = ({ task }) => {
+const Task = ({ task, student }) => {
   const [showCompletedTasks, setShowCompletedTasks] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+  const [disabledTarget, setDisabledTarget] = useState(false);
+  const [disabledRecord, setDisabledRecord] = useState(false);
   const [tasksCompleted, setTasksCompleted] = useState([]);
 
   const {
@@ -32,6 +35,9 @@ const Task = ({ task }) => {
     console.log(task?.isCompleted);
     task.isCompleted = !task.isCompleted;
     setTaskCompleted(task);
+    setDisabled(!disabled);
+    setDisabledTarget(!disabledTarget);
+    setDisabledRecord(!disabledRecord);
     setTaskList();
   };
 
@@ -48,6 +54,28 @@ const Task = ({ task }) => {
     record = recordList?.find((record) => record?.task === task?._id);
   }
   console.log(record ?? "no records");
+
+  const setDisableTask = () => {
+    setDisabled(!disabled);
+  }
+
+  const setDisableTarget = () => {
+    setDisabledTarget(!disabledTarget);
+  }
+
+  const setDisableRecord = () => {
+    setDisabledRecord(!disabledRecord);
+  }
+
+
+  const handleClick = () => {
+    // getTaskList();
+    if(taskList && taskList.length) {
+    setTasksCompleted(taskList?.filter((task) => task.isCompleted === true))};
+    console.log(tasksCompleted);
+    setShowCompletedTasks(!showCompletedTasks);
+  };
+  // console.log(student.Tasks.filter((task) => task.isCompleted === true));
 
   return (
     <React.Fragment>
@@ -209,6 +237,8 @@ const Task = ({ task }) => {
       <td className="d-flex flex-column ">
         <button
           type="button"
+          disabled={disabled}
+          onClick={setDisableTask}
           className="btn btn-outline-primary opacity-75 w-20 my-1 "
           data-bs-toggle="modal"
           data-bs-target={"#addTaskModal" + task?.id}
@@ -225,6 +255,8 @@ const Task = ({ task }) => {
         </button>
         <button
           type="button"
+          disabled={disabledTarget}
+          onClick={setDisableTarget}
           className="btn btn-outline-primary opacity-75 w-20 my-1 "
           data-bs-toggle="modal"
           data-bs-target={"#addTargetModal" + target?.id}
@@ -241,6 +273,8 @@ const Task = ({ task }) => {
         </button>
         <button
           type="button"
+          disabled={disabledRecord}
+          onClick={setDisableRecord}
           className="btn btn-outline-primary opacity-75 w-20 my-1 "
           data-bs-toggle="modal"
           data-bs-target={"#addRecordModal" + record?.id}
@@ -263,10 +297,70 @@ const Task = ({ task }) => {
             mark task as completed
           </button>
         ) : (
-          <button className="disabled btn btn-danger opacity-75 w-20">no current task to display</button>
+          <button className="disabled btn btn-danger opacity-75 w-20 my-1">no current task to display</button>
+          
         )}
+        
+          <button
+                    onClick={() => handleClick()}
+                    className="btn btn-primary opacity-75 w-70 disabled"
+                  >
+                    Completed Tasks
+                  </button> 
       </td>
-   
+      <tr>
+        <td>
+      
+        </td>
+      </tr>
+      
+      {showCompletedTasks && (
+                    <>
+                    <tr>
+                      <div className="w-100 mt-5 shadow-lg" id="recent">
+                        <div className="bg-danger opacity-50 d-flex justify-content-center text-red align-items-center">
+                          <p
+                            // onClick={handleClick}
+                            className="d-flex justify-content-center align-items-center text-white text-center fw-bold "
+                            style={{ cursor: "pointer" }}
+                          >
+                            <span className="text-center ">
+                              Completed Tasks
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                      <Table
+                        bordered
+                        className="opacity-75 mb-3 shadow-lg recent-table"
+                      >
+                        <thead className="bg-white">
+                          <tr>
+                            {/* <th>student tasks</th> */}
+                            <th className="col-1">task no</th>
+                            <th>task1</th>
+                            <th>task2</th>
+                            <th>task3</th>
+                            <th>task4</th>
+                            <th>task5</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {tasksCompleted.map((task)=>(
+                          <tr>
+                            <td></td>
+                            <td>{task.task1}</td>
+                            <td>{task.task2}</td>
+                            <td>{task.task3}</td>
+                            <td>{task.task4}</td>
+                            <td>{task.task5}</td>
+                          </tr>)
+)}
+                        </tbody>
+                      </Table>
+                      </tr>
+                    </>
+                  )}
    
 
       <div

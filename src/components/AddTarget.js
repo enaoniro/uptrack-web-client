@@ -82,7 +82,7 @@ const AddTarget = ({task}) => {
                 className="form-control bg-info"
                 placeholder="target value"
                 name="target4"
-                value={target?.target4 || ""}
+                value={target?.target4 || 0}
                 onChange={handleChange}
               />
               <h6>target-5</h6>

@@ -107,12 +107,7 @@ if(taskList && taskList.length){
 
 //   console.log(record ?? "no records");
 
-//   const setTaskEnd = (task) => {
-//     console.log(task?.isCompleted);
-//     task.isCompleted = !task.isCompleted;
-//     setTaskCompleted(task);
-//     setTaskList();
-//   };
+
 
   const confirmDelete = () => {
     let isConfirmed = window.confirm(
@@ -133,14 +128,7 @@ if(taskList && taskList.length){
     }
   };
 
-  // const handleClick = () => {
-  //   // getTaskList();
 
-  //   setTasksCompleted(taskList.filter((task) => task.isCompleted === true));
-  //   console.log(tasksCompleted);
-  //   setShowCompletedTasks(!showCompletedTasks);
-  // };
-  // console.log(student.Tasks.filter((task) => task.isCompleted === true));
 
   // if (!student) {
   //   return <div>Loading...</div>;
@@ -231,12 +219,7 @@ if(taskList && taskList.length){
                   >
                     delete student
                     </button>
-                  {/* <button
-                    onClick={() => handleClick()}
-                    className="btn btn-primary opacity-75 w-20"
-                  >
-                    Completed Tasks
-                  </button> */}
+                
                 </div>
               </div>
               <div className="col-lg-10 bg-white mt-2" id="details-div">
@@ -293,7 +276,9 @@ if(taskList && taskList.length){
                           <br></br> */}
                           {/* <span className="text-black">Targetid :{target?.id}</span> */}
                         </td>
-                         <Task task={task}/>
+
+
+                         <Task student={student} setTaskCompleted={setTasksCompleted} tasksCompleted={tasksCompleted} task={task}/>
                        
 
                       
@@ -345,32 +330,16 @@ if(taskList && taskList.length){
                           </tr>
                         </thead>
                         <tbody>
+                          {tasksCompleted.map((task)=>(
                           <tr>
-                           
-                          </tr>
-                          {/* {tasksCompleted
-                            .sort(
-                              (firstItem, secondItem) =>
-                                secondItem.id - firstItem.id
-                            )
-                            .filter((task) => task.StudentId === student.id)
-                            .map((task) => (
-                              <tr
-                                key={task.id}
-                                className="bg-white bg-opacity-25 "
-                              >
-                                <td className="fw-bolder">{task.id}</td>
-                                <td>
-                                  {task.task1}
-                                  <br></br>
-                                  <p>{target?.task1}</p>
-                                </td>
-                                <td>{task.task2}</td>
-                                <td>{task.task3}</td>
-                                <td>{task.task4}</td>
-                                <td>{task.task5}</td>
-                              </tr>
-                            ))} */}
+                            <td></td>
+                            <td>{task.task1}</td>
+                            <td>{task.task2}</td>
+                            <td>{task.task3}</td>
+                            <td>{task.task4}</td>
+                            <td>{task.task5}</td>
+                          </tr>)
+)}
                         </tbody>
                       </Table>
                     </>
