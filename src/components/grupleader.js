@@ -55,9 +55,9 @@ function GrupLeader() {
 
   return (
     <div id="main">
-      <div className="container-fluid m-0 p-0">
+      <div className="container-fluid my-2 p-0">
         <header
-          className="w-100 navbar navbar-expand-lg shadow-sm bg-white mb-3 p-3"
+          className="w-100 navbar navbar-expand-lg bg-white mb-3 p-3"
           id="header"
         >
           {/* <a
@@ -104,7 +104,7 @@ function GrupLeader() {
                       className="nav-user-profile d-inline-block rounded-circle mr-3"
                       width="40"
                     /> */}
-                    <h6 className="d-inline-block p-1 me-1">{user.username} </h6>
+                    <h6 className="d-inline-block p-1 me-1">{user.name} </h6>
                   </span>
                   <button
                     className="btn btn-outline-danger"
@@ -151,11 +151,11 @@ function GrupLeader() {
             </div>
             <div className="col-md-10 p-1 my-3" id="details-div">
               <div
-                id="schweiz"
-                className="d-flex shadow-sm align-items-center justify-content-center mb-1"
+                
+                className="d-flex align-items-center justify-content-center mb-1"
               >
                 <p className="fw-bolder fs-5">Group Name :</p>
-                <p className="text-secondary fs-5 fw-bolder">{grup?.groupname}</p>
+                <p className="text-secondary fs-5 fw-bolder">{grup?.name}</p>
               </div>
               <div className="w-90 h-100 m-5" id="form-div">
                 {showDetails ? (

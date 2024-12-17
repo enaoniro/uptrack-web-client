@@ -5,25 +5,25 @@ import {
   Link,
   Outlet,
 } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import LoginButton from "./components/loginbutton";
-import LogoutButton from "./components/logoutButton";
+// import "bootstrap/dist/css/bootstrap.min.css";
+import LoginButton from "./components/LoginButton";
+import LogoutButton from "./components/LogoutButton";
 import "./App.css";
 import Profile from "./components/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 // import  * as userService  from "./service/user.service";
-import Home from "./components/home";
-import Admin from "./components/admin";
+import Home from "./components/Home";
+import Admin from "./components/Admin";
 import Grup from "./components/Grup";
-import SingleGrup from "./components/singleGrup";
-import CantonManager from "./components/cantonmanager";
+import SingleGrup from "./components/SingleGrup";
+import CantonManager from "./components/CantonManager";
 import Canton from "./components/Canton";
-import GrupLeader from "./components/grupleader";
+import GrupLeader from "./components/GrupLeader";
 import Student from "./components/Student";
 import AddStudent from "./components/AddStudent";
 import SingleStudent from "./components/SingleStudent";
 import SingleCanton from "./components/SingleCanton";
-import Layout from "./components/layout";
+import Layout from "./components/Layout";
 import AddRecord from "./components/AddRecord";
 
 function App() {

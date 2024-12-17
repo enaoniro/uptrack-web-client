@@ -28,19 +28,19 @@ const AddStudent = ({ showDetails, setShowDetails, grup }) => {
     setStudent({ ...student, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    addStudent(student, id);
-
-    setStudentList((currentList) => {
-      return [...studentList, student];
-    });
-
+    await addStudent(student, id);
+    
+    // Fetch the updated list from the backend
+    const updatedStudentList = await getStudentList();
+    setStudentList(updatedStudentList);
+  
     setShowDetails(!showDetails);
-    // getStudentList();
-    // setStudentList(newStudentList);
     setStudent("");
   };
+  
 
   const hideForm = () => {
     setIsOpen(false);
@@ -99,13 +99,13 @@ const AddStudent = ({ showDetails, setShowDetails, grup }) => {
             placeholder="img"
             onChange={handleOnChange}
           />
-          {/* <input
+          <input
             type="text"
             className="form-control mb-2 bg-light "
             name="group"
-            value={student.group || ""}
+            defaultValue={id}
             onChange={handleOnChange}
-          /> */}
+          />
           {/* <button
                 type="button"
                 className="btn btn-secondary"

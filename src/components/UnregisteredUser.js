@@ -18,7 +18,7 @@ function UnregisteredUser({ user }) {
 
   console.log("grup leader is rendered");
 
-  //   console.log(user);
+   console.log(user);
 
   const {
     studentList,
@@ -34,8 +34,8 @@ function UnregisteredUser({ user }) {
 
   console.log(grupList);
 
-  const grup = grupList?.find((grup) => grup?.email === user.email);
-   console.log(grup);
+  const group = grupList?.find((grup) => grup?.email === user.email);
+   console.log(group || "no groups found");
 
   //   const logoutWithRedirect = () =>
   //     logout({
@@ -50,7 +50,7 @@ function UnregisteredUser({ user }) {
     setShowDetails(!showDetails);
   };
 
-  if (!grup) {
+  if (!group) {
     return <div><h4>Loading...</h4></div>;
   }
 
@@ -61,7 +61,7 @@ function UnregisteredUser({ user }) {
     <div id="main">
       <div className="container-fluid m-0 p-0">
         <header
-          className="w-100 navbar navbar-expand-lg shadow-sm bg-white mb-3 p-3"
+          className="w-100 navbar navbar-expand-lg bg-white mb-3 p-3"
           id="header"
         >
           {/* <a
@@ -109,7 +109,7 @@ function UnregisteredUser({ user }) {
                       width="40"
                     /> */}
                     <h6 className="d-inline-block text-danger p-1 me-1">
-                      {user.username}{" "}
+                      {user.name}{" "}
                     </h6>
                   </span>
                   {/* <button
@@ -148,21 +148,21 @@ function UnregisteredUser({ user }) {
             </div>
             <div className="col-md-10 p-1 my-3" id="details-div">
               <div
-                id="schweiz"
-                className="d-flex shadow-sm align-items-center justify-content-center mb-1"
+              
+                className="d-flex align-items-center justify-content-center mb-1"
               >
                 <p className="fw-bolder fs-5">Group Name :</p>
-                <p className="text-secondary fs-5 fw-bolder">{grup?.groupname}</p>
+                <p className="text-secondary fs-5 fw-bolder">{group?.name}</p>
               </div>
               <div className="w-90 h-100 m-5" id="form-div">
                 {showDetails ? (
                   <AddStudent
                     showDetails={showDetails}
                     setShowDetails={setShowDetails}
-                    grup={grup}
+                    grup={group}
                   />
                 ) : (
-                  <StudentList grup={grup} />
+                  <StudentList grup={group} />
                 )}
               </div>
               {/* <div

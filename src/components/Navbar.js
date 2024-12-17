@@ -4,10 +4,10 @@ import { useEffect, useState, useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 // import  * as userService  from "../service/front.user.service";
 import { UserContext } from "../contexts/UserContext";
-import Admin from "./admin";
-import CantonManager from "./cantonmanager";
-import GrupLeader from "./grupleader";
-import Layout from "./layout";
+import Admin from "./Admin";
+import CantonManager from "./CantonManager";
+import GrupLeader from "./GrupLeader";
+import Layout from "./Layout";
 
 function Navbar() {
   const [role, setRole] = useState("");
@@ -56,7 +56,7 @@ function Navbar() {
 
   return (
     <div className="m-0 p-0 container-fluid bg-primary opacity-75">
-      <header className="px-1 border-bottom navbar navbar-expand-lg shadow-lg">
+      <header className="px-1 border-bottom navbar navbar-expand-lg">
         <a
           href="/"
           className="d-flex align-items-center text-white text-decoration-none"

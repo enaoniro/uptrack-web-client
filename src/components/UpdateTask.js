@@ -1,33 +1,25 @@
 import React, { useContext, useState } from "react";
-import { TaskContext } from "../contexts/TaskContext.js";
-import { useParams } from "react-router-dom";
+import { TaskContext } from "../contexts/TaskContext";
 
 const UpdateTask = ({ task }) => {
   const [updatedTask, setUpdatedTask] = useState(task);
   const { updateTask } = useContext(TaskContext);
 
-  console.log(task || "no task");
-
   const handleChange = (e) => {
     setUpdatedTask({ ...updatedTask, [e.target.name]: e.target.value });
   };
 
-  const id  = task?._id;
-  console.log(id)
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // updateTask(updatedTask);
     updateTask(updatedTask);
-    console.log(updatedTask)
   };
- 
+
   return (
     <div className="modal-dialog">
       <div className="modal-content">
         <div className="modal-header">
           <h5 className="modal-title" id="exampleModalLabel">
-            update Task
+            Update Task
           </h5>
           <button
             type="button"
@@ -39,68 +31,60 @@ const UpdateTask = ({ task }) => {
         <div className="modal-body">
           <form className="mb-4" onSubmit={handleSubmit}>
             <div>
-            <h6>task-1</h6>
+            <h6>task name</h6>
               <input
                 type="text"
                 className="form-control bg-info"
-                placeholder="task-1"
-                name="task1"
-                value={updatedTask?.task1 || ""}
+                placeholder="task name"
+                name="taskName"
+                value={updatedTask?.taskName || "" }
                 onChange={handleChange}
               />
-              <h6>task-2</h6>
+              <h6>target</h6>
               <input
-                type="text"
+                type="number"
                 className="form-control bg-info"
-                placeholder="task-2"
-                name="task2"
-                value={updatedTask?.task2 || ""}
+                placeholder="target"
+                name="target"
+                value={updatedTask?.target || ""}
                 onChange={handleChange}
               />
-              <h6>task-3</h6>
+              <h6>record</h6>
               <input
-                type="text"
+                type="number"
                 className="form-control bg-info"
-                placeholder="task-3"
-                name="task3"
-                value={updatedTask?.task3 || ""}
+                placeholder="record"
+                name="record"
+                value={updatedTask?.record || ""}
                 onChange={handleChange}
               />
-              <h6>task-4</h6>
+              <h6>assignment date</h6>
               <input
-                type="text"
+                type="date"
                 className="form-control bg-info"
-                placeholder="task-4"
-                name="task4"
-                value={updatedTask?.task4 || ""}
+                placeholder="assignmetn date"
+                name="assignedAt"
+                value={updatedTask?.assignedAt || ""}
                 onChange={handleChange}
               />
-              <h6>task-5</h6>
+              <h6>deadline</h6>
               <input
-                type="text"
+                type="date"
                 className="form-control bg-info"
-                placeholder="task-5"
-                name="task5"
-                value={updatedTask?.task5 || "" }
+                placeholder="deadline"
+                name="deadline"
+                value={updatedTask?.deadline || ""}
                 onChange={handleChange}
               />
-              {/* <h6>student</h6>
-               <input
-                type="text"
+               {/* <h6>is comlpleted</h6>
+              <input
+                type=""
                 className="form-control bg-info"
-                placeholder="student"
-                defaultValue={id}
-                // onChange={handleChange}
-              />
-               <h6>isCompleted</h6>
-               <input
-                type="checkbox"
-                className="form__checkbox"
-                placeholder="isCompleted"
-                Boolean={false}
-                // onChange={handleChange}
+                placeholder="deadline"
+                name="deadline"
+                value={updatedTask?.deadline || ""}
+                onChange={handleChange}
               /> */}
-            
             </div>
 
             <button
@@ -115,7 +99,7 @@ const UpdateTask = ({ task }) => {
               className="btn btn-primary"
               data-bs-dismiss="modal"
             >
-              update
+              Edit
             </button>
           </form>
         </div>

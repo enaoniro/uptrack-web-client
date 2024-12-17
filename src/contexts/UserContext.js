@@ -16,7 +16,7 @@ const UserContextProvider = (props) => {
   const checkAuthenticatedUser = async (pUser) => {
     console.log(pUser);
 
-    const response = await fetch("https://uptrackrest.onrender.com/api/v1/users/check", {
+    const response = await fetch("http://localhost:3001/api/v1/users/check", {
       method: "post",
       body: JSON.stringify(pUser),
       headers: { "Content-Type": "application/json" },
@@ -26,15 +26,15 @@ const UserContextProvider = (props) => {
   };
 
   const getUserList = async () => {
-    const response = await fetch("https://uptrackrest.onrender.com/api/v1/users");
+    const response = await fetch("http://localhost:3001/api/v1/users");
     const userList = await response.json();
     setUserList(userList);
   };
 
-console.log(userList)
+  console.log(userList);
 
   const getUserByEmail = async (pUser) => {
-    const response = await fetch("https://uptrackrest.onrender.com/api/v1/users");
+    const response = await fetch("http://localhost:3001/api/v1/users");
     const userList = await response.json();
     const data = userList.filter((user) => user.email == pUser.email);
     setUserInDatabase(data);
@@ -44,14 +44,12 @@ console.log(userList)
   const addUser = async (pUser) => {
     // if (pUser.email !==undefined) {
     const newUser = {
-    
-      
       username: pUser.username,
       email: pUser.email,
       role: pUser.role,
     };
     try {
-      await fetch("https://uptrackrest.onrender.com/api/v1/users", {
+      await fetch("http://localhost:3001/api/v1/users", {
         method: "POST",
         body: JSON.stringify(pUser),
         headers: { "Content-Type": "application/json" },
@@ -63,14 +61,12 @@ console.log(userList)
     }
   };
 
-
   const updateUser = async (pUser) => {
-
-    console.log(pUser)
-    console.log(pUser._id)
+    console.log(pUser);
+    console.log(pUser._id);
 
     try {
-      await fetch(`https://uptrackrest.onrender.com/api/v1/users/`, {
+      await fetch(`http://localhost:3001/api/v1/users/`, {
         method: "PUT",
         body: JSON.stringify(pUser),
         headers: { "Content-Type": "application/json" },
@@ -86,7 +82,7 @@ console.log(userList)
 
   const deleteUser = async (pUserId) => {
     try {
-      await fetch("https://uptrackrest.onrender.com/api/v1/users/" +pUserId, {
+      await fetch("http://localhost:3001/api/v1/users/" + pUserId, {
         method: "DELETE",
       });
       const updateDUserList = userList.filter((user) => user._id !== pUserId);

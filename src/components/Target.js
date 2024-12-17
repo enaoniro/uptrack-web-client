@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
 import { TargetContext } from "../contexts/TargetContext";
-import UpdateTarget from "./UpdateTarget";
 import Table from "react-bootstrap/Table";
 
 const Target = ({ target }) => {
   // const { deleteStudent } = useContext(StudentContext);
-  const { updateTarget } = useContext(TargetContext);
+  // const { updateTarget } = useContext(TargetContext);
 
   return (
     <React.Fragment>
@@ -51,7 +50,7 @@ const Target = ({ target }) => {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <UpdateTarget target={target} />
+        {/* <UpdateTarget target={target} /> */}
       </div>
     </React.Fragment>
   );

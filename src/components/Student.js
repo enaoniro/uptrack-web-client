@@ -2,12 +2,10 @@ import React, { useState, useContext } from "react";
 import { StudentContext } from "../contexts/StudentContext";
 import { GrupContext } from "../contexts/GrupContext";
 import { TaskContext } from "../contexts/TaskContext";
-import { TargetContext } from "../contexts/TargetContext";
 import { RecordContext } from "../contexts/RecordContext";
 import UpdateStudent from "./UpdateStudent";
 import AddStudent from "./AddStudent";
 import UpdateTask from "./AddTask.js";
-import UpdateTarget from "./UpdateTarget.js";
 import UpdateRecord from "./UpdateRecord.js";
 import Task from "./Task.js";
 import Target from "./Target.js";
@@ -37,7 +35,7 @@ const Student = ({ student }) => {
 
   const { taskList } = useContext(TaskContext);
   console.log(taskList);
-  const { targetList } = useContext(TargetContext);
+  // const { targetList } = useContext(TargetContext);
   const { recordList } = useContext(RecordContext);
 
   // const task = taskList.find((task) => task?.StudentId == student.id);

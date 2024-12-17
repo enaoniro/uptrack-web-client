@@ -16,6 +16,8 @@ import { Router, Routes, Route, Switch, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
+
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 // console.log(process.env.REACT_APP_AUTH0_DOMAIN);

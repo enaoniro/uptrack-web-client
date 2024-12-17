@@ -3,11 +3,11 @@ import { useEffect, useState, useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 // import  * as userService  from "../service/front.user.service";
 import { UserContext } from "../contexts/UserContext";
-import Admin from "./admin";
+import Admin from "./Admin";
 import UnregisteredUser from "./UnregisteredUser";
-import CantonManager from "./cantonmanager";
-import GrupLeader from "./grupleader";
-import Layout from "./layout";
+import CantonManager from "./CantonManager";
+import GrupLeader from "./GrupLeader";
+import Layout from "./Layout";
 import Container from "react-bootstrap/Container";
 
 function Home() {
@@ -59,28 +59,29 @@ function Home() {
     <>
       {!isAuthenticated && (
         <Container fluid className="bg-white">
-          <div className="m-0 p-0 container-fluid bg-white ">
+          {/* <div className="m-0 p-0 container-fluid bg-white ">
             <header className="px-3 border-bottom navbar navbar-expand-lg shadow-lg">
-              {/* <a
+              <a
                 href="/"
                 className="d-flex align-items-center text-primary text-decoration-none"
               >
                 <span className="fs-4">uptrack</span>
-              </a> */}
+              </a>
             </header>
-          </div>
+          </div> */}
 
-          <div className="w-100 h-100 d-flex justify-items-center bg-white align-items-center flex-column ">
-            <div className="bg-white">
-              <h3 className="text-danger">NOTE : This is just the guest page. A user can be registered only by the admin and then he or she can login!</h3>
-              <h1>please login</h1>
+          <div className="w-100 d-flex justify-content-end align-items-center ">
+            <div className="bg-white m-2">
+              {/* <h3 className="text-danger">NOTE : This is just the guest page. A user can be registered only by the Admin and then he or she can login!</h3> */}
+              {/* <h3>please login</h3> */}
               {/* <p>
                 You can login with the below information:<br></br>
                 email:uptracknewuser@gmail.com<br></br>
                 password:Uptrack.1
               </p> */}
+            
               <button
-                className="btn btn-outline-success"
+                className="btn btn-outline-success ms-auto"
                 onClick={() => loginWithRedirect()}
               >
                 Login
@@ -88,12 +89,12 @@ function Home() {
             </div>
           </div>
           <UnregisteredUser
-            user={{ name: "newuser", email: "uptracknewuser@gmail.com" }}
+            user={{ name: "Guest User", email: "uptracknewuser@gmail.com", role :"grup leader", grupId:1}}
           />
         </Container>
       )}
-      <Container fluid className=" p-3 bg-white shadow-lg">
-        {role === "admin" && <Admin />}
+      <Container fluid className=" p-3 bg-white">
+        {role === "Admin" && <Admin />}
         {role === "canton manager" && <CantonManager />}
         {role === "grup leader" && <GrupLeader />}
       </Container>

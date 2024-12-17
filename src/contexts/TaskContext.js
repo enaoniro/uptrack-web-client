@@ -19,9 +19,7 @@ const TaskContextProvider = (props) => {
 
   const getTasks = async () => {
     try {
-      const response = await fetch(
-        "https://uptrackrest.onrender.com/api/v1/tasks"
-      );
+      const response = await fetch("http://localhost:3001/api/v1/tasks");
       const taskList = await response.json();
 
       if (taskList) {
@@ -33,23 +31,23 @@ const TaskContextProvider = (props) => {
   };
 
   // const getTaskByStudentId = async (id) => {
-  //   const response = await fetch(`https://uptrackrest.onrender.com/api/v1/tasks/${id}`);
+  //   const response = await fetch(`http://localhost:3001/api/v1/tasks/${id}`);
   //   const studentTasks = await response.json();
   //   setStudentTasks(studentTasks);
   // };
 
   const addTask = async (pTask, id) => {
     const newTask = {
-      task1: pTask.task1,
-      task2: pTask.task2,
-      task3: pTask.task3,
-      task4: pTask.task4,
-      task5: pTask.task5,
+      taskName: pTask.taskName,
+      target: pTask.target,
+      record: pTask.record,
       isCompleted: false,
-      student: id,
+      assignedAt : pTask.assignedAt,
+      deadline: pTask.deadline, 
+      student: id
     };
     try {
-      await fetch("https://uptrackrest.onrender.com/api/v1/tasks", {
+      await fetch("http://localhost:3001/api/v1/tasks", {
         method: "POST",
         body: JSON.stringify(newTask),
         headers: { "Content-Type": "application/json" },
@@ -66,7 +64,7 @@ const TaskContextProvider = (props) => {
     console.log(pTask._id);
     console.log(pTask);
     try {
-      await fetch("https://uptrackrest.onrender.com/api/v1/tasks/", {
+      await fetch("http://localhost:3001/api/v1/tasks/", {
         method: "PUT",
         body: JSON.stringify(pTask),
         headers: { "Content-Type": "application/json" },
@@ -83,26 +81,25 @@ const TaskContextProvider = (props) => {
 
   const setTaskCompleted = async (pTask) => {
     console.log(pTask?._id);
-    const newTask = { ...pTask, isCompleted: !pTask.isCompleted };
+    setTask({ ...pTask, isCompleted: !pTask.isCompleted });
+    console.log(pTask)
 
     try {
-      const res = await fetch(
-        "https://uptrackrest.onrender.com/api/v1/tasks/settask",
-        {
-          method: "PUT",
-          body: JSON.stringify(newTask),
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+        await fetch(`http://localhost:3001/api/v1/tasks/settask`, {
+        method: "PUT",
+        body: JSON.stringify(pTask),
+        headers: { "Content-Type": "application/json" },
+      });
 
       // const data = await res.json();
+      
 
       setTaskList(
-        taskList.map((task) => (task.id === newTask.id ? newTask : task))
+        taskList.map((task) => (task._id === pTask._id ? pTask : task))
       );
       getTasks();
 
-      console.log(newTask);
+      
     } catch (error) {
       console.log(error);
     }
