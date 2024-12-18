@@ -5,9 +5,6 @@ import {
   Link,
   Outlet,
 } from "react-router-dom";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import LoginButton from "./components/LoginButton";
-// import LogoutButton from "./components/LogoutButton";
 import "./App.css";
 import Profile from "./components/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
