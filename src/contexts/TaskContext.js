@@ -19,7 +19,7 @@ const TaskContextProvider = (props) => {
 
   const getTasks = async () => {
     try {
-      const response = await fetch("https://uptrack.onrender.com/tasks");
+      const response = await fetch("https://uptrackrest.onrender.com/tasks");
       const taskList = await response.json();
 
       if (taskList) {
