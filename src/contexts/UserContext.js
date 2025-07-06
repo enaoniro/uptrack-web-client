@@ -16,7 +16,7 @@ const UserContextProvider = (props) => {
   const checkAuthenticatedUser = async (pUser) => {
     console.log(pUser);
 
-    const response = await fetch("https://uptrack.onrender.com/users/check", {
+    const response = await fetch("https://uptrackrest.onrender.com/users/check", {
       method: "post",
       body: JSON.stringify(pUser),
       headers: { "Content-Type": "application/json" },
@@ -26,7 +26,7 @@ const UserContextProvider = (props) => {
   };
 
   const getUserList = async () => {
-    const response = await fetch("https://uptrack.onrender.com/users");
+    const response = await fetch("https://uptrackrest.onrender.com/users");
     const userList = await response.json();
     setUserList(userList);
   };
@@ -34,7 +34,7 @@ const UserContextProvider = (props) => {
   console.log(userList);
 
   const getUserByEmail = async (pUser) => {
-    const response = await fetch("https://uptrack.onrender.com/users");
+    const response = await fetch("https://uptrackrest.onrender.com/users");
     const userList = await response.json();
     const data = userList.filter((user) => user.email == pUser.email);
     setUserInDatabase(data);
