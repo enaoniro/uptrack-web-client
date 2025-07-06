@@ -15,7 +15,7 @@ const GrupContextProvider = (props) => {
   }, []);
 
   const getGrupList = async () => {
-    const response = await fetch("https://uptrack.onrender.com/groups");
+    const response = await fetch("https://uptrackrest.onrender.com/groups");
     const grupList = await response.json();
 
     if(!grupList) {
@@ -31,7 +31,7 @@ const GrupContextProvider = (props) => {
       CantonId: id,
     };
     try {
-      const res = await fetch("https://uptrack.onrender.com/grups", {
+      const res = await fetch("https://uptrackrest.onrender.com/grups", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newGrup),
