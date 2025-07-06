@@ -33,7 +33,7 @@ const StudentContextProvider = (props) => {
 
   const getStudentList = async () => {
     try {
-      const response = await fetch("https://uptrackrest.onrender.com/tudents");
+      const response = await fetch("https://uptrackrest.onrender.com/students");
       const studentList = await response.json();
       setStudentList(studentList);
     } catch (error) {
