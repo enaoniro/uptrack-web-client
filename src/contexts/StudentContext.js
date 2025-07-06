@@ -33,7 +33,7 @@ const StudentContextProvider = (props) => {
 
   const getStudentList = async () => {
     try {
-      const response = await fetch("https://uptrack.onrender.com/students");
+      const response = await fetch("https://uptrackrest.onrender.com/tudents");
       const studentList = await response.json();
       setStudentList(studentList);
     } catch (error) {
@@ -44,7 +44,7 @@ const StudentContextProvider = (props) => {
   };
 
   const getStudentsInGrup = async (pId) => {
-    const response = await fetch("https://uptrack.onrender.com/students" + pId);
+    const response = await fetch("https://uptrackrest.onrender.com/students" + pId);
     const studentList = await response.json();
     const grup = studentList?.filter((student) => student.GrupId == pId);
     setStudentsInGrup(grup);
@@ -52,7 +52,7 @@ const StudentContextProvider = (props) => {
 
   const getStudentById = async (_id) => {
     const response = await fetch(
-      "https://uptrack.onrender.com/students/byId/" + _id
+      "https://uptrackrest.onrender.com/byId/" + _id
     );
     const student = await response.json();
 
@@ -70,7 +70,7 @@ const StudentContextProvider = (props) => {
       img: pStudent.img,
     };
     try {
-      await fetch("https://uptrack.onrender.com/students", {
+      await fetch("https://uptrackrest.onrender.com/students", {
         method: "POST",
         body: JSON.stringify(newStudent),
         headers: { "Content-Type": "application/json" },
