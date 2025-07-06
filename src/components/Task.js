@@ -61,7 +61,14 @@ const Task = ({ task, student, index }) => {
   return (
     <React.Fragment>
       <>
-        <tr
+        <tr   
+                  // type="button"
+                  // className="btn btn-outline-warning bg-opacity-25 text-primary border-2 w-100 m-0 p-2 cursor pointer"
+                  // data-bs-toggle="modal"
+                  // data-bs-target={"#updateTaskModal" + task?._id}
+
+                  
+                
           className={
             Deadline <= today
               ? //  task?.record < task?.target || !task?.record
@@ -69,7 +76,7 @@ const Task = ({ task, student, index }) => {
                 //   : Deadline <= today && task?.record >= task?.target
                 //   ? "bg-secondary text-muted bg-opacity-25 p-1 m-0"
                 //   : "bg-warning fw-bold bg-opacity-25 p-1 m-0"
-                "bg-secondary bg-opacity-25 p-1 m-0"
+                "bg-secondary bg-opacity-25 p-2 m-0"
               : ""
           }
         >
@@ -89,11 +96,11 @@ const Task = ({ task, student, index }) => {
               className={
                 Deadline <= today
                   ? task?.record < task?.target || !task?.record
-                    ? "bg-danger text-muted bg-opacity-25 p-1 m-0"
+                    ? "bg-danger text-muted bg-opacity-25 p-2 m-0"
                     : Deadline <= today && task?.record >= task?.target
-                    ? "bg-success text-muted bg-opacity-25 p-1 m-0"
-                    : "bg-warning fw-bold bg-opacity-25 p-1 m-0"
-                  : "border-warning border-2 border  bg-opacity-25 text-primary p-1 m-0"
+                    ? "bg-success text-muted bg-opacity-25 p-2 m-0"
+                    : "bg-warning fw-bold bg-opacity-25 p-2 m-0"
+                  : "border-warning border-2 border  bg-opacity-25 text-primary p-2 m-0"
               }
             >
               {index + 1}
@@ -109,7 +116,7 @@ const Task = ({ task, student, index }) => {
                     // ? "bg-success text-muted bg-opacity-25 p-1 m-0"
                     // : "bg-warning fw-bold bg-opacity-25 p-1 m-0"
                     "bg-secondary text-muted bg-opacity-25 p-2 m-0"
-                  : ""
+                  : "bg-opacity-25 p-2 m-0"
               }
             >
               {task?.taskName}
@@ -120,11 +127,11 @@ const Task = ({ task, student, index }) => {
               className={
                 Deadline <= today
                   ? task?.record < task?.target || !task?.record
-                    ? "bg-secondary text-muted bg-opacity-25 p-1 m-0"
+                    ? "bg-secondary text-muted bg-opacity-25 p-2 m-0"
                     : Deadline <= today && task?.record >= task?.target
-                    ? "bg-secondary text-muted bg-opacity-25 p-1 m-0"
-                    : "bg-warning fw-bold bg-opacity-25 p-1 m-0"
-                  : ""
+                    ? "bg-secondary text-muted bg-opacity-25 p-2 m-0"
+                    : "bg-warning fw-bold bg-opacity-25 p-2 m-0"
+                  : "p-2 m-0"
               }
             >
               {task?.target}
@@ -134,29 +141,22 @@ const Task = ({ task, student, index }) => {
           // className={
           //   Deadline > today ? "border-danger border-2": ""}
           >
-            <input
-              type="number"
-              name="record"
-              value={task?.record || ""}
-              onChange={handleChange}
+            <p
+              // type="number"
+              // name="record"
+              // value={task?.record || ""}
+              // onChange={handleChange}
               className={
                 Deadline <= today
                   ? task?.record < task?.target || !task?.record
-                    ? "bg-secondary text-danger text-center fw-bold bg-opacity-25 p-1 m-0"
+                    ? "text-danger border border-0 bg-danger text-center fw-bold bg-opacity-25 p-2 m-0"
                     : Deadline <= today && task?.record >= task?.target
-                    ? "bg-secondary text-success text-center fw-bold bg-opacity-25 p-1 m-0"
-                    : "bg-opacity-25 p-1 m-0"
-                    : "border border-2 border-warning text-center text-primary bg-opacity-25 p-1 m-0"
+                    ? "text-success border border-0 text-center fw-bold bg-success bg-opacity-25 p-2 m-0"
+                    : ""
+                    : "text-primary border border-2 border-warning text-center fw-bold bg-opacity-25 p-2 m-0"
               }
-              placeholder={
-                task?.record
-                  ? task.record
-                  : !task?.record && Deadline > today
-                  ? "please enter record"
-                  : !task?.record ?? Deadline < today
-                  ? "no entries"
-                  : null
-              }
+              
+              
             >
               {/* {task?.record
                 ? task.record
@@ -173,7 +173,15 @@ const Task = ({ task, student, index }) => {
                 : Deadline < today
                 ? "No entries recorded"
                 : null} */}
-            </input>
+                  {task?.record 
+                  ? task.record
+                  : !task?.record && Deadline > today
+                  ? "please enter record"
+                  : !task?.record ?? Deadline < today
+                  ? "no entries"
+                  : null
+              }
+            </p>
           </td>
           <td className="">
             <p
@@ -185,7 +193,7 @@ const Task = ({ task, student, index }) => {
                     // ? "bg-success text-muted bg-opacity-25 p-1 m-0"
                     // : "text-danger bg-opacity-25 p-1 m-0"
                     "bg-secondary text-muted bg-opacity-25 p-2 m-0"
-                  : ""
+                  : "bg-opacity-25 p-2 m-0"
               }
             >
               {assigned}
@@ -199,11 +207,11 @@ const Task = ({ task, student, index }) => {
               className={
                 Deadline <= today
                   ? task?.record < task?.target || !task?.record
-                    ? "bg-secondary text-muted fw-bolder bg-opacity-25 p-1 m-0"
+                    ? "bg-secondary text-muted fw-bolder bg-opacity-25 p-2 m-0"
                     : Deadline <= today && task?.record >= task?.target
-                    ? "bg-secondary text-muted fw-bolder bg-opacity-25 p-1 m-0"
-                    : "text-danger bg-opacity-25 p-1 m-0"
-                  : "fw-bold text-danger p-1 m-0"
+                    ? "bg-secondary text-muted fw-bolder bg-opacity-25 p-2 m-0"
+                    : "text-danger bg-opacity-25 p-2 m-0"
+                  : "fw-bold text-danger p-2 m-0"
               }
             >
               {Deadline}
@@ -217,15 +225,16 @@ const Task = ({ task, student, index }) => {
                 <td className="">
                   <p
                     onClick={() => setTaskEnd(task)}
-                    className="btn btn-outline-danger w-100 z-3 m-0 p-1"
+                    className="btn btn-outline-danger w-100 z-3 m-0 p-2"
                   >
                     close task
                   </p>
                 </td>
                 {/* <td className=""></td> */}
                 <td className="">
-                  <p className="fw-bolder text-danger m-0 p-1">
-                    <FontAwesomeIcon icon={faXmark} size="2xl" />
+                  <p className="fw-bolder text-white bg-danger m-0 p-2">
+                    Failed
+                    {/* <FontAwesomeIcon icon={faXmark} size="2xl" /> */}
                   </p>
                 </td>
               </>
@@ -234,15 +243,16 @@ const Task = ({ task, student, index }) => {
                 <td className="">
                   <p
                     onClick={() => setTaskEnd(task)}
-                    className="p-1 m-0 btn btn-outline-success w-100"
+                    className="p-2 m-0 btn btn-outline-success w-100"
                   >
                     close task
                   </p>
                 </td>
                 {/* <td className=""></td> */}
                 <td className="">
-                  <p className="text-success fw-bolder m-0 p-1">
-                    <FontAwesomeIcon icon={faCheck} size="2xl" />
+                  <p className="text-white bg-success fw-bolder m-0 p-2">
+                    success
+                    {/* <FontAwesomeIcon icon={faCheck} size="2xl" /> */}
                   </p>
                 </td>
               </>
@@ -252,7 +262,7 @@ const Task = ({ task, student, index }) => {
               <td className=" rounded-3">
                 <p
                   type="button"
-                  className="btn btn-outline-warning bg-opacity-25 text-primary border-2 w-100 m-0 p-1"
+                  className="btn btn-outline-warning bg-opacity-25 text-primary border-2 w-100 m-0 p-2"
                   data-bs-toggle="modal"
                   data-bs-target={"#updateTaskModal" + task?._id}
                 >
@@ -261,7 +271,7 @@ const Task = ({ task, student, index }) => {
               </td>
               {/* <td className=""></td> */}
               <td className="">
-                <p className="bg-warning bg-opacity-25 m-0 p-1 text-primary">
+                <p className="bg-warning bg-opacity-25 m-0 p-2 text-primary">
                   open
                 </p>
               </td>

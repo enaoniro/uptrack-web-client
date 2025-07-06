@@ -124,8 +124,8 @@ function UnregisteredUser({ user }) {
           </div>
         </header>
 
-        <div className="container-fluid bg-white" id="innerdiv">
-          <div className="row">
+        <div className="container-fluid bg-whitesmoke" id="innerdiv">
+          <div className="row d-flex justify-content-center align-items-center w-100">
             <div className="col-md-1 text-primary m-1 mt-3" id="listebox">
               <button
                 onClick={handleClick}

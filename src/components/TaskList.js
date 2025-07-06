@@ -5,19 +5,21 @@ import { RecordContext } from "../contexts/RecordContext";
 import Table from "react-bootstrap/Table";
 import Task from "./Task";
 
-const TaskList = ({ student }) => {
+const TaskList = ({ student, tasksCompleted }) => {
 
   const { taskList, setTaskList, getTasks, setTaskCompleted, setTask } =
     useContext(TaskContext);
 
   
-    const studentTasks = taskList?.filter((task) => task.student == student._id && task.isCompleted == false);
+  const studentTasks = taskList?.filter((task) => task.student == student._id && task.isCompleted == false).sort((a,b)=>new Date(a.deadline).toLocaleDateString("en-CA")-new Date(b.deadline).toLocaleDateString("en-CA"));
   console.log(studentTasks);
+
+  const studentCompletedTasks = taskList?.filter((task) => task.student == student._id && task.isCompleted == true).sort((a,b)=>new Date(a.deadline).toLocaleDateString("en-CA")-new Date(b.deadline).toLocaleDateString("en-CA"));
    
-  // const sutTasks =[...studentTasks, studentTasks["deadline"] = studentTasks.map(task => studentTasks.map(task => task.deadline.split("",10).filter((item) => item >= 0).reduce((a,b) => (a+b))).sort((a, b) => a - b))];
+   const sutTasks = studentTasks.map(task => new Date(task.deadline).toLocaleDateString("en-CA"))//.sort((a, b) => a.deadline - b.deadline);
 
   console.log(student);
-  // console.log(sutTasks);
+  console.log(sutTasks);
 
   
   console.log(taskList);
@@ -34,24 +36,24 @@ const TaskList = ({ student }) => {
         <Table bordered hover responsive className=" m-0 bg-white">
           <thead className="bg-white">
             <tr className=""> 
-              <th className="border-1 border-dark text-primary" >No</th>
-              <th className="border-1 border-dark text-primary">Task</th>
-              <th className="border-1 border-dark text-primary">Target</th>
-              <th className="border-1 border-dark text-primary">Record</th>
-              <th className="border-1 border-dark text-bold bg-primary text-light ">
+              <th className=" text-primary" >No</th>
+              <th className=" text-primary">Task</th>
+              <th className=" text-primary">Target</th>
+              <th className=" text-primary">Record</th>
+              <th className=" text-bold bg-primary text-light ">
                 assignment date
               </th>
-              <th className="border-1 border-dark bg-danger text-light">
+              <th className=" bg-danger text-light">
                 deadline
               </th>
               {/* <th className=""></th> */}
             
 
-              <th className="border-1 border-dark bg-primary text-light">
+              <th className=" bg-primary text-light">
                 actions
               </th>
               {/* <th className="bg-primary"></th> */}
-              <th className="border-1 border-dark bg-danger text-light"><span className="">status</span></th>
+              <th className=" bg-danger text-light"><span className="">status</span></th>
             </tr>
           </thead>
           <tbody>

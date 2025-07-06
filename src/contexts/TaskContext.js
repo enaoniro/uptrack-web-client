@@ -42,9 +42,9 @@ const TaskContextProvider = (props) => {
       target: pTask.target,
       record: pTask.record,
       isCompleted: false,
-      assignedAt : pTask.assignedAt,
-      deadline: pTask.deadline, 
-      student: id
+      assignedAt: pTask.assignedAt,
+      deadline: pTask.deadline,
+      student: id,
     };
     try {
       await fetch("http://localhost:3001/api/v1/tasks", {
@@ -53,7 +53,7 @@ const TaskContextProvider = (props) => {
         headers: { "Content-Type": "application/json" },
       });
 
-      setTaskList([...taskList, newTask]);
+      setTaskList(prevTasks=>[...prevTasks, newTask]);
       getTasks();
     } catch (error) {
       console.log(error);
@@ -73,6 +73,8 @@ const TaskContextProvider = (props) => {
       setTaskList(
         taskList.map((task) => (task._id === pTask._id ? pTask : task))
       );
+      // setTaskList(prevTasks => [...prevTasks, pTask]);
+      getTasks();
     } catch (error) {
       console.log(error);
     }
@@ -82,24 +84,21 @@ const TaskContextProvider = (props) => {
   const setTaskCompleted = async (pTask) => {
     console.log(pTask?._id);
     setTask({ ...pTask, isCompleted: !pTask.isCompleted });
-    console.log(pTask)
+    console.log(pTask);
 
     try {
-        await fetch(`http://localhost:3001/api/v1/tasks/settask`, {
+      await fetch(`http://localhost:3001/api/v1/tasks/settask`, {
         method: "PUT",
         body: JSON.stringify(pTask),
         headers: { "Content-Type": "application/json" },
       });
 
       // const data = await res.json();
-      
 
       setTaskList(
         taskList.map((task) => (task._id === pTask._id ? pTask : task))
       );
       getTasks();
-
-      
     } catch (error) {
       console.log(error);
     }

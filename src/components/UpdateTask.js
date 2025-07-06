@@ -3,7 +3,7 @@ import { TaskContext } from "../contexts/TaskContext";
 
 const UpdateTask = ({ task }) => {
   const [updatedTask, setUpdatedTask] = useState(task);
-  const { updateTask } = useContext(TaskContext);
+  const { updateTask, taskList, setTaskList, getTasks } = useContext(TaskContext);
 
   const handleChange = (e) => {
     setUpdatedTask({ ...updatedTask, [e.target.name]: e.target.value });
@@ -12,6 +12,7 @@ const UpdateTask = ({ task }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     updateTask(updatedTask);
+    // setTaskList(prevTasks => [...prevTasks, updatedTask]);
   };
 
   return (
@@ -73,7 +74,7 @@ const UpdateTask = ({ task }) => {
                 className="form-control bg-info"
                 placeholder="deadline"
                 name="deadline"
-                value={updatedTask?.deadline || ""}
+                value={updatedTask?.deadline}
                 onChange={handleChange}
               />
                {/* <h6>is comlpleted</h6>

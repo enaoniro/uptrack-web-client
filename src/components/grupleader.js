@@ -34,7 +34,7 @@ function GrupLeader() {
 
   console.log(grupList);
 
-  const grup = grupList?.find((grup) => grup.email === user.email);
+  const grup = grupList?.find((grup) => grup?.email === user.email);
   console.log(grup);
 
   const logoutWithRedirect = () =>
@@ -119,7 +119,7 @@ function GrupLeader() {
         </header>
 
         <div className="container-fluid bg-white" id="innerdiv">
-          <div className="row">
+          <div className="row d-flex justify-content-center align-items-center">
             <div
               className="col-md-1 text-primary m-1 mt-3 d-md-inline-block"
               id="listebox"
@@ -157,7 +157,7 @@ function GrupLeader() {
                 <p className="fw-bolder fs-5">Group Name :</p>
                 <p className="text-secondary fs-5 fw-bolder">{grup?.name}</p>
               </div>
-              <div className="w-90 h-100 m-5" id="form-div">
+              <div className="" id="form-div">
                 {showDetails ? (
                   <AddStudent
                     showDetails={showDetails}
@@ -165,7 +165,7 @@ function GrupLeader() {
                     grup={grup}
                   />
                 ) : (
-                  <StudentList grup={grup} />
+                  <div className="w-100"><StudentList grup={grup} /></div>
                 )}
               </div>
               {/* <div

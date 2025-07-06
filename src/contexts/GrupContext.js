@@ -17,7 +17,11 @@ const GrupContextProvider = (props) => {
   const getGrupList = async () => {
     const response = await fetch("http://localhost:3001/api/v1/groups");
     const grupList = await response.json();
-    setGrupList(grupList);
+
+    if(!grupList) {
+      return "no groups found"
+    } else {
+    setGrupList(grupList)};
   };
 
   const addGrup = async (pGrup, id) => {

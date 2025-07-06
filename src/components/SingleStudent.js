@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { StudentContext } from "../contexts/StudentContext";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, User } from "@auth0/auth0-react";
 import Container from "react-bootstrap/Container";
 import { GrupContext } from "../contexts/GrupContext";
 import { TargetContext } from "../contexts/TargetContext";
@@ -19,6 +19,7 @@ import UpdateRecord from "./UpdateRecord.js";
 import UpdateTask from "./UpdateTask";
 import AddRecord from "./AddRecord";
 import TaskList from "./TaskList.js";
+import StudentList from "./StudentList.js";
 
 const SingleStudent = () => {
   const [showCompletedTasks, setShowCompletedTasks] = useState(false);
@@ -99,17 +100,17 @@ const SingleStudent = () => {
 
   return (
     <>
-      <div id="main">
-        <div className="container-fluid d-flex flex-column justify-content-center">
+      <div id="main bg-secondary-subtle">
+        <div className="container-fluid d-flex flex-column bg-secondary-subtle justify-content-center">
           <header
-            className="w-100 navbar border-bottom border-3  navbar-expand-lg bg-white my-3 p-3"
+            className="navbar navbar-expand-lg bg-white m-2 mt-3"
             id="header"
           >
             <div className="navbar-collapse offcanvas-collapse">
               <ul className="d-flex align-items-center navbar-nav me-auto mb-5 mb-lg-0">
-                <li className="nav-item text-align-center">
+                <li className="nav-item text-align-center mx-4">
                   <a className="nav-link text-primary" href="/">
-                    Group Page
+                    Group Page : {student.email}
                   </a>
                 </li>
               </ul>
@@ -121,7 +122,7 @@ const SingleStudent = () => {
             </div>
           </header>
           <div className="container-fluid bg-white" id="innerdiv">
-            <div className="row single">
+            <div className="row single p-0 d-flex justify-content-around">
               <div className="col-sm-12 col-lg-1 text-primary bg-white z-0 p-3 my-3 border border-0 listebox">
                 <div className="d-flex h-100 flex-column m-0 text-align-center justify-content-between">
                   <div className="">
@@ -163,15 +164,15 @@ const SingleStudent = () => {
                 </div>
               </div>
               <div
-                className="col-lg-10 d-flex align-items-center justify-content-center bg-white m-3 "
+                className="col-lg-10 d-flex align-items-center justify-content-center bg-white my-3 "
                 id="details-div"
               >
                 <Container
                   fluid
-                  className="w-100 flex-column m-3 bg-white d-flex "
+                  className="w-100 flex-column my-3 bg-white d-flex "
                 >
                   <div className="d-flex flex-lg-row flex-sm-column  ">
-                    <div className="col-lg-2 d-md-table-row">
+                    <div className="col-lg-2 d-md-table-row mt-2">
                       <Table bordered responsive>
                         <thead className="bg-white">
                           <tr></tr>
@@ -179,13 +180,14 @@ const SingleStudent = () => {
 
                         <tbody>
                           <tr key={student.id}>
-                            <td className="text-capitalize text-secondary bg-white fw-bolder ">
+                            <td className="text-capitalize text-secondary bg-white fw-bolder h-auto ">
                               <span className="">
                                 <img
                                   style={{ width: "100%", height: "100%" }}
-                                  src="/my_photo.jpg"
+                                  src=
+                                  "/photo.jpg"
                                   //"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/310.jpg"
-                                  //"https://via.placeholder.com/150"
+                                  //"https://via.placeholder.com/15"
                                 />
                               </span>
                               <span className="">
@@ -212,13 +214,13 @@ const SingleStudent = () => {
                       </Table>
                     </div>
 
-                    <div className="col-lg-10 col-sm-12 align-self-md-stretch bg-body-secondary ">
-                      <div className="tasks-header  d-flex flex-column border justify-content-between ">
+                    <div className="col-lg-10 border col-sm-12 align-self-md-stretch m-2">
+                      <div className="tasks-header bg-body-secondary m-1  d-flex flex-column border justify-content-between ">
                         <div className="d-flex justify-content-center align-items-center m-auto">
-                          <h5 className="text-primary">Tasks of the Student</h5>
+                          <h5 className="text-primary "> Actual Tasks of the Student</h5>
                         </div>
                       </div>
-                      <div>
+                      <div className=" h-auto">
                         <TaskList
                           student={student}
                           setTaskCompleted={setTasksCompleted}
@@ -248,15 +250,22 @@ const SingleStudent = () => {
                     </div>
                   </div>
 
-                  <div className="my-5 col-lg-10 col-sm-12 me-0 align-self-end">
+                  {/* <div className="my-5 col-lg-10 col-sm-12 me-0 align-self-end">
                     {showCompletedTasks && (
-                     <CompletedTasks studentCompletedTasks={studentCompletedTasks}/>
+                     <CompletedTasks studenttCompletedTasks={studentCompletedTasks}
+                     student={student}/>
                     )}
-                  </div>
+                  </div> */}
                 </Container>
               </div>
             </div>
           </div>
+        </div>
+        <div className="m-5 col-lg-11 col-sm-11 me-0 align-self-center m-lg-auto">
+                    {showCompletedTasks && (
+                     <CompletedTasks studenttCompletedTasks={studentCompletedTasks}
+                     student={student}/>
+                    )}
         </div>
       </div>
     </>

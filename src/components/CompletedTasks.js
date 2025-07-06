@@ -1,59 +1,73 @@
-import React from 'react'
+import React, { useState, useContext } from "react";
+import { TaskContext } from "../contexts/TaskContext";
+import { TargetContext } from "../contexts/TargetContext";
+import { RecordContext } from "../contexts/RecordContext";
+import Table from "react-bootstrap/Table";
+import Task from "./Task";
 
-function CompletedTasks( {studentCompletedTasks} ) {
+const CompletedTasks = ({student, tasksCompleted }) => {
 
-console.log(studentCompletedTasks);
+  const { taskList, setTaskList, getTasks, setTaskCompleted, setTask } =
+    useContext(TaskContext);
+
+  
+  const studentTasks = taskList?.filter((task) => task.student == student._id && task.isCompleted == false).sort((a,b)=>new Date(a.deadline).toLocaleDateString("en-CA")-new Date(b.deadline).toLocaleDateString("en-CA"));
+  console.log(studentTasks);
+
+  const studentCompletedTasks = taskList?.filter((task) => task.student == student._id && task.isCompleted == true).sort((a,b)=>new Date(a.deadline).toLocaleDateString("en-CA")-new Date(b.deadline).toLocaleDateString("en-CA"));
+   
+   const sutTasks = studentTasks.map(task => new Date(task.deadline).toLocaleDateString("en-CA"))//.sort((a, b) => a.deadline - b.deadline);
+
+  console.log(student);
+  console.log(sutTasks);
+
+  
+  console.log(taskList);
+
 
 
   return (
     <>
-    <div className="w-100">
-      <div className="bg-primary opacity-50 d-flex justify-content-center text-red align-items-center">
-        <p
-          // onClick={handleClick}
-          className="d-flex justify-content-center align-items-center text-white text-center fw-bold "
-          style={{ cursor: "pointer" }}
-        >
-          <span className="text-center ">
-            Completed Tasks
-          </span>
-        </p>
-      </div>
-    </div>
-    <table className="mb-3 col-lg-12 col-sm-12 table table-striped-columns">
-      <thead>
-        <tr>
-          <th className="col-1">task no</th>
-          <th>task</th>
-          <th>target</th>
-          <th>record</th>
-          <th>status</th>
-        </tr>
-      </thead>
-      <tbody className="">
-        {studentCompletedTasks.map((task, key) => (
-          <tr>
-            <td>{key + 1}</td>
-            <td>{task?.taskName}</td>
-            <td>{task?.target}</td>
-            <td>{task?.record}</td>
-            <td
-              className={
-                task?.record > task?.target
-                  ? "bg-success text-light opacity-50"
-                  : "bg-danger text-light opacity-50"
-              }
-            >
-              {task?.record > task?.target
-                ? "success"
-                : "failure"}
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </>
-  )
-}
+      {!studentCompletedTasks || studentCompletedTasks.length == 0 ? (
+        <h1 className="mt-5 text-danger">
+          no current task to display, please add new task!
+        </h1>
+      ) : (
+         <>
+         <h5 className="text-white mt-5 text-bg-danger p-2">Completed Tasks of the Student</h5>
+        <Table bordered hover responsive bgcolor="" className="">
+          <thead className="">
+            <tr className=""> 
+              <th className=" text-primary" >No</th>
+              <th className=" text-primary">Task</th>
+              <th className=" text-primary">Target</th>
+              <th className=" text-primary">Record</th>
+              <th className=" text-bold bg-primary text-light ">
+                assignment date
+              </th>
+              <th className=" bg-danger text-light">
+                deadline
+              </th>
+              {/* <th className=""></th> */}
+            
 
-export default CompletedTasks
+              <th className=" bg-primary text-light">
+                actions
+              </th>
+              {/* <th className="bg-primary"></th> */}
+              <th className=" bg-danger text-light"><span className="">status</span></th>
+            </tr>
+          </thead>
+          <tbody className="my-3">
+            {studentCompletedTasks.map((task, key, index) => (
+              <Task student={student} task={task} key={key} index={key} />
+            ))}
+          </tbody>
+        </Table>
+        </>
+      )}
+    </>
+  );
+};
+
+export default CompletedTasks;
