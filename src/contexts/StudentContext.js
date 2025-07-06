@@ -52,7 +52,7 @@ const StudentContextProvider = (props) => {
 
   const getStudentById = async (_id) => {
     const response = await fetch(
-      "http://localhost:3001/api/v1/students/byId/" + _id
+      "https://uptrack.onrender.com/students/byId/" + _id
     );
     const student = await response.json();
 
@@ -70,7 +70,7 @@ const StudentContextProvider = (props) => {
       img: pStudent.img,
     };
     try {
-      await fetch("http://localhost:3001/api/v1/students", {
+      await fetch("https://uptrack.onrender.com/students", {
         method: "POST",
         body: JSON.stringify(newStudent),
         headers: { "Content-Type": "application/json" },
@@ -91,7 +91,7 @@ const StudentContextProvider = (props) => {
 
   const updateStudent = async (pStudent) => {
     try {
-      await fetch("http://localhost:3001/api/v1/students", {
+      await fetch("https://uptrack.onrender.com/students", {
         method: "PUT",
         body: JSON.stringify(pStudent),
         headers: { "Content-Type": "application/json" },
@@ -109,7 +109,7 @@ const StudentContextProvider = (props) => {
 
   const deleteStudent = async (pStudentId) => {
     try {
-      await fetch("http://localhost:3001/api/v1/students/" + pStudentId, {
+      await fetch("https://uptrack.onrender.com/students/" + pStudentId, {
         method: "DELETE",
       });
       const updateDStudentList = studentList.filter(
