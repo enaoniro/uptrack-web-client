@@ -33,7 +33,7 @@ const StudentContextProvider = (props) => {
 
   const getStudentList = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/v1/students");
+      const response = await fetch("https://uptrackrest.onrender.com/students");
       const studentList = await response.json();
       setStudentList(studentList);
     } catch (error) {
@@ -44,20 +44,18 @@ const StudentContextProvider = (props) => {
   };
 
   const getStudentsInGrup = async (pId) => {
-    const response = await fetch("http://localhost:3001/api/v1/students" + pId);
+    const response = await fetch("https://uptrackrest.onrender.com/students" + pId);
     const studentList = await response.json();
     const grup = studentList?.filter((student) => student.GrupId == pId);
     setStudentsInGrup(grup);
   };
 
-  const getStudentById = async (_id) => {
-    const response = await fetch(
-      "http://localhost:3001/api/v1/students/byId/" + _id
-    );
-    const student = await response.json();
+  const getStudentById = async (id) => {
+    const response = await fetch("https://uptrackrest.onrender.com/students/byId/" + id);
+    const data = await response.json();
 
-    console.log(student);
-    // const student = studentList.find((student) => student.id == pId);
+    console.log(data);
+    const student = studentList.find((student) => data._id === id);
     setStudent(student);
   };
 
@@ -70,7 +68,7 @@ const StudentContextProvider = (props) => {
       img: pStudent.img,
     };
     try {
-      await fetch("http://localhost:3001/api/v1/students", {
+      await fetch("https://uptrackrest.onrender.com/students", {
         method: "POST",
         body: JSON.stringify(newStudent),
         headers: { "Content-Type": "application/json" },
@@ -91,7 +89,7 @@ const StudentContextProvider = (props) => {
 
   const updateStudent = async (pStudent) => {
     try {
-      await fetch("https://uptrack.onrender.com/students", {
+      await fetch("https://uptrackrest.onrender.com/students", {
         method: "PUT",
         body: JSON.stringify(pStudent),
         headers: { "Content-Type": "application/json" },
@@ -109,7 +107,7 @@ const StudentContextProvider = (props) => {
 
   const deleteStudent = async (pStudentId) => {
     try {
-      await fetch("http://localhost:3001/api/v1/students/" + pStudentId, {
+      await fetch("https://uptrackrest.onrender.com/students/" + pStudentId, {
         method: "DELETE",
       });
       const updateDStudentList = studentList.filter(

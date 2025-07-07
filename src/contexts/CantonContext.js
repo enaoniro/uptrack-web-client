@@ -26,7 +26,7 @@ const CantonContextProvider = (props) => {
   // }
 
   const getCantons = async () => {
-    const response = await fetch("http://localhost:3001/api/v1/cantons");
+    const response = await fetch("https://uptrackrest.onrender.com/cantons");
     const cantonList = await response.json();
     setCantonList(cantonList);
   };
@@ -39,7 +39,7 @@ const CantonContextProvider = (props) => {
       role: pCanton.role,
     };
     try {
-      await fetch("http://localhost:3001/api/v1/cantons", {
+      await fetch("https://uptrackrest.onrender.com/cantons", {
         method: "POST",
         body: JSON.stringify(pCanton),
         headers: { "Content-Type": "application/json" },
@@ -56,7 +56,7 @@ const CantonContextProvider = (props) => {
     console.log(pCanton._id);
 
     try {
-      await fetch(`http://localhost:3001/api/v1/cantons/`, {
+      await fetch(`https://uptrackrest.onrender.com/cantons/`, {
         method: "PUT",
         body: JSON.stringify(pCanton),
         headers: { "Content-Type": "application/json" },
@@ -75,7 +75,7 @@ const CantonContextProvider = (props) => {
   const deleteCanton = async (pCantonId) => {
     console.log(pCantonId);
     try {
-      await fetch("http://localhost:3001/api/v1/cantons/" + pCantonId, {
+      await fetch("https://uptrackrest.onrender.com/cantons/" + pCantonId, {
         method: "DELETE",
       });
       const updateDCantonList = cantonList.filter(
