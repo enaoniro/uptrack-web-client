@@ -28,7 +28,7 @@ const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 // console.log(process.env.REACT_APP_AUTH0_CLIENT_ID);
 
 root.render(
-  <BrowserRouter>
+  <HashRouter>
     <Auth0Provider
       domain="dev-nvkdil22.eu.auth0.com"
       clientId="tL3vLjSd8ZphVAxt4GgwgqOiZNYpTjsz"
@@ -54,6 +54,6 @@ root.render(
         </CantonContextProvider>
       </UserContextProvider>
     </Auth0Provider>
-  </BrowserRouter>
+  </HashRouter>
 );
 
