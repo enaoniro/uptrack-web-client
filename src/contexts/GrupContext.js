@@ -48,7 +48,7 @@ const GrupContextProvider = (props) => {
 
   const updateGrup = async (pGrup) => {
     try {
-      await fetch("https://uptrack.onrender.com/grups/", {
+      await fetch("https://uptrackrest.onrender.com/grups/", {
         method: "PUT",
         body: JSON.stringify(pGrup),
         headers: { "Content-Type": "application/json" },
@@ -64,7 +64,7 @@ const GrupContextProvider = (props) => {
 
   const deleteGrup = async (pGrupId) => {
     try {
-      await fetch("https://uptrack.onrender.com/grups/" + pGrupId, {
+      await fetch("https://uptrackrest.onrender.com/grups/" + pGrupId, {
         method: "DELETE",
       });
       const updateDGrupList = grupList.filter((grup) => grup.id !== pGrupId);
