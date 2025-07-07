@@ -49,7 +49,7 @@ const UserContextProvider = (props) => {
       role: pUser.role,
     };
     try {
-      await fetch("https://uptrack.onrender.com/users", {
+      await fetch("https://uptrackrest.onrender.com/users", {
         method: "POST",
         body: JSON.stringify(pUser),
         headers: { "Content-Type": "application/json" },
@@ -66,7 +66,7 @@ const UserContextProvider = (props) => {
     console.log(pUser._id);
 
     try {
-      await fetch(`https://uptrack.onrender.com/users/`, {
+      await fetch(`https://uptrackrest.onrender.com/users/`, {
         method: "PUT",
         body: JSON.stringify(pUser),
         headers: { "Content-Type": "application/json" },
@@ -82,7 +82,7 @@ const UserContextProvider = (props) => {
 
   const deleteUser = async (pUserId) => {
     try {
-      await fetch("https://uptrack.onrender.com/users/" + pUserId, {
+      await fetch("https://uptrackrest.onrender.com/" + pUserId, {
         method: "DELETE",
       });
       const updateDUserList = userList.filter((user) => user._id !== pUserId);
