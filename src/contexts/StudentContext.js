@@ -91,7 +91,7 @@ const StudentContextProvider = (props) => {
 
   const updateStudent = async (pStudent) => {
     try {
-      await fetch("https://uptrack.onrender.com/students", {
+      await fetch("https://uptrackrest.onrender.com/students", {
         method: "PUT",
         body: JSON.stringify(pStudent),
         headers: { "Content-Type": "application/json" },
@@ -109,7 +109,7 @@ const StudentContextProvider = (props) => {
 
   const deleteStudent = async (pStudentId) => {
     try {
-      await fetch("https://uptrack.onrender.com/students/" + pStudentId, {
+      await fetch("https://uptrackrest.onrender.com/students/" + pStudentId, {
         method: "DELETE",
       });
       const updateDStudentList = studentList.filter(
