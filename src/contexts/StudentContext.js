@@ -51,12 +51,11 @@ const StudentContextProvider = (props) => {
   };
 
   const getStudentById = async (id) => {
-    const response = await fetch("https://uptrackrest.onrender.com/students/byId" + id
-    );
-    const student = await response.json();
+    const response = await fetch("https://uptrackrest.onrender.com/students/byId/" + id);
+    const data = await response.json();
 
-    console.log(student);
-    //const stud = studentList.find((student) => student._id == id);
+    console.log(data);
+    const student = studentList.find((student) => data._id == id);
     setStudent(student);
   };
 
