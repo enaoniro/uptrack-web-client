@@ -13,12 +13,8 @@ import Container from "react-bootstrap/Container";
 function Home() {
   const [role, setRole] = useState("");
 
-  const {
-    addUser,
-    getUserbyEmail,
-    checkAuthenticatedUser,
-    userInDatabase,
-  } = useContext(UserContext);
+  const { addUser, getUserbyEmail, checkAuthenticatedUser, userInDatabase } =
+    useContext(UserContext);
 
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
@@ -79,7 +75,7 @@ function Home() {
                 email:uptracknewuser@gmail.com<br></br>
                 password:Uptrack.1
               </p> */}
-            
+
               <button
                 className="btn btn-outline-success ms-auto"
                 onClick={() => loginWithRedirect()}
@@ -89,7 +85,12 @@ function Home() {
             </div>
           </div>
           <UnregisteredUser
-            user={{ name: "Guest User", email: "uptracknewuser@gmail.com", role :"grup leader", grupId:1}}
+            user={{
+              name: "Guest User",
+              email: "uptracknewuser@gmail.com",
+              role: "grup leader",
+              grupId: 1,
+            }}
           />
         </Container>
       )}

@@ -12,12 +12,8 @@ import Layout from "./Layout";
 function Navbar() {
   const [role, setRole] = useState("");
 
-  const {
-    addUser,
-    getUserbyEmail,
-    checkAuthenticatedUser,
-    userInDatabase,
-  } = useContext(UserContext);
+  const { addUser, getUserbyEmail, checkAuthenticatedUser, userInDatabase } =
+    useContext(UserContext);
 
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
 

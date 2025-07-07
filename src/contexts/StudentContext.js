@@ -91,7 +91,7 @@ const StudentContextProvider = (props) => {
 
   const updateStudent = async (pStudent) => {
     try {
-      await fetch("http://localhost:3001/api/v1/students", {
+      await fetch("https://uptrack.onrender.com/students", {
         method: "PUT",
         body: JSON.stringify(pStudent),
         headers: { "Content-Type": "application/json" },
