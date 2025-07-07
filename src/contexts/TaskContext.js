@@ -47,7 +47,7 @@ const TaskContextProvider = (props) => {
       student: id,
     };
     try {
-      await fetch("https://uptrack.onrender.com/tasks", {
+      await fetch("https://uptrackrest.onrender.com/tasks", {
         method: "POST",
         body: JSON.stringify(newTask),
         headers: { "Content-Type": "application/json" },
@@ -64,7 +64,7 @@ const TaskContextProvider = (props) => {
     console.log(pTask._id);
     console.log(pTask);
     try {
-      await fetch("https://uptrack.onrender.com/tasks/", {
+      await fetch("https://uptrackrest.onrender.com/tasks/", {
         method: "PUT",
         body: JSON.stringify(pTask),
         headers: { "Content-Type": "application/json" },
@@ -87,7 +87,7 @@ const TaskContextProvider = (props) => {
     console.log(pTask);
 
     try {
-      await fetch(`https://uptrack.onrender.com/tasks/settask`, {
+      await fetch(`https://uptrackrest.onrender.com/tasks/settask`, {
         method: "PUT",
         body: JSON.stringify(pTask),
         headers: { "Content-Type": "application/json" },
