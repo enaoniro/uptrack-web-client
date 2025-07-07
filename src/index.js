@@ -41,11 +41,11 @@ root.render(
               <TaskContextProvider>
                 <TargetContextProvider>
                   <RecordContextProvider>
-                   <HashRouter>
+               
                     <Routes>
                       <Route path="/*" element={<App />} />
                     </Routes>
-                    </HashRouter>
+            
                   </RecordContextProvider>
                 </TargetContextProvider>
               </TaskContextProvider>
