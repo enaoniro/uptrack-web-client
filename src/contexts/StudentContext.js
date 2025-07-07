@@ -57,8 +57,8 @@ const StudentContextProvider = (props) => {
     const student = await response.json();
 
     console.log(student);
-    const student = studentList.find((student) => student._id == id);
-    setStudent(student);
+    const stud = studentList.find((student) => student._id == id);
+    setStudent(stud);
   };
 
   const addStudent = async (pStudent, id) => {
