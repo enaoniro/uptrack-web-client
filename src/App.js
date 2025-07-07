@@ -26,7 +26,7 @@ import AddRecord from "./components/AddRecord";
 
 function App() {
   return (
-
+  <HashRouter>
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
@@ -40,7 +40,7 @@ function App() {
         <Route path="records/add" element={<AddRecord />} />
       </Route>
     </Routes>
-  
+  </HashRouter>
   );
 }
 
