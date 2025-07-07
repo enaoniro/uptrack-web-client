@@ -5,6 +5,7 @@ import {
   Link,
   Outlet,
 } from "react-router-dom";
+import { HashRouter } from 'react-router-dom';
 import "./App.css";
 import Profile from "./components/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -24,6 +25,7 @@ import AddRecord from "./components/AddRecord";
 
 function App() {
   return (
+  <HashRouter>
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
@@ -37,6 +39,7 @@ function App() {
         <Route path="records/add" element={<AddRecord />} />
       </Route>
     </Routes>
+  </HashRouter>
   );
 }
 
