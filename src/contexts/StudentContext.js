@@ -50,14 +50,14 @@ const StudentContextProvider = (props) => {
     setStudentsInGrup(grup);
   };
 
-  const getStudentById = async (_id) => {
+  const getStudentById = async (id) => {
     const response = await fetch(
-      "https://uptrackrest.onrender.com/byId/" + _id
+      "https://uptrackrest.onrender.com/byId/" + id
     );
     const student = await response.json();
 
     console.log(student);
-    // const student = studentList.find((student) => student.id == pId);
+    const student = studentList.find((student) => student._id == id);
     setStudent(student);
   };
 
