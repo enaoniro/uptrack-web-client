@@ -15,6 +15,9 @@ import { BrowserRouter } from "react-router-dom";
 import { Router, Routes, Route, Switch, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
+import { HashRouter } from 'react-router-dom';
+
+
 
 
 
@@ -38,9 +41,11 @@ root.render(
               <TaskContextProvider>
                 <TargetContextProvider>
                   <RecordContextProvider>
+                   <HashRouter>
                     <Routes>
                       <Route path="/*" element={<App />} />
                     </Routes>
+                    </HashRouter>
                   </RecordContextProvider>
                 </TargetContextProvider>
               </TaskContextProvider>
